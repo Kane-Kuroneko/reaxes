@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://assets.2dfire.com/frontend/ff00e1bd198c1043f705502488e31c85.png"
+      sizes="64x64"
+    />
+    <div htmlWebpackPlugin style="display: none"><%=JSON.stringify(htmlWebpackPlugin,null,3) %></div>
+    <title>Daotion-web</title>
+  </head>
+  <body>
+    <div id="react-app-root"></div>
+  </body>
+  <%= htmlWebpackPlugin.files.js.reduce((accu , filePath ) => { return accu + `
+  <script src="/${filePath}"></script>
+  \n`; },``) %>
+</html>
