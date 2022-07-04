@@ -1,43 +1,41 @@
 {
-	"name" : "@reaxes/core" ,
-	"version" : "0.9.0" ,
-	"description" : "一个集状态管理,action,生命周期为一体的响应式架构" ,
-	"main" : "src/index.tsx" ,
-	"scripts" : {
-		"build" : "node" ,
-		"start" : "" ,
-		"publish" : "cd dist & npm publish"
-		
-	} ,
-	"repository" : {
-		"type" : "git" ,
-		"url" : "git+ssh://git@github.com/CainKane/Reaxes.git"
-	} ,
-	"keywords" : [
-		"Reaxes" ,
-		"Reaxel" ,
-		"React" ,
-		"Mobx" ,
-		"Reactive" ,
-		"Reaction"
-	] ,
-	"author" : "Kane" ,
-	"license" : "WTFPL" ,
-	"bugs" : {
-		"url" : "https://github.com/CainKane/Reaxes/issues"
-	} ,
-	"homepage" : "https://github.com/CainKane/Reaxes#readme" ,
-	"dependencies" : {
-		"ahooks" : "^3.3.12" ,
-		"lodash" : "^4.17.21" ,
-		"mobx" : "^6.5.0" ,
-		"mobx-react" : "^7.3.0" ,
-		"mobx-react-lite" : "^3.4.0" ,
-		"mobx-react-lite-remastered" : "npm:mobx-react-lite@^3.4.0" ,
-		"react" : "^17.0.2"
+	"name": "@reaxes/core",
+	"version": "0.9.0",
+	"description": "一个集状态管理,action,生命周期为一体的响应式架构",
+	"main": "src/index.tsx",
+	"scripts": {
+		"build": "node",
+		"start": "",
+		"publish": "cd dist & npm publish"
 	},
-	
-	"devDependencies" : {
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/CainKane/Reaxes.git"
+	},
+	"keywords": [
+		"Reaxes",
+		"Reaxel",
+		"React",
+		"Mobx",
+		"Reactive",
+		"Reaction"
+	],
+	"author": "Kane",
+	"license": "WTFPL",
+	"bugs": {
+		"url": "https://github.com/CainKane/Reaxes/issues"
+	},
+	"homepage": "https://github.com/CainKane/Reaxes#readme",
+	"dependencies": {
+		"ahooks": "^3.3.12",
+		"lodash": "^4.17.21",
+		"mobx": "^6.5.0",
+		"mobx-react": "^7.3.0",
+		"mobx-react-lite": "^3.4.0",
+		"mobx-react-lite-remastered": "npm:mobx-react-lite@^3.4.0",
+		"react": "^17.0.2"
+	},
+	"devDependencies": {
 		"@babel/core": "^7.14.8",
 		"@babel/plugin-proposal-class-static-block": "^7.14.5",
 		"@babel/plugin-proposal-decorators": "^7.14.5",
@@ -63,6 +61,7 @@
 		"@types/react-router-dom": "^5.3.3",
 		"babel-loader": "^8.2.5",
 		"compression-webpack-plugin": "^10.0.0",
+		"copy-webpack-plugin": "^11.0.0",
 		"cross-env": "^7.0.3",
 		"css-loader": "^6.7.1",
 		"html-webpack-plugin": "^5.5.0",
