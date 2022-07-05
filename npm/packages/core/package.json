@@ -1,0 +1,26 @@
+{
+  "name": "reaxes-core",
+  "version": "0.0.1",
+  "description": "> TODO: description",
+  "author": "Kane <18299687659@163.com>",
+  "homepage": "https://github.com/CainKane/Reaxes#readme",
+  "license": "ISC",
+  "main": "lib/core.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CainKane/Reaxes.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/CainKane/Reaxes/issues"
+  }
+}

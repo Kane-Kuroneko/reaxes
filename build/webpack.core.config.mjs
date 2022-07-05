@@ -42,7 +42,9 @@ export const basicConfig$Fn = (plugins = []) => ({
 	} ,
 	resolve : {
 		alias : {
-			'react-dom' : "@hot-loader/react-dom" ,
+			/*development*/
+			
+			/*production*/
 			'mobx-react-lite' : path.resolve(rootPath , 'src/libs/mobx-react-lite/index') ,
 			'@@RootPath' : path.resolve(rootPath) ,
 			'@@common' : path.resolve(rootPath , 'src/common') ,
@@ -56,11 +58,6 @@ export const basicConfig$Fn = (plugins = []) => ({
 			'@@pages' : path.resolve(rootPath , 'src/pages') ,
 			'@@reaxes' : path.resolve(rootPath , 'src/reaxes') ,
 			'@@reaxes/*' : path.resolve(rootPath , 'src/reaxes/*') ,
-			'@@requester' : path.resolve(rootPath , 'src/common/requester') ,
-			'@@requests' : path.resolve(rootPath , 'src/requests') ,
-			'@@requests/*' : path.resolve(rootPath , 'src/requests/*') ,
-			// '@@common/requests' : path.resolve(rootPath , 'src/common/requests/index.ts') ,
-			// '@@common/routes' : path.resolve(rootPath , 'src/common/routes/index.ts') ,
 		} ,
 		extensions : [
 			'.ts' ,

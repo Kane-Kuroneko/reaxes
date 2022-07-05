@@ -1,4 +1,3 @@
-import Process , {} from 'process';
 import path from 'path';
 import fs from 'fs';
 import webpack from 'webpack';
@@ -8,14 +7,10 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import CompressionWebpackPlugin from 'compression-webpack-plugin';
 import { envConfig } from './build/.mix.js';
 
+import { rootPath  } from './build/webpack.core.config.mjs';
 import {
-	port ,
-	rootPath ,
-} from './build/webpack.core.config.mjs';
-import {
-	getIPV4address ,
-	webpack_promise ,
 	overload ,
+	webpack_promise ,
 } from './build/utils.mjs';
 import { developmentConfig$Fn } from "./build/webpack.development.config.mjs";
 import { productionConfig$Fn } from "./build/webpack.production.config.mjs";
@@ -44,7 +39,6 @@ export let {
 	mock = null,
 	analyze = false ,
 	method = "server" ,
-	env = "default_server",
 	node_env = "development",
 	experimental = null ,
 } = overload(args , [
@@ -59,11 +53,6 @@ export let {
 	{
 		regExp : /\bbuild|server\b/ ,
 		key : "method" ,
-	} ,
-	{
-		/*网络请求环境*/
-		regExp : /\bserver_yang|server_dev\b/ ,
-		key : "env" ,
 	} ,
 	{
 		/*网络请求环境*/
@@ -171,9 +160,7 @@ function build () {
 function getDefinePlugin (mode = node_env || 'production') {
 	return new DefinePlugin({
 		// '__REACT_DEVTOOLS_GLOBAL_HOOK__' : '({ isDisabled: true })' , /* 递归遍历src/pages下的文件结合src/pages/Route_Map.json , 生成一份路由表注入到全局变量里 */
-		ROUTE_MAP : "{}" || generateRouteMap() , // 全局注入mock模式变量
 		__IS_MOCK__ : mock ? 'true' : 'false' ,
-		__ENV__ : JSON.stringify(env) ,
 		__ENV_CONFIG__ : JSON.stringify(envConfig) ,
 		__NODE_ENV__ : JSON.stringify(mode),
 		__EXPERIMENTAL__ : JSON.stringify(experimental === 'experimental'),
@@ -258,64 +245,6 @@ function getProvidePlugin (config = {}) {
 			"request",
 		] ,
 		Reaxes : ["@@RootPath/src/Reaxes.core","Reaxes"] ,
-		env : [
-			"@@requester" ,
-			"request",
-		] , ...config ,
 	});
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Route_Map文件存储了路由<->模块路径的映射关系,用于向全局注入路由对象 */
-// import Route_Map from './src/common/routes/Route_Map.mjs';
-/* 递归搜集pages下所有模块 , 子路由文件夹必须由.subpage结尾 , 写入全局ROUTE_MAP变量 */
-function generateRouteMap () {
-	const pathOfPage = path.join(rootPath , 'src/pages/');
-	const pageList = [];
-	
-	/* 深度优先 */
-	const recursiveFindPages = (targetPath , parentPath) => {
-		fs.readdirSync(targetPath).forEach(filename => {
-			const filePath = path.join(targetPath , filename);
-			if ( fs.statSync(filePath).isDirectory() === true ) {
-				if ( parentPath === null ) {
-					pageList.push(filename);
-					return recursiveFindPages(path.join(targetPath , filename) , filename);
-				}
-				
-				if ( /(\.subpage)$/.test(filename) ) {
-					if ( typeof parentPath === 'string' ) {
-						const resultPath = parentPath + '/' + filename;
-						pageList.push(resultPath);
-						recursiveFindPages(path.join(targetPath , filename) , resultPath);
-					}
-				}
-			}
-		});
-	};
-	recursiveFindPages(pathOfPage , null);
-	{
-		/* 如果遍历时Page_Map文件的映射与src/pages内的模块不匹配(Page_Map找不到对应的page/模块)时,记录下来警告 */
-		let warnList = [];
-		for ( const routePath in Route_Map ) {
-			const moduleName = Route_Map[routePath];
-			pageList.includes(moduleName) === false && warnList.push(moduleName);
-		}
-		if ( warnList.length !== 0 ) console.warn(chalk.redBright(`!!!递归查找src/pages模块时未找到 : ${ warnList.join(' , ') }  !!!`));
-	}
-	
-	return JSON.stringify(Route_Map);
-};
-
 

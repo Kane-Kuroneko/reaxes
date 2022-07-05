@@ -5,7 +5,7 @@
 		"allowUnusedLabels" : true ,
 		"baseUrl" : "." ,
 		"declaration" : true ,
-		"declarationDir" : "src/common/Global DTS" ,
+		"declarationDir" : "src" ,
 		"declarationMap" : true ,
 		"esModuleInterop" : true ,
 		"experimentalDecorators" : true ,
@@ -63,51 +63,15 @@
 		"noUnusedParameters" : false ,
 		"paths" : {
 			"@@RootPath" : ["/"] ,
-			"@@common/*" : [
-				"src/common/*"
-			] ,
-			"@@common/*" : [
-				"src/common/*"
-			] ,
 			"@@utils" : [
 				"src/utils/index.tsx"
 			] ,
 			"@@utils/*" : [
 				"src/utils/*"
 			] ,
-			"@@components" : [
-				"src/utils/components/index.ts"
-			] ,
-			"@@components/*" : [
-				"src/utils/components/*"
-			] ,
-			"@@requester" : [
-				"src/common/requester/index"
-			] ,
-			"@@requester/*" : [
-				"src/common/requester/*"
-			] ,
-			"@@requests" : [
-				"src/requests/index"
-			] ,
-			"@@requests/*" : [
-				"src/requests/*"
-			] ,
 			"@@Public/*" : [
 				"Public/*"
 			],
-			"@@pages/*" : [
-				"src/pages/*"
-			],
-			"@@reaxes" : [
-				"src/reaxes/index"
-			],
-			"@@reaxes/*" : [
-				"src/reaxes/*"
-			],
-			"@@mobxState" : [
-				"src/common/MobxState.ts",
-			] 
 			
 		} ,
 		"preserveConstEnums" : true ,
