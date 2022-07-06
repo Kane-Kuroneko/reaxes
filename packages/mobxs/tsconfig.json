@@ -62,10 +62,14 @@
 		"noUnusedLocals" : false ,
 		"noUnusedParameters" : false ,
 		"paths" : {
-			"mobxs/*" : ["packages/mobxs/*"],
-			"@@RootPath" : ["/"] ,
-			"@@utils" : [
-				"src/utils/index.tsx"
+			"mobxs/*" : [
+				"./*"
+			] ,
+			"mobxs/mobx-react" : [
+				"mobx-react/index"
+			] ,
+			"mobxs/mobx-react-lite" : [
+				"mobx-react-lite/index"
 			] ,
 			"@@utils/*" : [
 				"src/utils/*"

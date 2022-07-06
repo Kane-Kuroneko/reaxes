@@ -188,15 +188,11 @@ function makeObservableProp(target: any, propName: string): void {
         get: function () {
             let prevReadState = false
 
-            // Why this check? BC?
-            // @ts-expect-error
             if (_allowStateReadsStart && _allowStateReadsEnd) {
                 prevReadState = _allowStateReadsStart(true)
             }
             getAtom.call(this).reportObserved()
 
-            // Why this check? BC?
-            // @ts-expect-error
             if (_allowStateReadsStart && _allowStateReadsEnd) {
                 _allowStateReadsEnd(prevReadState)
             }

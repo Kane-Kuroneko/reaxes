@@ -28,6 +28,7 @@ const defaultPartialConfig = {
 /*拿到可用的端口号*/
 export const port = await getPort();
 export const rootPath = path.resolve(__dirname , '../');
+const packagesPah = path.resolve(__dirname , '../packages/');
 
 /*webpack基础配置*/
 export const basicConfig$Fn = (plugins = []) => ({
@@ -45,7 +46,8 @@ export const basicConfig$Fn = (plugins = []) => ({
 			/*development*/
 			
 			/*production*/
-			'mobx-react-lite' : path.resolve(rootPath , 'src/libs/mobx-react-lite/index') ,
+			'mobxs/*' : path.resolve(packagesPah) ,
+			
 			'@@RootPath' : path.resolve(rootPath) ,
 			'@@common' : path.resolve(rootPath , 'src/common') ,
 			'@@common/*' : path.resolve(rootPath , 'src/common/*') ,
