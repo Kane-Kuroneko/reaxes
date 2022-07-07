@@ -33,9 +33,6 @@ const packagesPah = path.resolve(__dirname , '../packages/');
 /*webpack基础配置*/
 export const basicConfig$Fn = (plugins = []) => ({
 	mode : method === 'server' ? 'development' : 'production' ,
-	entry : {
-		main : '/src/main.tsx' ,
-	} ,
 	output : {
 		filename : '[name].bundle.[fullhash:6].js' ,
 		path : path.resolve(rootPath , 'dist') ,
@@ -46,20 +43,14 @@ export const basicConfig$Fn = (plugins = []) => ({
 			/*development*/
 			
 			/*production*/
-			'mobxs/*' : path.resolve(packagesPah) ,
-			
+			'mobx-react' : path.resolve(packagesPah , 'mobxs/mobx-react') ,
+			'mobx-react-lite' : path.resolve(packagesPah , 'mobxs/mobx-react-lite') ,
+			'reaxes' : path.resolve(packagesPah , 'core') ,
+			'@@packages' : path.resolve(packagesPah) ,
 			'@@RootPath' : path.resolve(rootPath) ,
-			'@@common' : path.resolve(rootPath , 'src/common') ,
-			'@@common/*' : path.resolve(rootPath , 'src/common/*') ,
-			'@@utils' : path.resolve(rootPath , 'src/utils/index.tsx') ,
-			'@@utils/*' : path.resolve(rootPath , 'src/utils/*') ,
+			'@@utils' : path.resolve(packagesPah , 'utils/index') ,
+			'@@utils/*' : path.resolve(packagesPah , 'utils/*') ,
 			'@@Public' : path.join(rootPath , 'Public') ,
-			'@@mobxState' : path.resolve(rootPath , 'src/common/MobxState.ts') ,
-			'@@components' : path.resolve(rootPath , 'src/utils/components/index.ts') ,
-			'@@components/*' : path.resolve(rootPath , 'src/utils/components/*') ,
-			'@@pages' : path.resolve(rootPath , 'src/pages') ,
-			'@@reaxes' : path.resolve(rootPath , 'src/reaxes') ,
-			'@@reaxes/*' : path.resolve(rootPath , 'src/reaxes/*') ,
 		} ,
 		extensions : [
 			'.ts' ,

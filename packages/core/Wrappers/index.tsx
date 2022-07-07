@@ -1,6 +1,6 @@
 export { withHoC } from './withHoC';
 export { didrenderLifecycleHoC } from './didRender';
-export { observer } from '../MobxState';
+export { observer } from '../ORZMobx';
 
 export const compose = <T extends Function[]>( wrappers ) => {
 	

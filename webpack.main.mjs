@@ -1,13 +1,10 @@
-import path from 'path';
-import fs from 'fs';
 import webpack from 'webpack';
 import chalk from 'chalk';
 import WebpackDevServer from 'webpack-dev-server';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import CompressionWebpackPlugin from 'compression-webpack-plugin';
-import { envConfig } from './build/.mix.js';
 
-import { rootPath  } from './build/webpack.core.config.mjs';
+
 import {
 	overload ,
 	webpack_promise ,
@@ -36,15 +33,15 @@ const args = process.argv.slice(2);
  */
 /*对参数进行判断/处理*/
 export let {
-	mock = null,
+	entry = "core" ,
 	analyze = false ,
 	method = "server" ,
 	node_env = "development",
 	experimental = null ,
 } = overload(args , [
 	{
-		regExp : /\bmock\b/ ,
-		key : "mock" ,
+		regExp : /\bcore\b/ ,
+		key : "entry" ,
 	} ,
 	{
 		regExp : /\banalyze\b/ ,
@@ -76,6 +73,7 @@ const devConfig = developmentConfig$Fn({
 		getDefinePlugin(node_env ) ,
 		...analysis,
 	] ,
+	entry : `/packages/${ entry }/index`,
 });
 const prodConfig = productionConfig$Fn({
 	plugins : [
@@ -86,15 +84,16 @@ const prodConfig = productionConfig$Fn({
 		}) ,
 		...analysis,
 	] ,
+	entry : `/packages/${ entry }/index`,
 });
 
-if ( process.argv.includes('mock') ) {
-	console.log(chalk.yellowBright(`当前运行在mock模式下`));
-}
 
 setTimeout(start);
 
-function start(){
+function start () {
+	if ( process.argv.includes('mock') ) {
+		console.log(chalk.yellowBright(`当前运行在mock模式下`));
+	}
 	switch ( method ) {
 		case 'server':
 			devServer().
@@ -108,22 +107,7 @@ function start(){
 			chalk.green(`building , please hold on...`)
 			build().then(() => {
 				const usedTime = (Date.now() - startTime) / 1000;
-				let rating = '🐢';
-				switch ( true ) {
-					case usedTime < 17:
-						rating = '☄︎';
-						break;
-					case usedTime < 25:
-						rating = '🚀';
-						break;
-					case usedTime < 32:
-						rating = '🚄';
-						break;
-					case usedTime < 38:
-						rating = '🐄';
-						break;
-				}
-				console.log(chalk.green(`构建成功! 用时${ usedTime }s${ rating }`));
+				console.log(chalk.green(`构建成功! 用时${ usedTime }s`));
 			}).catch(e => {
 				console.log(chalk.red(`构建失败 : `));
 				console.error(e);
@@ -160,8 +144,7 @@ function build () {
 function getDefinePlugin (mode = node_env || 'production') {
 	return new DefinePlugin({
 		// '__REACT_DEVTOOLS_GLOBAL_HOOK__' : '({ isDisabled: true })' , /* 递归遍历src/pages下的文件结合src/pages/Route_Map.json , 生成一份路由表注入到全局变量里 */
-		__IS_MOCK__ : mock ? 'true' : 'false' ,
-		__ENV_CONFIG__ : JSON.stringify(envConfig) ,
+		// __IS_MOCK__ : mock ? 'true' : 'false' ,
 		__NODE_ENV__ : JSON.stringify(mode),
 		__EXPERIMENTAL__ : JSON.stringify(experimental === 'experimental'),
 	});
@@ -199,27 +182,20 @@ function getProvidePlugin (config = {}) {
 			"@@common/ReactComponentWrapper" ,
 			"ComponentWrapper",
 		] ,
-		ReactComponentClass : [
+		reaxlass : [
 			"@@common/ReactComponentClass" ,
 			"ReactComponentClass",
 		] ,
 		orzMobx : [
-			"@@mobxState" ,
+			"reaxes" ,
 			"orzMobx",
 		] ,
+		Reaxes : ["reaxes","Reaxes"] ,
 		orzPromise : [
 			"@@utils" ,
 			"orzPromise",
 		] ,
 		utils : ["@@utils"] ,
-		globalStore : [
-			"@@common/global-controller" ,
-			"globalStore",
-		] ,
-		globalSetState : [
-			"@@common/global-controller" ,
-			"globalSetState",
-		] ,
 		crayon : [
 			"@@utils" ,
 			"crayon",
@@ -240,11 +216,6 @@ function getProvidePlugin (config = {}) {
 			"@@utils" ,
 			"stringify",
 		] ,
-		request : [
-			"@@requester" ,
-			"request",
-		] ,
-		Reaxes : ["@@RootPath/src/Reaxes.core","Reaxes"] ,
 	});
 };
 

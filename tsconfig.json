@@ -62,18 +62,20 @@
 		"noUnusedLocals" : false ,
 		"noUnusedParameters" : false ,
 		"paths" : {
-			"mobxs/*" : ["packages/mobxs/*"],
-			"@@RootPath" : ["/"] ,
+			"mobx-react": ["packages/mobxs/mobx-react"],
+			"mobx-react-lite": ["packages/mobxs/mobx-react-lite"],
+			"reaxes" : ["packages/core/index"] ,
+			"@@packages/*" : ["packages/*"] ,
+			"@@RootPath/*" : ["*"] ,
 			"@@utils" : [
-				"src/utils/index.tsx"
+				"packages/utils/index"
 			] ,
 			"@@utils/*" : [
-				"src/utils/*"
+				"packages/utils/*"
 			] ,
 			"@@Public/*" : [
 				"Public/*"
 			],
-			
 		} ,
 		"preserveConstEnums" : true ,
 		"removeComments" : true ,

@@ -38,7 +38,7 @@ declare const useLayoutEffect : typeof React.useLayoutEffect;
 declare const useMemo : typeof React.useMemo;
 declare const useCallback : typeof React.useCallback;
 
-declare const orzMobx : typeof import('@@mobxState').orzMobx;
+declare const orzMobx : typeof import('reaxes').orzMobx;
 
 
 declare const orzPromise : typeof import('@@utils/orzPromise.utility').orzPromise;

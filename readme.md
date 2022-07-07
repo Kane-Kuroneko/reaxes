@@ -3,4 +3,8 @@ Reaxes架构:
 
 start:
 
+* 建立pakcages之间的引用关系 import {} from 'utils'
+* 打包命令传入包名来进行对应的主入口打包
+* 
+
 `npm start <packageName>`

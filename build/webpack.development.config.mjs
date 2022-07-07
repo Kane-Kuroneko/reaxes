@@ -9,7 +9,6 @@ import {
 	port ,
 	rootPath ,
 } from "./webpack.core.config.mjs";
-import { envConfig } from './.mix.js';
 import {LogAtSucceed} from './plugins.mjs';
 // import envConfig from '../Public/env.config.json';
 // const envConfig = require('../Public/env.config.json');
@@ -33,12 +32,6 @@ export const developmentConfig$Fn = (mixed = {plugins:[]}) => merge(basicConfig$
 		historyApiFallback : true ,
 		// clientLogLevel : "none",
 		// quiet : true,
-		proxy : envConfig.reduce((accu , config) => (accu[config.proxy_path_dev] = {
-			target : config.server_host ,
-			pathRewrite : config.path_rewrite ,
-			secure : config.secure ,
-		},accu) , {}),
-		
 	} ,
 	devtool : 'source-map' ,
 	optimization : {
