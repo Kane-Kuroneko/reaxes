@@ -1,21 +1,63 @@
 {
+	"include" : [
+		"packages"
+	] ,
 	"compilerOptions" : {
+		
 		"allowJs" : true ,
+		"skipLibCheck" : true ,
 		"allowSyntheticDefaultImports" : true ,
 		"allowUnusedLabels" : true ,
 		"baseUrl" : "." ,
 		"declaration" : true ,
-		"declarationDir" : "src" ,
-		"declarationMap" : true ,
 		"esModuleInterop" : true ,
 		"experimentalDecorators" : true ,
-		"jsx" : "react" ,
+		"jsx" : "react-jsx" ,
 		"resolveJsonModule" : true ,
+		"outDir" : "npm/dist" ,
 		"strictFunctionTypes" : false ,
 		"strict" : false ,
 		"strictBindCallApply" : false ,
 		"strictNullChecks" : false ,
 		"allowUnreachableCode" : true ,
+		"module" : "ESNext" ,
+		"moduleResolution" : "node" ,
+		"emitDeclarationOnly" : true ,
+		"noImplicitAny" : false ,
+		"noImplicitReturns" : false ,
+		"noImplicitUseStrict" : false ,
+		"noUnusedLocals" : false ,
+		"noUnusedParameters" : false ,
+		"paths" : {
+			"mobx-react" : [
+				"packages/mobxs/mobx-react"
+			] ,
+			"mobx-react-lite" : [
+				"packages/mobxs/mobx-react-lite"
+			] ,
+			"reaxes" : [
+				"packages/core/index"
+			] ,
+			"@@packages/*" : [
+				"packages/*"
+			] ,
+			"@@RootPath/*" : [
+				"*"
+			] ,
+			"@@utils" : [
+				"packages/utils/index"
+			] ,
+			"@@utils/*" : [
+				"packages/utils/*"
+			] ,
+			"@@Public/*" : [
+				"Public/*"
+			]
+		} ,
+		"preserveConstEnums" : true ,
+		"removeComments" : true ,
+		"target" : "ES2020" ,
+		"allowSyntheticDefaultImports" : true ,
 		"lib" : [
 			"ES5" ,
 			"ES6" ,
@@ -50,53 +92,17 @@
 			"ESNext.Array" ,
 			"ESNext.Intl" ,
 			"ESNext.Symbol" ,
-			"react",
 			"DOM"
-		] ,
-		"module" : "CommonJS" ,
-		"moduleResolution" : "node" ,
-		"noEmit" : true ,
-		"noImplicitAny" : false ,
-		"noImplicitReturns" : false ,
-		"noImplicitUseStrict" : false ,
-		"noUnusedLocals" : false ,
-		"noUnusedParameters" : false ,
-		"paths" : {
-			"mobx-react": ["packages/mobxs/mobx-react"],
-			"mobx-react-lite": ["packages/mobxs/mobx-react-lite"],
-			"reaxes" : ["packages/core/index"] ,
-			"@@packages/*" : ["packages/*"] ,
-			"@@RootPath/*" : ["*"] ,
-			"@@utils" : [
-				"packages/utils/index"
-			] ,
-			"@@utils/*" : [
-				"packages/utils/*"
-			] ,
-			"@@Public/*" : [
-				"Public/*"
-			],
-		} ,
-		"preserveConstEnums" : true ,
-		"removeComments" : true ,
-		"sourceMap" : true ,
-		"target" : "ES2020" ,
-		"watch" : true ,
-		"allowSyntheticDefaultImports" : true
+		]
 	} ,
-	"include" : [
-		"**/*.ts" ,
-		"**/*.tsx" ,
-		"src/*" ,
-		"src" ,
-	
-	] ,
 	"exclude" : [
 		"node_modules" ,
-		"dist" ,
+		"node_modules/*" ,
+		"node_modules/**" ,
+		"**/node_modules/**" ,
+		"npm" ,
 		".git" ,
 		".idea" ,
-		".svn" ,
-		"tsconfig.json"
+		".svn"
 	]
 }

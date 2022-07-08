@@ -1,4 +1,3 @@
-import React from "react"
 import { shallowEqual } from "./utils/utils"
 import { IValueMap } from "./types/IValueMap"
 

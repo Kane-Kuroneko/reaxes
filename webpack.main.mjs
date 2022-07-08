@@ -40,7 +40,7 @@ export let {
 	experimental = null ,
 } = overload(args , [
 	{
-		regExp : /\bcore\b/ ,
+		regExp : /\bcore|examples\b/ ,
 		key : "entry" ,
 	} ,
 	{
@@ -66,14 +66,15 @@ export let {
 /*如果是dev环境则默认开启实验特性,除非明确说明*/
 if(experimental === null && node_env === 'development') experimental = 'experimental';
 else if(node_env === "production" ) experimental = 'non-exp';
-const analysis = analyze ? [new BundleAnalyzerPlugin()] : []; 
+const analysis = analyze ? [new BundleAnalyzerPlugin()] : [];
+entry = `/packages/${ entry }/index`;
 const devConfig = developmentConfig$Fn({
 	plugins : [
 		getProvidePlugin() ,
 		getDefinePlugin(node_env ) ,
 		...analysis,
 	] ,
-	entry : `/packages/${ entry }/index`,
+	entry ,
 });
 const prodConfig = productionConfig$Fn({
 	plugins : [
@@ -84,7 +85,7 @@ const prodConfig = productionConfig$Fn({
 		}) ,
 		...analysis,
 	] ,
-	entry : `/packages/${ entry }/index`,
+	entry ,
 });
 
 
@@ -118,6 +119,7 @@ function start () {
 
 /* 注入plugin并启动dev-server */
 function devServer () {
+	
 	try {
 		const compiler = webpack(devConfig);
 		const webpackServer = new WebpackDevServer(
@@ -144,13 +146,13 @@ function build () {
 function getDefinePlugin (mode = node_env || 'production') {
 	return new DefinePlugin({
 		// '__REACT_DEVTOOLS_GLOBAL_HOOK__' : '({ isDisabled: true })' , /* 递归遍历src/pages下的文件结合src/pages/Route_Map.json , 生成一份路由表注入到全局变量里 */
-		// __IS_MOCK__ : mock ? 'true' : 'false' ,
-		__NODE_ENV__ : JSON.stringify(mode),
-		__EXPERIMENTAL__ : JSON.stringify(experimental === 'experimental'),
 	});
 };
 
 function getProvidePlugin (config = {}) {
+	const examplesNeeded = {
+		
+	};
 	return new ProvidePlugin({
 		_ : ["lodash"] ,
 		React : ["react"] ,
@@ -178,13 +180,13 @@ function getProvidePlugin (config = {}) {
 			"react" ,
 			"useCallback",
 		] ,
-		ComponentWrapper : [
-			"@@common/ReactComponentWrapper" ,
-			"ComponentWrapper",
+		Reaxper : [
+			"reaxes" ,
+			"Reaxper",
 		] ,
-		reaxlass : [
-			"@@common/ReactComponentClass" ,
-			"ReactComponentClass",
+		Reaxlass : [
+			"reaxes" ,
+			"Reaxlass",
 		] ,
 		orzMobx : [
 			"reaxes" ,

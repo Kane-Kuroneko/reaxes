@@ -1,14 +1,12 @@
 {
-  "name": "reaxes-example",
-  "version": "1.0.0",
-  "description": "Reaxes的实例代码",
-  "main": "index.tsx",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/react-router-dom": "^5.3.3"
-  }
+	"name": "reaxes-example",
+	"version": "1.0.0",
+	"description": "Reaxes的实例代码",
+	"main": "index.tsx",
+	"scripts": {
+		"start": "cd ../../ & npm start examples"
+	},
+	"type" : "module" ,
+	"author": "",
+	"license": "ISC"
 }

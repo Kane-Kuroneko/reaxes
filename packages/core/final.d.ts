@@ -28,9 +28,18 @@ declare type ArrayElement<ArrayType extends any[]> = ArrayType extends (infer P)
 declare type Batch<KEY extends (string | number | symbol)[], F> = {
 	[p in ArrayElement<KEY>]: F;
 };
-declare const _ : typeof import('lodash/lodash');
+declare module 'reaxes' {
+	export const Reaxper : typeof import('./index').Reaxper;
+	export const Reaxlass : typeof import('./index').Reaxlass;
+	export const orzMobx : typeof import('./index').orzMobx;
+}
+declare const Reaxper : typeof import('reaxes').Reaxper;
+declare const Reaxlass : typeof import('reaxes').Reaxlass;
+// declare const Reaxper : typeof import('reaxes').Reaxper;
 
-declare const React : typeof React;
+declare const _ : typeof import('lodash');
+
+declare const React : typeof import('react');
 declare const useState : typeof React.useState;
 declare const useEffect : typeof React.useEffect;
 declare const useRef : typeof React.useRef;
@@ -41,12 +50,13 @@ declare const useCallback : typeof React.useCallback;
 declare const orzMobx : typeof import('reaxes').orzMobx;
 
 
-declare const orzPromise : typeof import('@@utils/orzPromise.utility').orzPromise;
-declare const crayon : typeof import('@@utils/crayon.utility').crayon;
-declare const logProxy : typeof import('@@utils/logProxy.utility').logProxy;
-declare const makePair : typeof import('@@utils/makePair.utility').makePair;
-declare const assert : typeof import('@@utils/assert-group.utility').assert;
-declare const decodeQueryString : typeof import('@@utils/queryString.utility').decodeQueryString;
-declare const encodeQueryString : typeof import('@@utils/queryString.utility').encodeQueryString;
-declare const stringify : typeof import('@@utils/stringify.utility').stringify;
+declare const orzPromise : typeof import('../utils/orzPromise.utility').orzPromise;
+declare const crayon : typeof import('../utils/crayon.utility').crayon;
+declare const logProxy : typeof import('../utils/logProxy.utility').logProxy;
+declare const makePair : typeof import('../utils/makePair.utility').makePair;
+declare const assert : typeof import('../utils/assert-group.utility').assert;
+declare const decodeQueryString : typeof import('../utils/queryString.utility').decodeQueryString;
+declare const encodeQueryString : typeof import('../utils/queryString.utility').encodeQueryString;
+declare const stringify : typeof import('../utils/stringify.utility').stringify;
 declare const utils : typeof import('@@utils');
+// declare const __DEV__ : boolean;

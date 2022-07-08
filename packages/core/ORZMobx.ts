@@ -8,7 +8,7 @@ export const orzMobx = <S extends object>( state : S ) => {
 	
 	return {
 		store ,
-		setState : ( partialState : Partial<S> ) => setMobxState( store , partialState ) ,
+		setState : <PS extends Partial<S>>( partialState : PS ) => setMobxState( store , partialState ) ,
 		/**
 		 * todo
 		 * 递归地自动合并进行setState

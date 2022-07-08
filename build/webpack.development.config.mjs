@@ -17,13 +17,14 @@ import {LogAtSucceed} from './plugins.mjs';
 /*返回dev-server配置 , 用于启动本地服务*/
 export const developmentConfig$Fn = (mixed = {plugins:[]}) => merge(basicConfig$Fn([]) , {
 	stats : 'errors-only' ,
+	entry : mixed.entry,
 	devServer : {
 		static : {
 			// directory : path.resolve(rootPath , 'dist')
 		} ,
 		compress : false ,
 		port : port ,
-		https:true ,
+		server : "https",
 		host : '0.0.0.0' ,
 		hot : true , 
 		open : false ,
@@ -37,6 +38,18 @@ export const developmentConfig$Fn = (mixed = {plugins:[]}) => merge(basicConfig$
 	optimization : {
 		minimize : false ,
 	} ,
-	plugins : [...mixed.plugins, new LogAtSucceed('development'),],
+	plugins : [
+		...mixed.plugins, 
+		new LogAtSucceed('development'),
+		new HtmlWebpackPlugin({
+			template : './Public/index.template.ejs' ,
+			title : 'eth' ,
+			filename : 'index.html' ,
+			minify : false ,
+			hash : true ,
+			excludeChunks : [] ,
+			inject : false ,
+		}) ,
+	],
 	
 });

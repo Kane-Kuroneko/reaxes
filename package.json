@@ -1,18 +1,17 @@
 {
-	"name": "@Reaxes",
+	"name": "reaxes$",
 	"description": "",
 	"scripts": {
 		"start": "node --max_old_space_size=18000 webpack.main.mjs server",
 		"debug": "node --inspect-brk webpack.main.mjs server",
-		"build": "rm -rf dist & node webpack.main.mjs build production"
+		"publish": "npm run tsc & npm run build & cd npm & npm publish",
+		"build": "node webpack.main.mjs build production",
+		"tsc": "rm -rf npm/dist & tsc"
 	},
 	"dependencies": {
 		"ahooks": "^3.3.12",
-		"dayjs": "^1.11.2",
 		"lodash": "^4.17.21",
 		"mobx": "^6.5.0",
-		"react": "^17.0.2",
-		"react-dom": "^17.0.2",
 		"shallowequal": "^1.1.0"
 	},
 	"devDependencies": {
@@ -32,7 +31,6 @@
 		"@babel/preset-env": "^7.14.8",
 		"@babel/preset-react": "^7.14.5",
 		"@babel/preset-typescript": "^7.14.5",
-		"@hot-loader/react-dom": "^17.0.2",
 		"@svgr/webpack": "^6.2.1",
 		"@types/less": "^3.0.3",
 		"@types/lodash": "^4.14.182",
@@ -44,23 +42,26 @@
 		"copy-webpack-plugin": "^11.0.0",
 		"cross-env": "^7.0.3",
 		"css-loader": "^6.7.1",
+		"disable-tree-shaking-for-chunk-plugin": "^2.0.0",
 		"html-webpack-plugin": "^5.5.0",
+		"mobx-react": "^7.5.2",
+		"mobx-react-lite": "^3.4.0",
 		"portfinder": "^1.0.28",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"react-router-dom": "^6.3.0",
 		"typescript": "^4.6.3",
 		"webpack": "^5.72.0",
 		"webpack-bundle-analyzer": "^4.5.0",
 		"webpack-dev-server": "^4.8.1",
 		"webpack-merge": "^5.8.0"
 	},
-	"peerDependencies" : {
-		"react-router-dom" : "^6.3.0"
-	} ,
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/CainKane/eth-web-front.git"
 	},
 	"homepage": "/",
-	"main": "src/main.tsx",
+	"main": "packages/core/index.tsx",
 	"keywords": [],
 	"author": "Kane",
 	"license": "ISC",

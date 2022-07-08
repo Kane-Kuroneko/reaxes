@@ -1,14 +1,21 @@
 {
-  "name": "@reaxes/core",
-  "version": "0.9.0",
+  "name": "reaxes",
+  "version": "0.9.23",
   "description": "desc",
-  "main": "index.js",
+  "module": "dist/reaxes.min",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kane",
   "license": "WTFPL",
-  "devDependencies": {
-    "lerna": "^5.1.6"
-  }
+	"dependencies" : {
+		"mobx" : "^6.6.1",
+		"ahooks": "^3.3.12",
+		"lodash": "^4.17.21",
+		"shallowequal": "^1.1.0"
+	} ,
+	"peerDependencies": {
+		"react": ">=16.8",
+		"react-dom": ">=16.8"
+	}
 }

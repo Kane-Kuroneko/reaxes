@@ -12,8 +12,6 @@ import {
 } from '../webpack.main.mjs';
 
 import {LogAtSucceed} from './plugins.mjs';
-
-import NodePolyfillPlugin from 'node-polyfill-webpack-plugin'
 /**
  * @suggest dev环境建议使用全量source-map , 否则可能会导致错误栈无法定位到正确的模块
  */
@@ -34,14 +32,13 @@ const packagesPah = path.resolve(__dirname , '../packages/');
 export const basicConfig$Fn = (plugins = []) => ({
 	mode : method === 'server' ? 'development' : 'production' ,
 	output : {
-		filename : '[name].bundle.[fullhash:6].js' ,
-		path : path.resolve(rootPath , 'dist') ,
+		filename : 'reaxes.min.js' ,
+		path : path.resolve(rootPath , 'npm/dist') ,
 		// publicPath : path.resolve(rootPath , 'dist') ,
 	} ,
 	resolve : {
 		alias : {
 			/*development*/
-			
 			/*production*/
 			'mobx-react' : path.resolve(packagesPah , 'mobxs/mobx-react') ,
 			'mobx-react-lite' : path.resolve(packagesPah , 'mobxs/mobx-react-lite') ,
@@ -185,16 +182,6 @@ export const basicConfig$Fn = (plugins = []) => ({
 	} ,
 	stats : 'errors-only' ,
 	plugins : [
-		new HtmlWebpackPlugin({
-			template : './Public/index.template.ejs' ,
-			title : 'eth' ,
-			filename : 'index.html' ,
-			minify : false ,
-			hash : true ,
-			excludeChunks : [] ,
-			inject : false ,
-		}) ,
-		new NodePolyfillPlugin(),
 		...plugins
 	] ,
 });
