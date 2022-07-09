@@ -1,6 +1,6 @@
 {
   "name": "reaxes",
-  "version": "0.9.23",
+  "version": "0.9.26",
   "description": "desc",
   "module": "dist/reaxes.min",
   "scripts": {

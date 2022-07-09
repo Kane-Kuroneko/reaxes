@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset = "UTF-8">
+		<title>Tab组件</title>
+		<style>
+			#tabs {
+				display: flex;
+				
+				border-bottom: 1px solid #eeeeee;
+				user-select: none;
+			}
+			
+			#tabs span {
+				display: flex;
+				margin-right: 18px;
+				cursor: pointer;
+				padding: 12px 0;
+				
+			}
+			
+			#tabs span.selecting {
+				color: #0486fc;
+				border-bottom: 1px solid #0486fc;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>我的歌单</h1>
+		<div id="tabs">
+		
+		</div>
+		
+		<ul id="music-list">
+		
+		</ul>
+		<div id="toggleBtns">
+		
+		</div>
+	</body>
+	<script>
+		/**
+		 * 实现一个函数plus(2)(3) === 5
+		 */
+		function plus(){
+			
+		}
+		
+		/**
+		 * 测试
+		 */
+		[
+			[plus(3)(9),12],
+			[plus(100)(32),132],
+			[plus(63)(16),79],
+		].every(([fn,result]) => fn === result) ? alert('测试通过!') : alert("测试未通过!");
+	</script>
+</html>
