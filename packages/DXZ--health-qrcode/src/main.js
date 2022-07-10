@@ -1,22 +1,18 @@
-import React from 'react';
-import './css/main.css';
-import ReactDOM , { createRoot } from 'react-dom/client';
+import ReactDOM , { render } from 'react-dom';
 import { App } from './App';
+import React , {} from 'react';
+console.log(window.a,render,window.a === render);
 
-
-
-
-const createReactRoot = () => {
-	const divWithId = document.createElement('div');
-	Object.assign(divWithId , {
-		id : "react-root" ,
-	});
-	document.body.innerHTML = '';
-	document.body.append(divWithId);
-	return divWithId;
+console.log(ReactDOM.version);
+const createRoot = () => {
+	const rootNode = document.createElement('div');
+	rootNode.id = "react-app-root";
+	document.body.append(rootNode);
+	return rootNode;
 };
 
 
-const root = createRoot(createReactRoot());
-
-root.render(<App />);
+render(
+	<App /> ,
+	createRoot() ,
+);

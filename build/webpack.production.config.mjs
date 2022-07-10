@@ -21,15 +21,14 @@ export const productionConfig$Fn = (mixed = {plugins:[]}) => merge(basicConfig$F
 	target : "es2020",
 	output : {
 		library : {
-			type : "umd",
-			name:"_0_",
+			type : "module",
 			// export : ["default"]
 		},
 		chunkFormat : "module",
 		// module : true,
 	},
 	experiments : {
-		// outputModule: true,
+		outputModule: true,
 	},
 	externals : [
 		'react',

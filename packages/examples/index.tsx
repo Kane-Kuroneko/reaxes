@@ -1,18 +1,23 @@
-import { render } from 'react-dom';
 import {
-	orzMobx ,
+	Reaxper ,
 	Reaxlass ,
-	Reaxper,
+	orzMobx ,
+	Reaxes,
+	// } from '../../core/index.tsx';
 } from '../../npm/dist/reaxes.min';
-// } from '../core';
+import {render} from 'react-dom';
+
+console.log(window.a === React.Fragment);
 
 
-const App = Reaxper(class extends Reaxlass{
+
+export const App = Reaxper(class extends Reaxlass{
 	
 	reax_counter = reaxel_count(this.lifecycle);
 	
 	render(){
-		const { Counter } = this.reax_counter;
+		const Counter = Reaxper(this.reax_counter.Counter);
+		console.log('sdsds');
 		return <>
 			<Counter/>
 		</>
@@ -36,8 +41,10 @@ const reaxel_count = function(){
 			
 		})
 		
+		
+		
 		return {
-			Counter : Reaxper(() => {
+			Counter : (() => {
 				return <button
 					onClick = {() => {
 						setState({ count : store.count + 1 });
@@ -49,6 +56,8 @@ const reaxel_count = function(){
 		}
 	}
 }()
+
+
 
 
 render(

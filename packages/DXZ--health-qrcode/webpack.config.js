@@ -5,6 +5,10 @@ const CopyPlugin = require('copy-webpack-plugin')
 module.exports = {
 	devtool:"source-map",
 	mode : "development" ,
+	resolve : {
+		symlinks : false,
+		
+	},
 	module : {
 		rules : [
 			{
@@ -46,7 +50,8 @@ module.exports = {
 		}),
 		new CopyPlugin({
 			patterns: [
-				{ from: "statics/*", to: "dist" },
+				{ from: "../../npm/dist/reaxes.min.js", to: "./reaxes.min.js" },
+				{ from: "G:\\Reaxes\\npm\\dist\\reaxes.min.js", to: "G:\\Reaxes\\packages\\DXZ--health-qrcode\\reaxes.min.js" },
 			],
 		}),
 	] ,
@@ -64,7 +69,6 @@ module.exports = {
 		allowedHosts : "all",
 		static : "./dist",
 		host : "0.0.0.0",
-		hot : 'only',
 		watchFiles : ["src/**"],
 		historyApiFallback : true ,
 	},
