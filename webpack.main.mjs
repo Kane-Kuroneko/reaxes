@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import chalk from 'chalk';
 import WebpackDevServer from 'webpack-dev-server';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import CompressionWebpackPlugin from 'compression-webpack-plugin';
+// import CompressionWebpackPlugin from 'compression-webpack-plugin';
 
 
 import {
@@ -83,9 +83,9 @@ const prodConfig = productionConfig$Fn({
 	plugins : [
 		getProvidePlugin() ,
 		getDefinePlugin() ,
-		new CompressionWebpackPlugin({
-			
-		}) ,
+		// new CompressionWebpackPlugin({
+		//	
+		// }) ,
 		...analysis,
 	] ,
 	entry ,

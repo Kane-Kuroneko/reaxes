@@ -3,10 +3,10 @@ import {
 	Reaxlass ,
 	orzMobx ,
 	Reaxes,
-// } from '../../core/index.tsx';
-// } from '../../../npm/dist/reaxes.min';
 } from 'reaxes';
-import React , {} from 'react';
+import {
+	Signature
+} from 'ethers';
 
 export const App = Reaxper(class extends Reaxlass{
 	
@@ -14,7 +14,7 @@ export const App = Reaxper(class extends Reaxlass{
 	
 	render(){
 		const Counter = Reaxper(this.reax_counter.Counter);
-		console.log('sdsds');
+		console.log('sdsds');   
 		return <>
 			<Counter/>
 		</>
@@ -28,9 +28,11 @@ const reaxel_count = function(){
 		count : 0,
 	})
 	
+	const Reaxes.closuredMemo()
 	
-	
-	
+	/**
+	 * @return {(lifecycle:Lifecycle) => number }
+	 */
 	return (lifecycle) => {
 		
 		lifecycle.rendered(() => {
@@ -38,10 +40,9 @@ const reaxel_count = function(){
 			
 		})
 		
-		
-		
 		return {
 			Counter : (() => {
+				reaxel_count(Reaxes.hooks);
 				return <button
 					onClick = {() => {
 						setState({ count : store.count + 1 });

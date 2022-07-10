@@ -4,18 +4,18 @@
 	"scripts": {
 		"start": "node --max_old_space_size=18000 webpack.main.mjs server",
 		"debug": "node --inspect-brk webpack.main.mjs server",
-		"publish": "npm run tsc & npm run build & cd npm & npm publish",
+		"publish": "npm run tsc & npm run build && cd npm & npm publish",
 		"build": "node webpack.main.mjs build production",
 		"tsc": "rm -rf npm/dist & tsc"
 	},
 	"dependencies": {
+	},
+	"devDependencies": {
 		"ahooks": "^3.3.12",
 		"lodash": "^4.17.21",
 		"mobx": "^6.5.0",
 		"reaxes": "^0.9.27",
-		"shallowequal": "^1.1.0"
-	},
-	"devDependencies": {
+		"shallowequal": "^1.1.0",
 		"@babel/core": "^7.14.8",
 		"@babel/plugin-proposal-class-static-block": "^7.14.5",
 		"@babel/plugin-proposal-decorators": "^7.14.5",
@@ -39,7 +39,6 @@
 		"@types/react-dom": "^17.0.16",
 		"@types/react-router-dom": "^5.3.3",
 		"babel-loader": "^8.2.5",
-		"compression-webpack-plugin": "^10.0.0",
 		"copy-webpack-plugin": "^11.0.0",
 		"cross-env": "^7.0.3",
 		"css-loader": "^6.7.1",
