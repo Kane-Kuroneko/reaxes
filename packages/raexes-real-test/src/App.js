@@ -28,10 +28,10 @@ const reaxel_count = function(){
 		count : 0,
 	})
 	
-	const Reaxes.closuredMemo()
+	const closured = Reaxes.closuredMemo();
 	
 	/**
-	 * @return {(lifecycle:Lifecycle) => number }
+	 * @return {(lifecycle:Lifecycle) => * }
 	 */
 	return (lifecycle) => {
 		
