@@ -14,8 +14,8 @@ export const Reaxper = <T extends {}>(component : T) : T => {
 	
 	const wrappedComponent = compose( [
 		didrenderLifecycleHoC ,
-		observer ,
-		// withHoC ,
+		// observer ,
+		withHoC ,
 	] )(component);
 	
 	/*flag to prevent duplicated wrap*/

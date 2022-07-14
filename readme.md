@@ -8,3 +8,9 @@ start:
 * 
 
 `npm start <packageName>`
+
+
+Reaxper 注意:
+`render(){
+  // 每次创建一个新的reaxper时会使react认为这是一个新的组件,不会更新而是会卸载再挂载
+}`
