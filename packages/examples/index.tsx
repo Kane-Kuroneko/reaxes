@@ -7,12 +7,9 @@ import {
 // } from '../../npm/dist/reaxes.min';
 import { render } from 'react-dom';
 import {Test_Reaxel_i18n as UmountTest} from './test-unmount/index';
-
-
-export const App = UmountTest;
-
+import { Test_State } from './state';
 
 render(
-	<App /> ,
+	<Test_State /> ,
 	document.getElementById( 'react-app-root' ) ,
 );
