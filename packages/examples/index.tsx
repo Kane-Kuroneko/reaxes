@@ -8,9 +8,11 @@ import {
 import { render } from 'react-dom';
 import {Test_Reaxel_i18n as UmountTest} from './test-unmount/index';
 import { Test_State } from './state';
+import { User } from './example-reaxel-user';
+
 
 render(
-	<Test_State /> ,
+	<User /> ,
 	document.getElementById( 'react-app-root' ) ,
 );
 
