@@ -45,3 +45,30 @@ const reaxel_counter = function(){
 		}
 	}
 }(); 
+
+
+
+
+
+const Sub = class extends React.Component {
+	
+	render(){
+		return <>
+			<button>
+				click me
+			</button>
+		</>
+	}
+}
+
+/*反向继承*/
+const Wrapper = (Component) => {
+	return class extends Component{
+		
+		
+	} 
+}
+/*属性代理*/
+const Parent = () => {
+	return <Sub/>
+}
