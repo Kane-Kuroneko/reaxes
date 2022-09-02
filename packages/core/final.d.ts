@@ -32,6 +32,7 @@ declare module 'reaxes' {
 	export const Reaxper : typeof import('./index').Reaxper;
 	export const Reaxlass : typeof import('./index').Reaxlass;
 	export const orzMobx : typeof import('./index').orzMobx;
+	export const Reaxes : typeof import('./Reaxes').Reaxes;
 }
 declare const Reaxper : typeof import('reaxes').Reaxper;
 declare const Reaxlass : typeof import('reaxes').Reaxlass;
