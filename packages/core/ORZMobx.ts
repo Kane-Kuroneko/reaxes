@@ -4,7 +4,7 @@ import {
 } from 'mobx';
 
 export const orzMobx = <S extends object>( state : S ) => {
-	const store : Omit<S , "hasOwnProperty"> = observable<S>( state );
+	const store : Omit<S , "hasOwnProperty"> = observable<S>( state);
 	
 	return {
 		store ,
@@ -24,12 +24,26 @@ export const orzMobx = <S extends object>( state : S ) => {
 	};
 };
 
+
 const makePartialState = state => {};
 
 const setMobxState = action( <S extends {}>( store , partialState : Partial<S> ) => {
 	Object.assign( store , partialState );
 } );
 
+/*手动收集依赖,使组件响应store的值变化. keys是要指定响应的属性
+ *如果不传propKeys则整个store的变化都会引起重新渲染*/
+export const collectDeps = (store , propKeys : (string|number|symbol)[] = []) => {
+	if(propKeys.length){
+		propKeys.forEach( ( key ) => {
+			store[ key ];
+		} );
+	}else {
+		Object.getOwnPropertyNames( store ).forEach( ( key ) => {
+			store[ key ];
+		} );
+	}
+};
 
 type RecursivePartial<S extends object> = {
 	[p in keyof S]+? : S[p] extends object ? RecursivePartial<S[p]> : S[p];

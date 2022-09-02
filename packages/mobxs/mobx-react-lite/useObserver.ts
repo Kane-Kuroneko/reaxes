@@ -1,5 +1,4 @@
 import { Reaction } from "mobx"
-import React from "react"
 import { printDebugValue } from "./utils/printDebugValue"
 import {
     addReactionToTrack,

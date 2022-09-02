@@ -57,7 +57,6 @@ export * from './replaceStr.utility';
 export * from './queryString.utility';
 export * from './orzPromise.utility';
 
-export * from './withRouter';
 export * from './assert-group.utility';
 export * from './dataflow.utility';
 

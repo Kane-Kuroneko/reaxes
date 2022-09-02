@@ -17,19 +17,18 @@ export const productionConfig$Fn = (mixed = {plugins:[]}) => merge(basicConfig$F
 	stats : 'errors-only' ,
 	entry : mixed.entry,
 	devtool : 'source-map' ,
-	mode : "development",
+	mode : "production",
 	target : "es2020",
 	output : {
 		library : {
-			type : "umd",
-			name:"_0_",
+			type : "module",
 			// export : ["default"]
 		},
 		chunkFormat : "module",
 		// module : true,
 	},
 	experiments : {
-		// outputModule: true,
+		outputModule: true,
 	},
 	externals : [
 		'react',
@@ -47,6 +46,10 @@ export const productionConfig$Fn = (mixed = {plugins:[]}) => merge(basicConfig$F
 		new LogAtSucceed('production') ,
 		new CopyWebpackPlugin({
 			patterns : [
+				{
+					from : "./packages/core/final.d.ts" ,
+					to : "./core/final.d.ts" ,
+				},
 				{
 					from : "./Public/template.reaxes.d.ts" ,
 					to : "./reaxes.min.d.ts" ,

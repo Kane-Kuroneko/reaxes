@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import chalk from 'chalk';
 import WebpackDevServer from 'webpack-dev-server';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import CompressionWebpackPlugin from 'compression-webpack-plugin';
+// import CompressionWebpackPlugin from 'compression-webpack-plugin';
 
 
 import {
@@ -40,7 +40,7 @@ export let {
 	experimental = null ,
 } = overload(args , [
 	{
-		regExp : /\bcore|examples\b/ ,
+		regExp : /\bcore|examples|reaxes-test\b/ ,
 		key : "entry" ,
 	} ,
 	{
@@ -67,7 +67,10 @@ export let {
 if(experimental === null && node_env === 'development') experimental = 'experimental';
 else if(node_env === "production" ) experimental = 'non-exp';
 const analysis = analyze ? [new BundleAnalyzerPlugin()] : [];
-entry = `/packages/${ entry }/index`;
+
+if(entry==="reaxes-test") entry = "DXZ--health-qrcode/src/main";
+entry = `/packages/${ entry }`;
+console.log(entry);
 const devConfig = developmentConfig$Fn({
 	plugins : [
 		getProvidePlugin() ,
@@ -80,9 +83,9 @@ const prodConfig = productionConfig$Fn({
 	plugins : [
 		getProvidePlugin() ,
 		getDefinePlugin() ,
-		new CompressionWebpackPlugin({
-			
-		}) ,
+		// new CompressionWebpackPlugin({
+		//	
+		// }) ,
 		...analysis,
 	] ,
 	entry ,

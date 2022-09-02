@@ -1,21 +1,18 @@
 {
-  "name": "reaxes",
-  "version": "0.9.26",
-  "description": "desc",
-  "module": "dist/reaxes.min",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Kane",
-  "license": "WTFPL",
+	"name" : "reaxes" ,
+	"version" : "0.10.4" ,
+	"description" : "desc" ,
+	"module" : "./dist/reaxes.min.js" ,
+	"types" : "./dist/core/index.d.ts" ,
+	"author" : "Kane" ,
+	"license" : "WTFPL" ,
 	"dependencies" : {
-		"mobx" : "^6.6.1",
-		"ahooks": "^3.3.12",
-		"lodash": "^4.17.21",
-		"shallowequal": "^1.1.0"
+		"mobx" : "^6.6.1" ,
+		"lodash" : "^4.17.21" ,
+		"shallowequal" : "^1.1.0"
 	} ,
-	"peerDependencies": {
-		"react": ">=16.8",
-		"react-dom": ">=16.8"
+	"peerDependencies" : {
+		"react" : ">=16.8" ,
+		"react-dom" : ">=16.8"
 	}
 }

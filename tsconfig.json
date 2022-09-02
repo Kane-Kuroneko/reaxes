@@ -42,7 +42,7 @@
 				"packages/*"
 			] ,
 			"@@RootPath/*" : [
-				"*"
+				"/*"
 			] ,
 			"@@utils" : [
 				"packages/utils/index"
@@ -100,6 +100,8 @@
 		"node_modules/*" ,
 		"node_modules/**" ,
 		"**/node_modules/**" ,
+//		"packages/examples",
+		"packages/raexes-real-test",
 		"npm" ,
 		".git" ,
 		".idea" ,

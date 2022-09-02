@@ -1,38 +1,20 @@
-import React , { Component  } from 'react';
-import {
-	BrowserRouter,
-	Link,
-	Router,
-	Route ,
-	withRouter,
-	Routes,
-} from 'react-router-dom';
 import {
 	Reaxper ,
 	Reaxlass ,
 	orzMobx ,
 	Reaxes,
-// } from '../../../npm/dist/reaxes.min';
-} from '../../../../Reaxes/';
-
-
-
-
-
-
-
-
-
-
-
-
+} from 'reaxes';
+import {
+	Signature
+} from 'ethers';
 
 export const App = Reaxper(class extends Reaxlass{
 	
 	reax_counter = reaxel_count(this.lifecycle);
 	
 	render(){
-		const { Counter } = this.reax_counter;
+		const Counter = Reaxper(this.reax_counter.Counter);
+		console.log('sdsds');   
 		return <>
 			<Counter/>
 		</>
@@ -46,9 +28,11 @@ const reaxel_count = function(){
 		count : 0,
 	})
 	
+	const closured = Reaxes.closuredMemo();
 	
-	
-	
+	/**
+	 * @return {(lifecycle:Lifecycle) => * }
+	 */
 	return (lifecycle) => {
 		
 		lifecycle.rendered(() => {
@@ -56,10 +40,9 @@ const reaxel_count = function(){
 			
 		})
 		
-		
-		
 		return {
-			Counter : Reaxper(() => {
+			Counter : (() => {
+				reaxel_count(Reaxes.hooks);
 				return <button
 					onClick = {() => {
 						setState({ count : store.count + 1 });

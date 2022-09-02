@@ -31,7 +31,7 @@ export class LogAtSucceed {
 			if ( stats.hasErrors() ) {
 				return this.onFail(stats);
 			}
-			const whisper = this.env === "production" ? "" : ` , host : http://${ getIPV4address() }:${port}\n\r`;
+			const whisper = this.env === "production" ? "" : ` , host : https://${ getIPV4address() }:${port}\n\r`;
 			console.log(chalk.green(`compiled successfully at ${ dayjs().format("HH:mm:ss") }${whisper}`));
 		});
 		compiler.hooks.failed.tap('LogAtSucceed' , (error) => {

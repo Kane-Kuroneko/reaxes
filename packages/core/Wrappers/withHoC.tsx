@@ -13,7 +13,7 @@ type Props = {
 export function withHoC<T extends ( React.Component & React.FC )>( OriginalComponent: T ) {
 	
 	
-	/*this should be a FC*/
+	/*this is a FC*/
 	if ( !OriginalComponent.prototype?.render ) {
 		return observerLite(OriginalComponent);
 	}
