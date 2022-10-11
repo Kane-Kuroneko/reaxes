@@ -4,7 +4,7 @@ import {
 	Reaxper ,
 	collectDeps ,
 	Reaxes,
-} from 'reaxes';
+} from '@@packages/reaxes';
 
 
 export const reaxel__user = function () {

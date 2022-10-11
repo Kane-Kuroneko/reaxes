@@ -7,7 +7,7 @@ import {
     _allowStateReadsStart,
     _allowStateReadsEnd
 } from "mobx"
-import { isUsingStaticRendering } from "mobx-react-lite"
+import { isUsingStaticRendering } from "@@packages/reaxes/libs/mobx-react-lite"
 
 import { newSymbol, shallowEqual, setHiddenProp, patch } from "./utils/utils"
 

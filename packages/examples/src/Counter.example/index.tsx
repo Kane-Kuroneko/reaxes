@@ -1,4 +1,4 @@
-import { Reaxlass , Reaxper , orzMobx , Reaxes } from 'reaxes';
+import { Reaxlass , Reaxper , orzMobx , Reaxes } from '@@packages/reaxes';
 
 export const Counter = Reaxper( class extends Reaxlass {
    

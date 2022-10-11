@@ -51,13 +51,13 @@ declare const useCallback : typeof React.useCallback;
 declare const orzMobx : typeof import('reaxes').orzMobx;
 
 
-declare const orzPromise : typeof import('../utils/orzPromise.utility').orzPromise;
-declare const crayon : typeof import('../utils/crayon.utility').crayon;
-declare const logProxy : typeof import('../utils/logProxy.utility').logProxy;
-declare const makePair : typeof import('../utils/makePair.utility').makePair;
-declare const assert : typeof import('../utils/assert-group.utility').assert;
-declare const decodeQueryString : typeof import('../utils/queryString.utility').decodeQueryString;
-declare const encodeQueryString : typeof import('../utils/queryString.utility').encodeQueryString;
-declare const stringify : typeof import('../utils/stringify.utility').stringify;
-declare const utils : typeof import('@@utils');
+declare const orzPromise : typeof import('@@utils/src/orzPromise.utility').orzPromise;
+declare const crayon : typeof import('@@utils/src/crayon.utility').crayon;
+declare const logProxy : typeof import('@@utils/src/logProxy.utility').logProxy;
+declare const makePair : typeof import('@@utils/src/makePair.utility').makePair;
+declare const assert : typeof import('@@utils/src/assert-group.utility').assert;
+declare const decodeQueryString : typeof import('@@utils/src/queryString.utility').decodeQueryString;
+declare const encodeQueryString : typeof import('@@utils/src/queryString.utility').encodeQueryString;
+declare const stringify : typeof import('@@utils/src/stringify.utility').stringify;
+declare const utils : typeof import('@@utils/src');
 // declare const __DEV__ : boolean;

@@ -1,6 +1,6 @@
 import { Component } from 'react';
-import { observer as observerLite , parentObserver} from 'mobx-react-lite';
-import { observer } from 'mobx-react';
+import { observer as observerLite , parentObserver} from '@@packages/reaxes/libs/mobx-react-lite';
+import { observer } from '@@packages/reaxes/libs/mobx-react';
 
 type Props = {
 	instance: React.Component;

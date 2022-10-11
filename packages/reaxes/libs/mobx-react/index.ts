@@ -14,7 +14,7 @@ export {
 	enableStaticRendering ,
 	observerBatching ,
 	useLocalObservable,
-} from "mobx-react-lite";
+} from "@@packages/reaxes/libs/mobx-react-lite";
 
 export { observer } from "./observer";
 

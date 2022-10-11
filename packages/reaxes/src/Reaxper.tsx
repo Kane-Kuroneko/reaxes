@@ -2,8 +2,8 @@ import {
 	compose ,
 	withHoC ,
 	didrenderLifecycleHoC ,
-} from './Wrappers/index';
-import {observer} from 'mobx-react';
+} from './Wrappers';
+import {observer} from '@@packages/reaxes/libs/mobx-react';
 const componentHasWrapped = Symbol( '' );
 
 export const Reaxper = <T extends {}>(component : T) : T => {
