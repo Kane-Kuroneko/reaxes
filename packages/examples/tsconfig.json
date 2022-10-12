@@ -29,7 +29,7 @@
 		"noUnusedLocals" : false ,
 		"noUnusedParameters" : false ,
 		"paths" : {
-			"@@reaxes" : ["../reaxes/dist"],
+			"@@reaxes" : ["../reaxes/dist/src"],
 			"@@packages/*" : [
 				"../*"
 			] ,

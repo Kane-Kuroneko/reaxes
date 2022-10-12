@@ -115,7 +115,7 @@ export default {
 		alias : {
 			'@@reaxes' : path.resolve(packages , 'reaxes') ,
 			'@@root' : __dirname ,
-			'@@packages/*' : path.resolve(__dirname,"../") ,
+			'@@packages' : packages ,
 			'@@utils' : path.resolve(packages , 'utils/dist/index') ,
 			'@@Public/*' : path.join(__dirname , 'Public/*') ,
 		} ,
@@ -250,6 +250,7 @@ export default {
 		maxAssetSize : 30000000 ,
 	} ,
 	plugins : [
+		getProvidePlugin(),
 		new HtmlWebpackPlugin({
 			template : './public/index.html' ,
 		}) ,

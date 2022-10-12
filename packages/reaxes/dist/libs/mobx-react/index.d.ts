@@ -1,4 +1,4 @@
-export { Observer, useObserver, useAsObservableSource, useLocalStore, isUsingStaticRendering, useStaticRendering, enableStaticRendering, observerBatching, useLocalObservable, } from "@@libs/mobx-react-lite";
+export { Observer, useObserver, useAsObservableSource, useLocalStore, isUsingStaticRendering, useStaticRendering, enableStaticRendering, observerBatching, useLocalObservable, } from "@@packages/reaxes/libs/mobx-react-lite";
 export { observer } from "./observer";
 export { MobXProviderContext, Provider, } from "./Provider";
 export { inject } from "./inject";

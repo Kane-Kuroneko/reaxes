@@ -1,5 +1,5 @@
-// import {Reaxper ,Reaxlass ,orzMobx ,Reaxes} from 'reaxes';
-import {Reaxper ,Reaxlass ,orzMobx ,Reaxes} from '@@reaxes';
+import {Reaxper ,Reaxlass ,orzMobx ,Reaxes} from 'reaxes';
+// import {Reaxper ,Reaxlass ,orzMobx ,Reaxes} from '@@reaxes';
 
 import { render } from 'react-dom';
 import React,{} from 'react';
@@ -7,7 +7,7 @@ import React,{} from 'react';
 // import { Test_State } from './state';
 // import { User } from './example-reaxel-user';
 
-console.log(Reaxper);
+console.log(Reaxes);
 
 const reaxel_counter = function(){
 	const {store,setState} = orzMobx({

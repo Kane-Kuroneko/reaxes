@@ -1,17 +1,19 @@
 {
 	"name": "reaxes",
-	"version": "1.0.0",
+	"version" : "0.10.7" ,
 	"description": "",
 	"main": "dist",
+	"types" : "dist/src/index.d.ts" ,
+	"typings" : "dist/src/index.d.ts" ,
 	"scripts": {
 		"build": "webpack & tsc",
 		"test": "jest"
 	},
+	"files" : [ "dist" ] ,
 	"author": "Kane",
 	"license": "WTFPL",
 	"dependencies": {
 		"lodash": "4.17.21",
-		"reaxes-utils": "1.0.0"
 	},
 	"peerDependencies": {
 		"react": "17.0.2",

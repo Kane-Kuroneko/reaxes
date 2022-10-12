@@ -95,7 +95,7 @@ export default {
 		alias : {
 			'@@root' : __dirname ,
 			'@@libs' : path.resolve(__dirname , 'libs') ,
-			'@@packages/*' : path.resolve(__dirname , "../") ,
+			'@@packages' : packages ,
 			'@@utils' : path.resolve(packages , 'utils') ,
 		} ,
 		extensions : [
@@ -212,6 +212,16 @@ export default {
 			} ,
 		] ,
 	} ,
+	externals : [
+		'react',
+		'react-dom',
+		'react-router',
+		'react-router-dom',
+		'ahooks',
+		'lodash',
+		'mobx',
+		'shallowequal',
+	],
 	mode : "production" ,
 	performance : {
 		maxEntrypointSize : 10000000 ,
