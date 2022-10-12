@@ -94,7 +94,6 @@ export default {
 	resolve : {
 		alias : {
 			'@@root' : __dirname ,
-			'@@reaxes' : path.resolve(packages ,'reaxes') ,
 			'@@libs' : path.resolve(__dirname , 'libs') ,
 			'@@packages/*' : path.resolve(__dirname , "../") ,
 			'@@utils' : path.resolve(packages , 'utils') ,

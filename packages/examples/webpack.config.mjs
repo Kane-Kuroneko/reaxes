@@ -113,7 +113,6 @@ export default {
 	},
 	resolve : {
 		alias : {
-			// 'reaxes' : path.resolve(packages , 'reaxes/dist/index') ,
 			'@@reaxes' : path.resolve(packages , 'reaxes') ,
 			'@@root' : __dirname ,
 			'@@packages/*' : path.resolve(__dirname,"../") ,
