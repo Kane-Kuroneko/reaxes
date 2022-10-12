@@ -3,7 +3,7 @@ import {
 	Reaxper ,
 	orzMobx ,
 	Reaxes ,
-} from '@@packages/reaxes';
+} from '@@packages/reaxes/src/index';
 
 import { reaxel__user } from './reaxel--user';
 

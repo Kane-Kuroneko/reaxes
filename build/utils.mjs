@@ -42,14 +42,14 @@ export const getPort = () => {
 	return portfinder.getPortPromise();
 };
 
-/*从object里挑出某些键*/
-export const pick = (source,keys) => {
-	return keys.reduce((accu,key) => {
-		if(source.hasOwnProperty(key)){
-			return Object.assign(accu , { [key] : source[key] });
-		}
-	},{});
-};
+	/*从object里挑出某些键*/
+	export const pick = (source,keys) => {
+		return keys.reduce((accu,key) => {
+			if(source.hasOwnProperty(key)){
+				return Object.assign(accu , { [key] : source[key] });
+			}
+		},{});
+	};
 
 export const overload = (params,processer) => {
 	return params.reduce((accumulator,current) => {

@@ -1,6 +1,6 @@
 /** @format */
 
-import path from 'path';
+import path from 'path';``
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';

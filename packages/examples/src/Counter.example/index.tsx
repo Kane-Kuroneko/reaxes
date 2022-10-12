@@ -1,20 +1,20 @@
 import { Reaxlass , Reaxper , orzMobx , Reaxes } from '@@packages/reaxes';
 
-export const Counter = Reaxper( class extends Reaxlass {
-   
-   reax_counter = reaxel_counter();
-   
-   render() {
-      const {count , setCount} = this.reax_counter;
-      
-      return <>
-         <p>current count : { count }</p>
-         <button onClick = { () => setCount( count + 1 ) }>
-            click me
-         </button>
-      </>;
-   }
-} );
+// export const Counter = Reaxper( class extends Reaxlass {
+//   
+//    reax_counter = reaxel_counter();
+//   
+//    render() {
+//       const {count , setCount} = this.reax_counter;
+//      
+//       return <>
+//          <p>current count : { count }</p>
+//          <button onClick = { () => setCount( count + 1 ) }>
+//             click me
+//          </button>
+//       </>;
+//    }
+// } );
 
 
 export const reaxel_user_login = function () {

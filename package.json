@@ -2,7 +2,7 @@
 	"name" : "reaxes" ,
 	"description" : "" ,
 	"scripts" : {
-		"start" : "node --max_old_space_size=18000 webpack.main.mjs server" ,
+		"start" : "bash scripts/start.sh" ,
 		"debug" : "node --inspect-brk webpack.main.mjs server" ,
 		"publish" : "npm run tsc & npm run build && cd npm & npm publish" ,
 		"build" : "node webpack.main.mjs build production" ,

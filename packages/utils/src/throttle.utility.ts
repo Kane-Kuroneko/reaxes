@@ -1,4 +1,3 @@
-/** @format */
 /**
  * @description 节流功能
  * @param {function} fn 要进行防抖处理的function

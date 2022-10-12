@@ -5,6 +5,5 @@
  */
 export const logProxy = ( source:object = {} ) => JSON.parse( stringify( _.cloneDeep( source ) ) );
 
-/*@ts-ignore*/
-window.logProxy = logProxy;
 
+import { stringify } from './stringify.utility';
