@@ -14,7 +14,7 @@
 		"experimentalDecorators" : true ,
 		"jsx" : "react-jsx" ,
 		"resolveJsonModule" : true ,
-		"outDir" : "npm/dist" ,
+		"outDir" : "dist" ,
 		"strictFunctionTypes" : false ,
 		"strict" : false ,
 		"strictBindCallApply" : false ,
@@ -41,9 +41,8 @@
 			"@@root/*" : [
 				"./*"
 			] ,
-			"@@utils" : [
-				"../utils/dist/index"
-			] ,
+			"@@libs/*" : ["libs/*"],
+			"@@utils" : ["../utils/dist/index"]
 		} ,
 		"preserveConstEnums" : true ,
 		"removeComments" : true ,
