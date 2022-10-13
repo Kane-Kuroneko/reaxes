@@ -3,18 +3,14 @@
 	"description" : "" ,
 	"scripts" : {
 		"start" : "bash scripts/start.sh" ,
-		"debug" : "node --inspect-brk webpack.main.mjs server" ,
-		"publish" : "npm run tsc & npm run build && cd npm & npm publish" ,
-		"build" : "node webpack.main.mjs build production" ,
-		"tsc" : "rm -rf npm/dist & tsc"
+		"test" : "yarn workspace reaxes jest"
 	} ,
 	"workspaces" : [
 		"packages/*"
 	] ,
-	"main" : "packages/core/index.tsx" ,
-	"keywords" : [ ] ,
+	"keywords" : [ "reaxes" ] ,
 	"author" : "Kane" ,
-	"license" : "ISC" ,
+	"license" : "WTFPL" ,
 	"version" : "0.1.0" ,
 	"private" : true,
 	"devDependencies" : {
