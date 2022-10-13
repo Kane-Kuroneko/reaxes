@@ -41,7 +41,7 @@
 			"@@root/*" : [
 				"./*"
 			] ,
-			"@@utils" : ["../utils/dist"]
+			"@@utils" : ["../utils/src"]
 		} ,
 		"preserveConstEnums" : true ,
 		"removeComments" : true ,

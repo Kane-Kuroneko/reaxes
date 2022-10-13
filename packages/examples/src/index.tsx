@@ -1,5 +1,5 @@
-import {Reaxper ,Reaxlass ,orzMobx ,Reaxes} from 'reaxes';
-// import {Reaxper ,Reaxlass ,orzMobx ,Reaxes} from '@@reaxes';
+// import {Reaxper ,Reaxlass ,orzMobx ,Reaxes} from 'reaxes';
+import {Reaxper ,Reaxlass ,orzMobx ,Reaxes} from '@@reaxes';
 
 import { render } from 'react-dom';
 import React,{} from 'react';

@@ -8,7 +8,8 @@
 		"test": "jest"
 	},
 	"dependencies": {
-		"lodash": "4.17.21"
+		"lodash": "4.17.21",
+		"shallowequal": "^1.1.0"
 	},
 	"peerDependencies": {
 		"react": "17.0.2",
@@ -35,12 +36,12 @@
 		"@types/react": "17.0.47",
 		"@types/react-dom": "17.0.16",
 		"@types/react-router-dom": "5.3.3",
-		"lodash": "4.17.21",
 		"babel-loader": "8.2.5",
 		"copy-webpack-plugin": "11.0.0",
 		"cross-env": "7.0.3",
 		"css-loader": "6.7.1",
 		"html-webpack-plugin": "5.5.0",
+		"lodash": "4.17.21",
 		"portfinder": "1.0.28",
 		"typescript": "4.6.3",
 		"webpack": "5.72.0",

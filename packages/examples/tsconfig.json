@@ -29,14 +29,14 @@
 		"noUnusedLocals" : false ,
 		"noUnusedParameters" : false ,
 		"paths" : {
-			"@@reaxes" : ["../reaxes/dist/src"],
+			"@@reaxes" : ["../reaxes/src"],
 			"@@packages/*" : [
 				"../*"
 			] ,
 			"@@root/*" : [
 				"./*"
 			] ,
-			"@@utils" : ["../utils/dist/index"]
+			"@@utils" : ["../utils/src"]
 		} ,
 		"preserveConstEnums" : true ,
 		"removeComments" : true ,

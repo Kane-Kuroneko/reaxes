@@ -1,33 +1,18 @@
 /**
  * 成对使用数据
- *
- * @format
- * @param value
- * @param callback
- * @returns {[undefined, undefined]}
+ * @param value 也可是callback
  */
+export const makePair =
+	<I , F extends (value : I) => any >
+	(value : I , ...callbacks : F[]) : [ I , ...ReturnType<F>[] ] => {
+		return [
+			value ,
+			...callbacks.map(callback => {
+				if( typeof callback === 'function' ) {
+					return callback(value);
+				}
+			}) ,
+		];
+	};
 
-export const makePair = (value, ...callbacks) => {
-  return [
-    ...callbacks.map(callback => {
-      if (typeof callback === 'function') {
-        return callback(value);
-      } else {
-        return value;
-      }
-    }),
-  ];
-};
-/*↓↓↓↓↓↓↓↓↓↓↓例子↓↓↓↓↓↓↓↓↓↓↓*/
-if (0) {
-  /*传入一个react ref hook , 并用后面两个函数对其进行封装或引用 , */
-  const [paramObject, getParamFromKey] = makePair(
-	  /*@ts-ignore*/
-    getUrlParam(),
-    params => params,
-    params => key => params[key],
-  );
-  paramObject.token;
-  getParamFromKey('token');
-}
-/*↑↑↑↑↑↑↑↑↑↑↑例子↑↑↑↑↑↑↑↑↑↑↑*/
+const [ value , computed ] = makePair({ a : 1 , b : 2 } , (value) => [value.a,'sdad']);

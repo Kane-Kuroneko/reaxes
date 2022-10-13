@@ -4,6 +4,4 @@
  * @param source
  */
 export const logProxy = ( source:object = {} ) => JSON.parse( stringify( _.cloneDeep( source ) ) );
-
-
 import { stringify } from './stringify.utility';
