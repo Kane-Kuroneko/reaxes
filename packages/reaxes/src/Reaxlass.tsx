@@ -4,7 +4,7 @@ import { reaction } from 'mobx';
 
 export class Reaxlass<Tprops extends {} = any , Tstate extends {} = any> extends Component<Tprops , Tstate> {
 	
-	#generateQueueID = function () {
+	private generateQueueID = function () {
 		let id = 0;
 		return ( callback : () => any ):{callback():any,id:string} => (
 			{
@@ -48,22 +48,22 @@ export class Reaxlass<Tprops extends {} = any , Tstate extends {} = any> extends
 		} ,
 		
 		mounted : ( cb : () => any ):string => {
-			const cbObj = this.#generateQueueID( cb );
+			const cbObj = this.generateQueueID( cb );
 			this.mountedStack.push( cbObj );
 			return cbObj.id;
 		} ,
 		unmount : ( cb : () => any ) => {
-			const cbObj = this.#generateQueueID( cb );
+			const cbObj = this.generateQueueID( cb );
 			this.unmountStack.push( cbObj );
 			return cbObj.id;
 		} ,
 		updated : ( cb : () => any ) => {
-			const cbObj = this.#generateQueueID( cb );
+			const cbObj = this.generateQueueID( cb );
 			this.updatedStack.push( cbObj );
 			return cbObj.id;
 		} ,
 		rendered : ( cb : () => any ) => {
-			const cbObj = this.#generateQueueID( cb );
+			const cbObj = this.generateQueueID( cb );
 			this.renderedStack.push( cbObj );
 			return cbObj.id;
 		} ,
@@ -80,11 +80,11 @@ export class Reaxlass<Tprops extends {} = any , Tstate extends {} = any> extends
 				if(firstflag){
 					return cb(),firstflag = false,void 0;
 				}
-				if(!utils.default.shallowEqual(prevDeps,currentDeps)){
+				if(!utils.shallowEqual(prevDeps,currentDeps)){
 					return cb(),prevDeps = currentDeps,void 0;
 				}
 			};
-			const cbObj = this.#generateQueueID( fn );
+			const cbObj = this.generateQueueID( fn );
 			this.updatedStack.push( cbObj );
 			this.mountedStack.push( cbObj );
 			return cbObj.id;
@@ -95,7 +95,7 @@ export class Reaxlass<Tprops extends {} = any , Tstate extends {} = any> extends
 		memory<F extends ( first : boolean ) => any>( callback : F , dependencies ) : ReturnType<F> {
 			let depList = dependencies();
 			reaction( dependencies , ( data , reaction ) => {
-				const dataChanged = !utils.default.shallowEqual( data , depList );
+				const dataChanged = !utils.shallowEqual( data , depList );
 				console.log( dataChanged );
 				if ( dataChanged ) {
 					crayon.orange( 'data changed' );

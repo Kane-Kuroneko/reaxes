@@ -1,4 +1,4 @@
-type lifecycle = (callback:Function) => string;
+declare type lifecycle = (callback:Function) => string;
 declare interface Lifecycle {
 	[p:string|symbol] : any ;
 	unmount : lifecycle ,

@@ -1,6 +1,6 @@
 import { Component } from 'react';
 export declare class Reaxlass<Tprops extends {} = any, Tstate extends {} = any> extends Component<Tprops, Tstate> {
-    #private;
+    private generateQueueID;
     JSX: {
         [p: string]: () => React.ReactElement | void | React.ReactNode;
     };

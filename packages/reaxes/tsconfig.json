@@ -21,6 +21,7 @@
 		"strictNullChecks" : false ,
 		"allowUnreachableCode" : true ,
 		"module" : "ESNext" ,
+		
 		"moduleResolution" : "node" ,
 		"emitDeclarationOnly" : true ,
 		"noImplicitAny" : false ,
@@ -45,7 +46,7 @@
 		} ,
 		"preserveConstEnums" : true ,
 		"removeComments" : true ,
-		"target" : "ES2020" ,
+		"target" : "ESNext" ,
 		"allowSyntheticDefaultImports" : true ,
 		"lib" : [
 			"ES5" ,

@@ -1,12 +1,12 @@
 {
 	"name" : "reaxes" ,
-	"version" : "0.10.7" ,
+	"version" : "0.10.11" ,
 	"description" : "" ,
 	"main" : "dist" ,
-	"types" : "dist/src/index.d.ts" ,
-	"typings" : "dist/src/index.d.ts" ,
+	"types" : "dist/reaxes/src/index.d.ts" ,
+	"typings" : "dist/reaxes/src/index.d.ts" ,
 	"scripts" : {
-		"build" : "webpack & tsc" ,
+		"build" : "rm -rf dist && webpack & tsc" ,
 		"test" : "jest"
 	} ,
 	"files" : [
