@@ -1,6 +1,6 @@
 {
 	"name": "reaxes",
-	"version": "0.10.12",
+	"version": "0.10.13",
 	"description": "",
 	"main": "dist",
 	"types": "dist/reaxes/src/index.d.ts",
