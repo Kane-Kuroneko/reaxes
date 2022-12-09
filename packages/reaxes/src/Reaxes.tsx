@@ -20,6 +20,8 @@ export const Reaxes = new (class {
 	 */
 	closuredMemo(callback , deps = () => []){
 		let depList = deps();
+		/*如果没有执行 则返回上次执行结果*/
+		let prevReturn = null;
 		return [
 			(depsSetter) => {
 				const tempDepsList = depsSetter(depList);
@@ -27,9 +29,11 @@ export const Reaxes = new (class {
 					/*debug时打开*/
 					// console.log(!utils.default.shallowEqual(depList,tempDepsList),depList,tempDepsList);
 					if( !utils.shallowEqual(depList , tempDepsList) ) {
-						const ret = callback(...args);
+						prevReturn = callback(...args);
 						depList = tempDepsList;
-						return ret;
+						return prevReturn;
+					}else {
+						return prevReturn;
 					}
 				};
 			} , () => {
