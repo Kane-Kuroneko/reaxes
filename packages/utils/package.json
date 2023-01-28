@@ -1,7 +1,7 @@
 {
 	"name": "reaxes-utils",
 	"version": "1.0.0",
-	"main": "dist",
+	"main": "src",
 	"license": "WTFPL",
 	"scripts": {
 		"build": "webpack & tsc",

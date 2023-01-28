@@ -1,4 +1,4 @@
-import { reaxel_storage } from '../../storage';
+import { reaxel_storage } from '#packages/reaxels/reaxel-storage';
 export const i18n_language_symbol = Symbol('__reaxel--i18n__');
 /*为reaxel-i18n勾入storage能力*/
 export const reaxel_i18n_storage = function(){

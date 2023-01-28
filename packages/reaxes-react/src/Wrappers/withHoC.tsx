@@ -7,7 +7,7 @@ type Props = {
 };
 
 /**
- * 包裹原始component , 集成了react-router , mobx-react , withHooks
+ * 包裹原始component , 集成了 mobx-react.observer , withHooks
  * @param OriginalComponent
  */
 export function withHoC<T extends ( React.Component & React.FC )>( OriginalComponent: T ) {

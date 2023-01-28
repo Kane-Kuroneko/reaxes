@@ -11,7 +11,7 @@ const {
 } = webpack;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
+const rootDir = path.resolve(__dirname , '../../');
 function getProvidePlugin () {
 	return new ProvidePlugin({
 		_ : ["lodash"] ,
@@ -93,10 +93,10 @@ export default {
 	} ,
 	resolve : {
 		alias : {
-			'@@root' : __dirname ,
 			'@@libs' : path.resolve(__dirname , 'libs') ,
-			'@@packages' : packages ,
-			'@@utils' : path.resolve(packages , 'utils') ,
+			'#root' : rootDir ,
+			'#packages' : path.resolve(rootDir,'packages') ,
+			'#utils' : path.resolve(rootDir , 'packages/utils') ,
 		} ,
 		extensions : [
 			'.ts' ,

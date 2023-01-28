@@ -1,0 +1,8 @@
+{
+	"name" : "refaxel-i18n",
+	"description" : "a reactive i18n engine based on reaxes.",
+	"version" : "0.1.1-alpha",
+	"peerDependencies" : {
+		
+	}
+}

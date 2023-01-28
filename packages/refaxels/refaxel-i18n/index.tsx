@@ -1,10 +1,12 @@
 import { reaxel_i18n_storage } from './i18n-storage';
+import {} from 'reaxes';
+import { orzPromise } from "#utils";
 
 /**
  * 分布式I18n reaxel
  * 如果不需要storage , 把reaxel_i18n_storage相关的部分移除即可.
  */
-export const Reaxel_i18n = function(
+export const refaxel_i18n = function(
 	souceLanguage:string = "en",
 	languageList = [] as {name:string,lang:string,module:any}[],
 ){
@@ -39,7 +41,7 @@ export const Reaxel_i18n = function(
 		setState( {lang} );
 		asyncLangLoader();
 		document.documentElement.lang = lang.slice(0,2);
-		setTimeout(() => i18n_storage.writeToStorage(lang));
+		(queueMicrotask || setTimeout)(() => i18n_storage.writeToStorage(lang));
 	}
 	
 	const i18n = function(){

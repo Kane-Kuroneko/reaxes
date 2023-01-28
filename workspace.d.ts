@@ -7,28 +7,14 @@ declare const useRef : typeof React.useRef;
 declare const useLayoutEffect : typeof React.useLayoutEffect;
 declare const useMemo : typeof React.useMemo;
 declare const useCallback : typeof React.useCallback;
+declare const utils : typeof import('./packages/utils');
 
-
-declare namespace ORZ {
-	
-	export type env = "server_dev"|"server_yang" | "server_production" | "unset"  ;
-	
-	export type RequestOptions<body extends () => Promise<F> ,F = any> = Omit<RequestInit, 'body'> & {
-		env? : env,
-		body?: body;
-		mock? : boolean ;
-	};
-}
 
 declare const __IS_MOCK__: boolean;
 declare const __EXPERIMENTAL__: boolean;
 declare const __METHOD__: "server"|"build";
 declare const __NODE_ENV__ : "development"|"production";
-declare const __ENV__ : ORZ.env;
 /*DOM*/
-declare interface EventTarget {
-	value?: string;
-}
 /*CSS*/
 declare module '*.module.less' {
 	const classes : {

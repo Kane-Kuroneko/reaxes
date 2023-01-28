@@ -1,5 +1,6 @@
 /**
  * provide "componentDidRender" lifeCycle in class component
+ * fixme fix TS Type;
  * @param originalComponent 
  */
 export const didrenderLifecycleHoC = ( originalComponent: React.ComponentClass ) => {
