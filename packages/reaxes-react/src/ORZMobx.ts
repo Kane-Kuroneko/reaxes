@@ -1,8 +1,6 @@
-import {
-	observable ,
-	action ,
-} from 'mobx';
-
+/**
+ * 创建一个mobx的observable对象
+ */
 export const orzMobx = <S extends object>(state : S) => {
 	const store = observable<S>(state);
 	/**
@@ -58,3 +56,7 @@ type RecursivePartial<S extends object> = {
 	[p in keyof S]+? : S[p] extends object ? RecursivePartial<S[p]> : S[p];
 };
 
+import {
+	observable ,
+	action ,
+} from 'mobx';

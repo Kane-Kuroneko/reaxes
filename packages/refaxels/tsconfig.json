@@ -30,18 +30,11 @@
 		"watch" : false ,
 		"allowSyntheticDefaultImports" : true ,
 		"paths" : {
-			"@@libs/*" : [
-				"libs/*"
-			] ,
-			"#packages/*" : [
-				"../*"
-			] ,
-			"#root/*" : [
-				"../../*"
-			] ,
-			"#utils" : [
-				"../utils"
-			]
+			"reaxes" : [ "../reaxes-react" ] ,
+			"@@libs/*" : [ "libs/*" ] ,
+			"#packages/*" : [ "../*" ] ,
+			"#root/*" : [ "../../*" ] ,
+			"#utils" : [ "../utils" ]
 		} ,
 		"preserveConstEnums" : true ,
 		"removeComments" : true ,

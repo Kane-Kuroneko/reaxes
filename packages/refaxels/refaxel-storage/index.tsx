@@ -1,8 +1,13 @@
+import { orzMobx } from "reaxes";
+
 /**
  * todo 监听原生storage变化,提供实时更新的observable store;
  */
 export const reaxel_storage = function(){
-	
+	const {
+		store ,
+		setState,
+	} = orzMobx( {} );
 	window.addEventListener('storage',() => {
 		
 	})
@@ -37,3 +42,8 @@ export const reaxel_storage = function(){
 	};
 }();
 
+/*****TEST******/
+var a = (...args) => {
+	console.log( ...args );
+};
+addEventListener('storage',(...args) => a(...args));
