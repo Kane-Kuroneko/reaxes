@@ -1,11 +1,3 @@
-import {
-	orzMobx ,
-	Reaxlass ,
-	reaxper ,
-	Reaxes,
-} from '@@packages/reaxes/src/index';
-
-
 export const reaxel__user = function () {
 	const {
 		store ,

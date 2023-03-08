@@ -1,53 +1,22 @@
-import { collectDeps } from '../../core/ORZMobx';
-export const Test_State = Reaxper(class extends Reaxlass {
+export const Demo$state = reaxper(class extends Reaxlass {
 	
 	reax_count = reaxel_counter();
 	
 	render(){
-		collectDeps( this.reax_count.store );
-		// console.log( 111111111 );
 		return <>
 			<button
 				onClick={() => {
-					this.reax_count.setCount(this.reax_count.store.count + 1);
+					this.reax_count.setCount(this.reax_count.count + 1);
 				}}
 			>
 				current count : {this.reax_count.count}
 			</button>
 		</>
 	}
-}); 
+});
 
-
-const reaxel_counter = function(){
-	const {
-		store ,
-		setState,
-	} = orzMobx( {
-		count : 0 ,
-	} );
-	let static_count = 0;
-	
-	return () => {
-		return {
-			get store(){
-				return store;
-			},
-			get count (){
-				return static_count;
-			},
-			setCount(count:number){
-				setState( {
-					count ,
-				} );
-				static_count += 1 ;
-			},
-		}
-	}
-}(); 
-
-
-
+import {reaxper,orzMobx} from '#reaxes';
+import { reaxel_counter } from './reaxel';
 
 
 const Sub = class extends React.Component {

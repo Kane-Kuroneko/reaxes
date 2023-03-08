@@ -22,7 +22,7 @@ export const webpack_base_config = {
 		alias: {
 			'react-dom': '@hot-loader/react-dom',
 			'#root': path.resolve(rootPath),
-			'#toolkits': path.resolve(packagesRoot, 'toolkits'),
+			'#toolkit': path.resolve(packagesRoot, 'reaxes-toolkit'),
 			'#utils': path.resolve(packagesRoot, 'utils'),
 			'#reaxels': path.resolve(packagesRoot, 'reaxels'),
 			'#reaxes-react': path.resolve(packagesRoot, 'reaxes-react'),

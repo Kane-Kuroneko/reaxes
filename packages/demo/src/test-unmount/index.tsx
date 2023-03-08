@@ -13,7 +13,7 @@ const languageList = [
 	},
 ];
 
-export const Test_Reaxel_i18n = Reaxper( class extends Reaxlass {
+export const Test_Reaxel_i18n = reaxper( class extends Reaxlass {
 	
 	
 	render() {
@@ -79,7 +79,7 @@ export const reaxel_i18n = function(){
 		}
 	}
 	
-	const I18n = Reaxper((props:React.PropsWithChildren<{}>):React.ReactElement => {
+	const I18n = reaxper((props:React.PropsWithChildren<{}>):React.ReactElement => {
 		[store.lang];
 		const children = props.children as React.ReactText;
 		const forceUpdate = utils.useforceUpdate();

@@ -1,3 +1,4 @@
+import * as utils from '#utils';
 /**
  * pending状态和error状态
  */
@@ -45,7 +46,7 @@ if(false){
 		const { pendingState , setPending , setError } = orzPending();
 		
 		
-		crayon.blue(pendingState.pending);
+		utils.crayon.blue(pendingState.pending);
 		setPending(true);
 		
 		orzPromise((res , rej) => {

@@ -1,56 +1,10 @@
-import { Reaxlass , Reaxper , orzMobx , Reaxes } from '@@packages/reaxes';
+import { reaxper } from "#reaxes";
 
-// export const Counter = Reaxper( class extends Reaxlass {
-//   
-//    reax_counter = reaxel_counter();
-//   
-//    render() {
-//       const {count , setCount} = this.reax_counter;
-//      
-//       return <>
-//          <p>current count : { count }</p>
-//          <button onClick = { () => setCount( count + 1 ) }>
-//             click me
-//          </button>
-//       </>;
-//    }
-// } );
-
-
-export const reaxel_user_login = function () {
-   
-   const {store ,setState} = orzMobx( {
-      user_account : null ,
-      user_token : null ,
-      user_info : null,
-   } );
-   
-   const login = () => {
-      return new Promise<any>( ( resolve ) => {
-         setTimeout( () => resolve( {
-            user_account : "xxx@gmail.com" ,
-            user_token : "9d8as9vasd" ,
-            user_info : {
-               name : "papa" ,
-               age : 19,
-            } ,
-         } ) );
-      } ).then( ( res ) => {
-         setState( { ...res } );
-      } );
-   }
-   
-   return () => {
-      
-      return {
-         get user_store() {
-            return store;
-         },
-         login,
-      };
-   };
-}();
-
+export const Demo$intro = reaxper(() => {
+	
+	
+})
+import { reaxel_user_login } from './reaxel';
 
 
 

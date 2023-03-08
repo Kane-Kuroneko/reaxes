@@ -19,7 +19,7 @@ export let {
 	experimental = "non-exp" ,
 } = overload(args , [
 	{
-		regExp : /\bdaotion-app-web|daotion-demo-web|daotion-homepage-web|overseas-payment-cashier|overseas-payment-merchant-background-admin|overseas-payment-merchant-operation-platform\b/ ,
+		regExp : /\bdemo|reaxes-react\b/ ,
 		key : "repo" ,
 	} ,
 	{
@@ -73,6 +73,7 @@ export const packagesRoot = path.resolve(rootPath , `packages`);
 /*只有在列表中声明的包才可以被运行*/
 export const repoPackages = [
 	"demo" ,
+	"reaxes-react" ,
 ];
 /*非业务模块不可被打包,因为webpack.base.config.mjs里配置了对通用模块的alias,*/
 if(repoPackages.every((repoName) => repoName !== repo )){
@@ -83,7 +84,7 @@ if(repoPackages.every((repoName) => repoName !== repo )){
 import {
 	getPort ,
 	overload,
-} from './toolkits.mjs';
+} from './toolkit.mjs';
 import { fileURLToPath } from "url";
 import path from "path";
 import { merge } from "webpack-merge";

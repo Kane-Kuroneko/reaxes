@@ -13,6 +13,7 @@ export const webpackConfig = {
 			'#root' : repoRoot ,
 			'#packages' : path.resolve(repoRoot,'packages') ,
 			'#utils' : path.resolve(repoRoot , 'packages/utils') ,
+			'#toolkit' : path.resolve(repoRoot , 'packages/reaxes-toolkit') ,
 		},
 	},
 	plugins: [
@@ -35,7 +36,7 @@ export const webpackConfig = {
 		new ProvidePlugin({
 			orzPromise: ['#utils', 'orzPromise'],
 			utils: ['#utils'],
-			toolkits: ['@@toolkits'],
+			toolkit: ['@@toolkit'],
 			crayon: ['#utils', 'crayon'],
 			logProxy: ['#utils', 'logProxy'],
 			decodeQueryString: ['#utils', 'decodeQueryString'],
@@ -48,6 +49,6 @@ export const webpackConfig = {
 import path from 'path';
 import webpack from 'webpack';
 import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';
-import { getPort } from '../../build/toolkits.mjs';
+import { getPort } from '../../build/toolkit.mjs';
 import {method, repo, repoRoot , mock , env , node_env , experimental, } from '../../build/entrance.mjs';
 import HtmlWebpackPlugin from 'html-webpack-plugin';

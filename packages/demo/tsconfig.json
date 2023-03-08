@@ -29,10 +29,11 @@
 		"noUnusedLocals" : false ,
 		"noUnusedParameters" : false ,
 		"paths" : {
-			"@@reaxes" : ["../reaxes-react"],
+			"#reaxes" : ["../reaxes-react"],
 			"@@root/*" : [
 				"./*"
 			] ,
+			"#toolkit" : ["../reaxes-toolkit"],
 			"#packages/*" : [
 				"../*"
 			] ,
@@ -40,7 +41,7 @@
 				"./*"
 			] ,
 			"#utils" : [
-				"../utils/src"
+				"../utils"
 			]
 		} ,
 		"preserveConstEnums" : true ,

@@ -1,41 +1,59 @@
-// import {Reaxper ,Reaxlass ,orzMobx ,Reaxes} from 'reaxes';
-import {reaxper ,Reaxlass ,orzMobx ,Reaxes} from '@@reaxes';
-
 import { render } from 'react-dom';
-import React,{} from 'react';
-// import {Test_Reaxel_i18n as UmountTest} from './test-unmount';
-// import { Test_State } from './state';
-// import { User } from './example-reaxel-user';
+import {BrowserRouter,Route,Routes} from 'react-router-dom';
+import { Demo$state } from './state';
+import {} from './intro';
+import {} from './counter';
+import {} from './multi-reaxels';
+import {} from './test-unmount';
+import {} from './';
 
-console.log(Reaxes);
 
-const reaxel_counter = function(){
-	const {store,setState} = orzMobx({
-		count : 0 ,
-	})
-	return () => {
-		return {
-			get count(){
-				return store.count
-			},
-			plusCount (){
-				setState({ count : store.count + 1 });
-			},
-		}
+console.log(toolkit,utils);
+console.log(crayon);
+
+const mapping = [
+	{
+		name:"state",
+		path:"/state",
+		Component:Demo$state
 	}
-}()
+];
 
-const Counter = reaxper(() => {
-	const {count,plusCount} = reaxel_counter();
-	console.log(count);
+const Routing = reaxper( () => {
+	
+	return <BrowserRouter>
+		<Routes>
+			<Route path="/*" element = { <Home/> } />
+			{mapping.map(({path,Component}) => <Route
+				key={path}
+				path={path}
+				element={<Component/>}
+			/>)}
+		</Routes>
+	</BrowserRouter>;
+} );
+
+const Home = reaxper( () => {
 	
 	return <div>
-		<p>count : {count}</p>
-		<button onClick={plusCount}>add count</button>
-	</div>
+		{mapping.map(({name,path}) => <Entry key={path} name={name}/>)}
+	</div>;
+} );
+
+const Entry = reaxper(({ name}) => {
+	const { navigate } = toolkit.useRouter();
+	return <p>
+		<button 
+			onClick = { () => navigate( `/${ name }` ) }
+		>
+			{ name }
+		</button>
+	</p>;
 });
 
+
+
 render(
-	<Counter /> ,
+	<Routing /> ,
 	document.getElementById( 'react-app-root' ) ,
 );
