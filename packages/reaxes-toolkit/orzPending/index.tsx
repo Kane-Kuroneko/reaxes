@@ -1,4 +1,4 @@
-import * as utils from '#utils';
+import * as utils from 'reaxes-utils';
 /**
  * pending状态和error状态
  */
@@ -16,10 +16,9 @@ export const orzPending = () => {
 	return { pendingState, setPending, setError };
 };
 
-/**
- * @example
- */
+
 if(false){
+	//@ts-ignore
 	const TestRender = reaxper(() => {
 		
 		const { pending , error , setPending , setError } = reaxel();

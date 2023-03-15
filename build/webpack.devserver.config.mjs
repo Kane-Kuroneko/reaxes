@@ -1,5 +1,14 @@
-const proxy_configuration = (await import(`../packages/${repo}/proxy.configuration.json` ,{assert: { type: 'json' }})).default;
-export const webpack_devserver_config = {
+const proxy_configuration = async () => {
+	
+	try {
+		return (await import(`../packages/${ repo }/proxy.configuration.json` ,{ assert : { type : 'json' } })).default;
+	}catch ( e ) {
+		return [];
+	}
+}
+
+
+export const webpackServerConfig = {
 	stats : 'errors-only' ,
 	devServer : {
 		static : {
@@ -16,7 +25,7 @@ export const webpack_devserver_config = {
 		historyApiFallback : true ,
 		// clientLogLevel : "none",
 		// quiet : true,
-		proxy : proxy_configuration.reduce((accu , config) => (accu[config.proxy_path_dev] = {
+		proxy : (await proxy_configuration()).reduce((accu , config) => (accu[config.proxy_path_dev] = {
 			target : config.server_host ,
 			pathRewrite : config.path_rewrite ,
 			secure : config.secure ,

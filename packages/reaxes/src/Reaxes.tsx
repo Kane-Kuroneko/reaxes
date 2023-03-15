@@ -45,7 +45,7 @@ export const Reaxes = new (class {
 	/*手动收集依赖,使组件响应store的值变化. keys是要指定响应的属性
 	 *如果不传propKeys则整个store的变化都会引起重新渲染*/
 	collectDeps = (store , propKeys : ( string | number | symbol )[] = []) => {
-		if( typeof store !== "object" || store == null ) return;
+		if( ! _.isObject(store) ) throw 'the store argument must be a mobx observed object';
 		if( propKeys.length ) {
 			propKeys.forEach((key) => {
 				store[key];

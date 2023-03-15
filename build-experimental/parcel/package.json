@@ -13,7 +13,6 @@
 		"@babel/preset-env": "^7.20.2",
 		"@parcel/config-default": "^2.8.3",
 		"@parcel/core": "^2.8.3",
-		"babel-plugin-auto-import": "^1.1.0",
 		"babel-plugin-module-resolver": "^5.0.0",
 		"parcel": "^2.8.3"
 	}

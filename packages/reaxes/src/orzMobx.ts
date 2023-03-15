@@ -16,7 +16,6 @@ export const orzMobx = <S extends object>(state : S) => {
 				}
 			} else if( isBasicType(value) ) {
 				action(() => {
-					
 					deepStore[key] = value;
 				})();
 			}

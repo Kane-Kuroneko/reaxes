@@ -24,39 +24,6 @@ module.exports = {
 		["@babel/plugin-proposal-decorators" , {
 			"legacy": true,
 		}],
-		[
-			AutoImportPlugin ,
-			{
-				declarations : [
-					{
-						path : "react" ,
-						members : [
-							"useState",
-							"useEffect",
-							"useRef",
-							"useLayoutEffect",
-							"useMemo",
-							"useCallback",
-						] ,
-						default : "React" ,
-					} ,
-					{
-						path : "./packages/reaxes-react" ,
-						members : ["orzMobx,Reaxlass,reaxper,Reaxes"] ,
-					} ,
-					{
-						path : "#toolkit" ,
-						namespace : "toolkit",
-						members : [] ,
-					} ,
-					{
-						path : "#utils" ,
-						namespace : "utils",
-						members : ["crayon"] ,
-					} ,
-				] ,
-			} ,
-		]
 	],
 };
 

@@ -2,7 +2,8 @@
 	"name": "mono-reaxes",
 	"description": "",
 	"scripts": {
-		"start": "bash scripts/start.sh",
+		"start": "node scripts/server.mjs demo",
+		"build" : "node scripts/build.mjs",
 		"publish": "bash scripts/publish.sh",
 		"test": "yarn workspace reaxes jest"
 	},

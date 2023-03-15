@@ -2,6 +2,7 @@
 	"name": "reaxes-toolkit",
 	"version" : "1.0.0",
 	"main" : "index.tsx",
+	"preDepsPackages" : ["reaxes-utils"],
 	"peerDependencies" : {
 		"react-router-dom" : ">=6.0.0",
 		"reaxes" : "^0.10.13"

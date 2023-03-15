@@ -5,11 +5,12 @@ const cssLoaderOptions = {
 		localIdentName: '[local]--[hash:base64:4]',
 	},
 };
+const { ProvidePlugin} = webpack;
 /**
- * @suggest dev环境建议使用全量source-map , 否则可能会导致错误栈无法定位到正确的模块
+ * suggest dev环境建议使用全量source-map , 否则可能会导致错误栈无法定位到正确的模块
  */
 /*webpack基础配置*/
-export const webpack_base_config = {
+export const webpackBaseConfig = {
 	mode: node_env,
 	entry: {
 		main: path.resolve(repoRoot, 'src/index'),
@@ -20,14 +21,17 @@ export const webpack_base_config = {
 	},
 	resolve: {
 		alias: {
-			'react-dom': '@hot-loader/react-dom',
 			'#root': path.resolve(rootPath),
-			'#toolkit': path.resolve(packagesRoot, 'reaxes-toolkit'),
-			'#utils': path.resolve(packagesRoot, 'utils'),
-			'#reaxels': path.resolve(packagesRoot, 'reaxels'),
-			'#reaxes-react': path.resolve(packagesRoot, 'reaxes-react'),
-			'#reaxes-vue': path.resolve(packagesRoot, 'reaxes-vue'),
-			'#reaxes-angular': path.resolve(packagesRoot, 'reaxes-angular'),
+			'#packages': packagesRoot,
+			'reaxes': path.resolve(packagesRoot, 'reaxes'),
+			'reaxes-toolkit': path.resolve(packagesRoot, 'reaxes-toolkit'),
+			'reaxes-utils': path.resolve(packagesRoot, 'utils'),
+			'refaxels': path.resolve(packagesRoot, 'refaxels'),
+			'reaxes-react': path.resolve(packagesRoot, 'reaxes-react'),
+			'reaxes-react/@@libs': path.resolve(packagesRoot, 'reaxes-react/libs'),
+			'reaxes-react/@@public': path.resolve(packagesRoot, 'reaxes-react/public'),
+			'reaxes-vue': path.resolve(packagesRoot, 'reaxes-vue'),
+			'reaxes-angular': path.resolve(packagesRoot, 'reaxes-angular'),
 		},
 		extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
 	},
@@ -180,10 +184,6 @@ export const webpack_base_config = {
 			useLayoutEffect: ['react', 'useLayoutEffect'],
 			useMemo: ['react', 'useMemo'],
 			useCallback: ['react', 'useCallback'],
-			reaxper: ['#reaxes', 'Reaxper'],
-			Reaxlass: ['#reaxes', 'Reaxlass'],
-			Reaxes: ['#reaxes', 'Reaxes'],
-			orzMobx: ['#reaxes', 'orzMobx'],
 		}),
 	],
 };

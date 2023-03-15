@@ -7,7 +7,7 @@ import webpack from 'webpack';
 import portfinder from 'portfinder';
 
 /*封装webpack回调为promise*/
-export const webpack_promise = config => {
+export const webpack_promise = (config) => {
 	return new Promise((resolve, reject) => {
 		webpack(config, (err, stats) => {
 			if (err === null) {

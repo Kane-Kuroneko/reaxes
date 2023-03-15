@@ -74,7 +74,13 @@ export const packagesRoot = path.resolve(rootPath , `packages`);
 export const repoPackages = [
 	"demo" ,
 	"reaxes-react" ,
+	"reaxes-toolkit",
+	"reaxes-vue",
+	"refaxels",
 ];
+if(!repo){
+	throw "npm run build <repo> is nessessary";
+}
 /*非业务模块不可被打包,因为webpack.base.config.mjs里配置了对通用模块的alias,*/
 if(repoPackages.every((repoName) => repoName !== repo )){
 	throw new Error(`this repo "${ repo }" is not a valid business package`);

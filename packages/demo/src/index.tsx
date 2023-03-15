@@ -10,6 +10,7 @@ import {} from './';
 
 console.log(toolkit,utils);
 console.log(crayon);
+console.log(null);
 
 const mapping = [
 	{
@@ -43,6 +44,7 @@ const Home = reaxper( () => {
 const Entry = reaxper(({ name}) => {
 	const { navigate } = toolkit.useRouter();
 	return <p>
+		<span>22222222</span>
 		<button 
 			onClick = { () => navigate( `/${ name }` ) }
 		>
@@ -57,3 +59,5 @@ render(
 	<Routing /> ,
 	document.getElementById( 'react-app-root' ) ,
 );
+
+if (module.hot) { module.hot.accept( function () { location.reload(); } ); }

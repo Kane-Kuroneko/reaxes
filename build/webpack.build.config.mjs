@@ -1,5 +1,5 @@
-export default {
-	
+export const webpackBuildConfig = {
+	mode : "production",
 	optimization: {
 		chunkIds: "named" ,
 		splitChunks : {
@@ -13,5 +13,4 @@ export default {
 }
 
 import CompressionWebpackPlugin from 'compression-webpack-plugin';
-
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';

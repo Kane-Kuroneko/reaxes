@@ -12,12 +12,12 @@ export const webpackConfig = {
 			'@@libs' : path.resolve(__dirname , 'libs') ,
 			'#root' : repoRoot ,
 			'#packages' : path.resolve(repoRoot,'packages') ,
-			'#utils' : path.resolve(repoRoot , 'packages/utils') ,
+			'#reaxes' : path.resolve(repoRoot,'packages/reaxes-react') ,
+			'#utils' : path.resolve(repoRoot , 'packages/reaxes-utils') ,
 			'#toolkit' : path.resolve(repoRoot , 'packages/reaxes-toolkit') ,
 		},
 	},
 	plugins: [
-		new NodePolyfillPlugin(),
 		new HtmlWebpackPlugin({
 			template: path.resolve(repoRoot, 'public/index.template.ejs'),
 			filename: 'index.html',
@@ -49,6 +49,6 @@ export const webpackConfig = {
 import path from 'path';
 import webpack from 'webpack';
 import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';
-import { getPort } from '../../build/toolkit.mjs';
+import { getPort ,__dirname} from '../../build/toolkit.mjs';
 import {method, repo, repoRoot , mock , env , node_env , experimental, } from '../../build/entrance.mjs';
 import HtmlWebpackPlugin from 'html-webpack-plugin';

@@ -2,10 +2,10 @@
  * @description 将字符串qs转换为对象(暂不支持多层嵌套)||注意:中文key-value需要decodeURIComponent!!!
  * @param str 要转换的字符串,不传默认是获取href query对象
  */
-
-export const decodeQueryString = <result extends string[] = []>( str: string = location.href ): Batch<result , string> => {
-	type ret = Batch<result , string>;
-	const empty = {} as ret;
+type ret = {[p:string] :string};
+export const decodeQueryString = <result extends ret>( str: string = location.href ): ret => {
+	
+	const empty:ret = {};
 	const thr = () : never => {
 		throw new Error( `非法的queryString , 原字符串为 : ${ str }` );
 	};

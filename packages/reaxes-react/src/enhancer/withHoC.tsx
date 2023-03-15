@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { observer as observerLite , parentObserver} from '@@libs/mobx-react-lite';
+import { observer as observerLite , parentObserver} from '#reaxes/@@libs/mobx-react-lite';
 import { observer } from '@@libs/mobx-react';
 
 type Props = {

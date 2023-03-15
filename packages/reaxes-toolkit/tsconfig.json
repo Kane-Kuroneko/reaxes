@@ -33,10 +33,10 @@
 		"paths" : {
 			"#root/*" : [ "../../*" ] ,
 			"#packages/*" : [ "../*" ] ,
-			"reaxes-utils" : [ "../reaxes-utils" ],
 			"reaxes" : [ "../reaxes" ] ,
+			"reaxes-utils" : [ "../reaxes-utils" ],
 			"reaxes-react/@@libs/*" : [ "libs/*" ] ,
-			"reaxes-react/@@public/*" : [ "public/*" ] 
+			"reaxes-react/@@public/*" : [ "public/*" ]  
 		} ,
 		"preserveConstEnums" : true ,
 		"removeComments" : true ,
@@ -44,6 +44,6 @@
 		"allowSyntheticDefaultImports" : true 
 	} ,
 	
-	"include" : [ "./libs/*.*","./src/*.*","./.d.ts"] ,
+	"include" : [ "./*","./.d.ts","../../workspace.d.ts"] ,
 	"exclude" : [ "node_modules" , "dist" , ".git" , ".idea" , ".svn" ]
 }
