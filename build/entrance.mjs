@@ -1,6 +1,4 @@
 
-
-
 /**
  * 此文件是所有打包行为的入口,为后续流程提供依赖
  */
@@ -8,6 +6,9 @@
 export const args = process.argv.slice(2);
 
 export const port = await getPort();
+
+/*排除构建的包,不作为独立的package*/
+export const excludedPackages = [];
 
 export let {
 	repo = null,
@@ -71,15 +72,12 @@ export const repoRoot = path.resolve(rootPath , `packages/${ repo }`);
 export const packagesRoot = path.resolve(rootPath , `packages`);
 
 /*只有在列表中声明的包才可以被运行*/
-export const repoPackages = [
-	"demo" ,
-	"reaxes-react" ,
-	"reaxes-toolkit",
-	"reaxes-vue",
-	"refaxels",
-];
+export const repoPackages = readdirSync("../packages").filter((_package) => {
+	return !excludedPackages.includes(_package);
+});
+
 if(!repo){
-	throw "npm run build <repo> is nessessary";
+	throw "npm run build <<repo>> is nessessary";
 }
 /*非业务模块不可被打包,因为webpack.base.config.mjs里配置了对通用模块的alias,*/
 if(repoPackages.every((repoName) => repoName !== repo )){
@@ -94,3 +92,4 @@ import {
 import { fileURLToPath } from "url";
 import path from "path";
 import { merge } from "webpack-merge";
+import {readdirSync} from 'fs';

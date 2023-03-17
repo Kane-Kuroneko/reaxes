@@ -1,13 +1,22 @@
-// 
-// 构建目标package时,先串行打包base packages
-// 
-// 
-// 
-// 
+/**
+ * 输入要打包的repoName,将其构建.返回promise
+ */
+import { repoPackages } from './entrance.mjs';
+export const buildRepo = async () => {
+	/*检测输入的repoList是否都存在*/
+	repoList.forEach((repo) => {
+		if ( !repoPackages.includes(repo) ) {
+			throw RangeError(`输入的repoName有误,请检查 ${repo} 是否存在`);
+		}
+	});
+	return repoList.map(async (repo) => {
+		const repoWebpackPartialConfig = (await import(`../packages/${repo}`))
+	})
+};
 
 
-/**/
-const baseRepos = argv.slice( 2);
+
+const repoList = argv.slice( 2);
 const {} = webpack;
 
 
