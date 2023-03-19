@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { reaction } from 'mobx';
 
 
 export class Reaxlass<Tprops extends {} = any , Tstate extends {} = any> extends Component<Tprops , Tstate> {

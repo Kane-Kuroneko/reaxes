@@ -1,3 +1,3 @@
-export * from './Reaxper';
+export * from './reaxper';
 export * from './Reaxlass';
 export * from 'reaxes';

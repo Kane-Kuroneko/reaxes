@@ -1,6 +1,6 @@
 {
 	"include" : [
-		"src",
+		"src" ,
 		"libs"
 	] ,
 	"compilerOptions" : {
@@ -29,20 +29,10 @@
 		"noUnusedLocals" : false ,
 		"noUnusedParameters" : false ,
 		"paths" : {
-			"#reaxes" : ["../reaxes-react"],
-			"@@root/*" : [
-				"./*"
-			] ,
-			"#toolkit" : ["../reaxes-toolkit"],
-			"#packages/*" : [
-				"../*"
-			] ,
-			"#root/*" : [
-				"./*"
-			] ,
-			"#utils" : [
-				"../utils"
-			]
+			"reaxes" : ["../reaxes"],
+			"reaxes-react" : ["../reaxes-react"],
+			"reaxes-utils" : ["../reaxes-utils"],
+			"reaxes-toolkit" : ["../reaxes-toolkit"]
 		} ,
 		"preserveConstEnums" : true ,
 		"removeComments" : true ,
@@ -90,8 +80,8 @@
 		"node_modules/*" ,
 		"node_modules/**" ,
 		"**/node_modules/**" ,
-//		"packages/examples",
-		"packages/raexes-real-test",
+		//		"packages/examples",
+		"packages/raexes-real-test" ,
 		"npm" ,
 		".git" ,
 		".idea" ,

@@ -2,8 +2,18 @@
  * 输入要打包的repoName,将其构建.返回promise
  */
 import { repoPackages } from './entrance.mjs';
+import chalk from 'chalk';
+import { webpack_promise } from './toolkit.mjs';
+import { merge } from 'webpack-merge';
+import { webpackBaseConfig } from './webpack.base.config.mjs';
+import { webpackBuildConfig } from './webpack.build.config.mjs';
+import webpack from 'webpack';
+import { argv } from 'process';
+import path from 'path';
+
 const repoList = argv.slice( 2);
-export const buildRepo = async () => {
+export const buildRepo = () => {
+	const {} = webpack;
 	/*检测输入的repoList是否都存在*/
 	repoList.forEach((repo) => {
 		if ( !repoPackages.includes(repo) ) {
@@ -11,45 +21,36 @@ export const buildRepo = async () => {
 		}
 	});
 	return repoList.map(async (repo) => {
-		console.log(`../packages/${ repo }/webpack.partial.mjs`);
+		// console.log(`../packages/${ repo }/webpack.partial.mjs`);
 		const packagePath = path.resolve(`../packages/${ repo }`);
-		
 		const repoWebpackPartialConfig = (await import(`../packages/${ repo }/webpack.partial.mjs`)).webpackConfig;
-		console.log(11111111111);
-		
+		const {entry,output} = repoWebpackPartialConfig;
+		if(entry){
+			repoWebpackPartialConfig.entry = path.resolve(packagePath,entry);
+		}
+		if(output?.path){
+			repoWebpackPartialConfig.output.path = path.resolve(packagePath,output.path);
+		}
+		/* TEST */repoWebpackPartialConfig.output.path = `F:\\reaxes\\packages\\reaxes-react\\dist`;/*TEST*/
+		const webpackConfig = merge(webpackBaseConfig , repoWebpackPartialConfig , webpackBuildConfig);
+		webpack_promise(webpackConfig).then((stats , error) => {
+			// console.log(stats , error);
+			if(error){
+				throw error;
+			}
+			if(stats.hasErrors()){
+				throw  stats.toJson().errors;
+			}
+			console.log(chalk.green(`package built successful`));
+			debugger;
+		}).catch((e) => {
+			console.error(e);
+		});
 	})
 };
 
-/**
- * 由于
- */
-const transformWebpackRelativePath = () => {
-	
-}
+
 buildRepo();
 
-if(0){
-	const {} = webpack;
-	const compilersPromiseList = baseRepos.map(async (repo) => {
-		const repoPartialWebpackConfig = async () => {
-			try {
-				return (await import(`../packages/${repo}/webpack.partial.mjs`)).webpackConfig
-			}catch ( e ) {
-				return {};
-			}
-		};
-		const webpackBuildConfigWithRepo = merge()
-		return webpack_promise()
-	})
-}
 
-
-
-import { webpack_promise } from './toolkit.mjs';
-import { merge } from 'webpack-merge';
-import { webpackBaseConfig } from './webpack.base.config.mjs';
-import { webpackBuildConfig } from './webpack.build.config.mjs';
-import webpack from 'webpack';
-import {argv} from 'process';
-import path,{} from 'path';
 debugger;

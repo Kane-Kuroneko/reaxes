@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*global provider*/
 declare const _ : typeof import('lodash');
 declare const React : typeof import('react');
@@ -8,7 +7,7 @@ declare const useRef : typeof React.useRef;
 declare const useLayoutEffect : typeof React.useLayoutEffect;
 declare const useMemo : typeof React.useMemo;
 declare const useCallback : typeof React.useCallback;
-declare const utils : typeof import('#utils');
+declare const utils : typeof import('reaxes-utils');
 
 
 declare const __IS_MOCK__: boolean;

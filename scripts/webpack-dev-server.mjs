@@ -1,4 +1,4 @@
-Error.stackTraceLimit = 100;
+Error.stackTraceLimit = 1000;
 
 const webpackDevConfig = merge( webpackServerConfig,webpackConfigWithRepo );
 

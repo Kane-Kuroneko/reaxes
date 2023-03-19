@@ -12,24 +12,20 @@ const { ProvidePlugin} = webpack;
 /*webpack基础配置*/
 export const webpackBaseConfig = {
 	mode: node_env,
-	entry: {
-		main: path.resolve(repoRoot, 'src/index'),
-	},
 	output: {
 		filename: node_env === 'development' ? '[name].bundle.js' : '[name].bundle.[contenthash:6].js',
 		path: path.resolve(repoRoot, 'dist'), // publicPath : path.resolve(rootPath , 'dist') ,
 	},
-	resolve: {
+	resolve: { 
+		aliasFields: ['browser'],
 		alias: {
 			'#root': path.resolve(rootPath),
 			'#packages': packagesRoot,
 			'reaxes': path.resolve(packagesRoot, 'reaxes'),
 			'reaxes-toolkit': path.resolve(packagesRoot, 'reaxes-toolkit'),
 			'reaxes-utils': path.resolve(packagesRoot, 'utils'),
-			'refaxels': path.resolve(packagesRoot, 'refaxels'),
+			'reaxels': path.resolve(packagesRoot, 'reaxels'),
 			'reaxes-react': path.resolve(packagesRoot, 'reaxes-react'),
-			'reaxes-react/@@libs': path.resolve(packagesRoot, 'reaxes-react/libs'),
-			'reaxes-react/@@public': path.resolve(packagesRoot, 'reaxes-react/public'),
 			'reaxes-vue': path.resolve(packagesRoot, 'reaxes-vue'),
 			'reaxes-angular': path.resolve(packagesRoot, 'reaxes-angular'),
 		},
@@ -48,6 +44,9 @@ export const webpackBaseConfig = {
 				test: /\.(jsx?|tsx?)$/,
 				use: {
 					loader: 'babel-loader',
+					options : {
+						configFile : "../babel.config.js"
+					}
 				},
 				exclude: /node_modules/,
 			},

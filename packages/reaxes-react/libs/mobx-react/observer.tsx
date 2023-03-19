@@ -1,5 +1,5 @@
 import * as React from "react"
-import { observer as observerLite } from "@@libs/mobx-react-lite"
+import { observer as observerLite } from "reaxes-react/libs/mobx-react-lite"
 
 import { makeClassComponentObserver } from "./observerClass"
 import { IReactComponent } from "./types/IReactComponent"

@@ -7,16 +7,6 @@ export const webpackConfig = {
 	devServer : {
 		port : await getPort(3001),
 	},
-	resolve: {
-		alias: {
-			'@@libs' : path.resolve(__dirname , 'libs') ,
-			'#root' : repoRoot ,
-			'#packages' : path.resolve(repoRoot,'packages') ,
-			'#reaxes' : path.resolve(repoRoot,'packages/reaxes-react') ,
-			'#utils' : path.resolve(repoRoot , 'packages/reaxes-utils') ,
-			'#toolkit' : path.resolve(repoRoot , 'packages/reaxes-toolkit') ,
-		},
-	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: path.resolve(repoRoot, 'public/index.template.ejs'),
@@ -34,14 +24,18 @@ export const webpackConfig = {
 			__EXPERIMENTAL__ : JSON.stringify(experimental === 'experimental'),
 		}),
 		new ProvidePlugin({
-			orzPromise: ['#utils', 'orzPromise'],
-			utils: ['#utils'],
-			toolkit: ['@@toolkit'],
-			crayon: ['#utils', 'crayon'],
-			logProxy: ['#utils', 'logProxy'],
-			decodeQueryString: ['#utils', 'decodeQueryString'],
-			encodeQueryString: ['#utils', 'encodeQueryString'],
-			stringify: ['#utils', 'stringify'],
+			Reaxes : ["reaxes","Reaxes"],
+			orzMobx : ["reaxes","orzMobx"],
+			obsReaction : ["reaxes","Reaxes","obsReaction"],
+			contrastedCallback : ["reaxes","Reaxes","contrastedCallback"],
+			collectDeps : ["reaxes","Reaxes","collectDeps"],
+			reaxper : ["reaxes-react","reaxper"],
+			Reaxlass : ["reaxes-react","Reaxlass"],
+			orzPromise: ['reaxes-utils', 'orzPromise'],
+			utils: ['reaxes-utils'],
+			crayon: ['reaxes-utils', 'crayon'],
+			toolkit: ['reaxes-toolkit'],
+			orzPending: ['reaxes-toolkit','orzPending'],
 		}),
 	],
 };

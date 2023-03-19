@@ -30,18 +30,18 @@
 		"watch" : false ,
 		"allowSyntheticDefaultImports" : true ,
 		"paths" : {
-			"reaxes" : [ "../reaxes-react" ] ,
-			"@@libs/*" : [ "libs/*" ] ,
-			"#packages/*" : [ "../*" ] ,
-			"#root/*" : [ "../../*" ] ,
-			"#utils" : [ "../utils" ]
+			"reaxes" : [ "../reaxes" ] ,
+			"reaxes-react" : [ "../reaxes-react" ] ,
+			"reaxes-utils" : [ "../reaxes-utils" ] ,
+			"reaxes-toolkit" : [ "../reaxes-toolkit" ] ,
+			"reaxels/*" : [ "../packages/reaxels/*" ]
 		} ,
 		"preserveConstEnums" : true ,
 		"removeComments" : true ,
 		"target" : "ESNext" ,
-		"allowSyntheticDefaultImports" : true ,
+		"allowSyntheticDefaultImports" : true
 	} ,
 	
-	"include" : [ "../../*", "**/*.ts" , "**/*.tsx" ] ,
+	"include" : [ "./*.*","../../workspace.d.ts" ] ,
 	"exclude" : [ "node_modules" , "dist" , ".git" , ".idea" , ".svn" ]
 }

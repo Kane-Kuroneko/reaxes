@@ -35,8 +35,6 @@
 			"#packages/*" : [ "../*" ] ,
 			"reaxes" : [ "../reaxes" ] ,
 			"reaxes-utils" : [ "../reaxes-utils" ],
-			"reaxes-react/@@libs/*" : [ "libs/*" ] ,
-			"reaxes-react/@@public/*" : [ "public/*" ]  
 		} ,
 		"preserveConstEnums" : true ,
 		"removeComments" : true ,

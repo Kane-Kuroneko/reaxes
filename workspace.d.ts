@@ -1,8 +1,6 @@
-// @ts-nocheck
-/*global provider*/
-
 declare const _ : typeof import('lodash');
-declare const React , {
+declare const React : typeof import('react');
+declare const {
 	useEffect ,
 	useLayoutEffect ,
 	useMemo ,
@@ -11,9 +9,9 @@ declare const React , {
 	useContext ,
 	useCallback ,
 	useReducer,
-}: typeof import('react');
+} : typeof import('react');
 declare const {orzMobx,Reaxes} : typeof import('reaxes');
-declare const utils,{orzPromise,crayon,logProxy} : typeof import('reaxes-utils');
+// declare const utils,{orzPromise,crayon,logProxy} : typeof import('reaxes-utils');
 
 
 declare const __IS_MOCK__: boolean;

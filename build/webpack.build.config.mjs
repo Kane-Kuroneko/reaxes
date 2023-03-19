@@ -7,8 +7,8 @@ export const webpackBuildConfig = {
 		},
 	},
 	plugins : [
-		new CleanWebpackPlugin(),
-		new CompressionWebpackPlugin({}),
+		// new CleanWebpackPlugin(),
+		// new CompressionWebpackPlugin({}),
 	],
 }
 

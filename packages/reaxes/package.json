@@ -2,7 +2,7 @@
 	"name" : "reaxes" ,
 	"version" : "0.0.1-beta-c5f90442" ,
 	"description" : "" ,
-	"main" : "src/index.tsx" ,
+	"main" : "src" ,
 	"scripts" : {
 		"test" : "jest"
 	} ,

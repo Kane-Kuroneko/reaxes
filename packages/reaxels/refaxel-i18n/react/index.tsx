@@ -123,4 +123,5 @@ export const refaxel_i18n = function (
 };
 
 import { reaxel_i18n_storage } from './i18n-storage';
-import { orzMobx , reaxper } from 'reaxes';
+import { orzMobx } from 'reaxes';
+import { reaxper } from 'reaxes-react';
