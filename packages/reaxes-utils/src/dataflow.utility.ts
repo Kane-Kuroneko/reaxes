@@ -1,7 +1,6 @@
 /**
  * @desc 转换数据的工具类
  */
-
 export const formatter = new (class {
   /**
    * 将数组添加随机key , 返回新数组

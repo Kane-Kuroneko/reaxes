@@ -20,7 +20,7 @@ export let {
 	experimental = "non-exp" ,
 } = overload(args , [
 	{
-		regExp : /\bdemo|reaxes-react\b/ ,
+		regExp : /\bdemo|reaxes|reaxels|reaxes-react|reaxes-vue|reaxes-angular|reaxes-toolkit|reaxes-utils\b/ ,
 		key : "repo" ,
 	} ,
 	{
@@ -65,14 +65,13 @@ if ( !node_env ) {
 }else if(node_env === "production"){
 	
 }
+
+
+
 export const rootPath = path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../');
 
-export const repoRoot = path.resolve(rootPath , `packages/${ repo }`);
-
-export const packagesRoot = path.resolve(rootPath , `packages`);
-
 /*只有在列表中声明的包才可以被运行*/
-export const repoPackages = readdirSync("../packages").filter((_package) => {
+export const packageList = readdirSync(path.join(obsProjectRootDir,"packages")).filter((_package) => {
 	return !excludedPackages.includes(_package);
 });
 
@@ -80,7 +79,7 @@ if(!repo){
 	throw "npm run build <<repo>> is nessessary";
 }
 /*非业务模块不可被打包,因为webpack.base.config.mjs里配置了对通用模块的alias,*/
-if(repoPackages.every((repoName) => repoName !== repo )){
+if(packageList.every((repoName) => repoName !== repo )){
 	throw new Error(`this repo "${ repo }" is not a valid business package`);
 }
 
@@ -88,6 +87,8 @@ if(repoPackages.every((repoName) => repoName !== repo )){
 import {
 	getPort ,
 	overload,
+	obsProjectRootDir,
+	obsProjectRootFileURL,
 } from './toolkit.mjs';
 import { fileURLToPath } from "url";
 import path from "path";

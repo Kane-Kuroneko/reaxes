@@ -21,4 +21,3 @@ export class Reaxlass<Tprops extends {} = any , Tstate extends {} = any> extends
 	componentDidRender?( stage : "mount" | "update" , prevProps? : Readonly<Tprops> , prevState? : Readonly<Tstate> , snapshot? : any ) : any;
 	
 };
-

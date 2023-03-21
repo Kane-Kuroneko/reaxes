@@ -7,13 +7,8 @@ declare const useRef : typeof React.useRef;
 declare const useLayoutEffect : typeof React.useLayoutEffect;
 declare const useMemo : typeof React.useMemo;
 declare const useCallback : typeof React.useCallback;
-declare const utils : typeof import('reaxes-utils');
+declare const utils: typeof import('reaxes-utils');
 
-
-declare const __IS_MOCK__: boolean;
-declare const __EXPERIMENTAL__: boolean;
-declare const __METHOD__: "server"|"build";
-declare const __NODE_ENV__ : "development"|"production";
 /*DOM*/
 
 

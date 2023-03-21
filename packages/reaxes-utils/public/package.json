@@ -1,0 +1,9 @@
+{
+	"name": "reaxes-utils",
+	"version" : "0.0.1" ,
+	"main" : "./",
+	"types" : "./types/index.d.ts" ,
+	"peerDependencies" : {
+		"react-router-dom" : ">=6.0.0"
+	}
+}

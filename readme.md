@@ -1,3 +1,9 @@
+## todo:
+* 重构nodejs路径问题
+* 将所有包配置好webpack-partial,并打包发布npm
+* reaxel需要一个外层函数API
+
+
 Reaxes架构:
 响应式,分布式的逻辑抽象工具
 

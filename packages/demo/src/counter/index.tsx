@@ -15,3 +15,4 @@ export const Counter = reaxper( class extends Reaxlass {
 } );
 
 import { reaxel_counter } from './reaxel';
+import {reaxper} from 'reaxes-react';

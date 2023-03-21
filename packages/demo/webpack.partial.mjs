@@ -3,13 +3,19 @@ const {
 	DefinePlugin,
 } = webpack;
 
+
+const obsCurrentPkg = path.join(obsProjectRootDir,'packages/demo');
+
 export const webpackConfig = {
+	mode : "development",
+	devtool : "source-map",
+	entry : path.join(obsCurrentPkg,"src"),
 	devServer : {
 		port : await getPort(3001),
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: path.resolve(repoRoot, 'public/index.template.ejs'),
+			template: path.join(obsCurrentPkg ,'public/index.template.ejs'),
 			filename: 'index.html',
 			minify: false,
 			hash: true,
@@ -42,7 +48,7 @@ export const webpackConfig = {
 
 import path from 'path';
 import webpack from 'webpack';
-import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';
-import { getPort ,__dirname} from '../../build/toolkit.mjs';
-import {method, repo, repoRoot , mock , env , node_env , experimental, } from '../../build/entrance.mjs';
+import {obsProjectRootDir,obsProjectRootFileURL} from '../../build/toolkit.mjs';
+import { getPort } from '../../build/toolkit.mjs';
+import { env , experimental , method , mock , node_env ,repo  } from '../../build/entrance.mjs';
 import HtmlWebpackPlugin from 'html-webpack-plugin';

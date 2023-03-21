@@ -1,20 +1,26 @@
-import { fileURLToPath } from 'url';
+import { pathToFileURL ,fileURLToPath} from 'url';
 import path from 'path';
-
-export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 import os from 'os';
 import webpack from 'webpack';
 import portfinder from 'portfinder';
 
+/* reaxes目录的绝对路径,返回F:/reaxes/   */
+export const obsProjectRootDir = path.join(path.dirname(fileURLToPath(import.meta.url)) , "../");
+
+/*reaxes目录的文件路径,返回file:///F:/reaxes/     */
+export const obsProjectRootFileURL = pathToFileURL(path.join(path.dirname(fileURLToPath(import.meta.url)),'../')).href
+
 /*封装webpack回调为promise*/
 export const webpack_promise = (config) => {
 	return new Promise((resolve, reject) => {
-		webpack(config, (err, stats) => {
-			if (err === null) {
-				resolve(stats);
+		const compiler = webpack(config, (error, stats) => {
+			if (error == null) {
+				resolve({compiler,error,stats});
+			} else if(stats.hasErrors()){
+				throw  stats.toJson().errors;
 			} else {
 				reject({
-					error: err,
+					error,
 					stats,
 				});
 			}

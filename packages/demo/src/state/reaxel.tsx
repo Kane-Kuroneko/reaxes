@@ -1,5 +1,5 @@
 
-import {orzMobx} from '#reaxes';
+import {orzMobx} from 'reaxes';
 /**
  * A simple counter using reaxes architecture
  */

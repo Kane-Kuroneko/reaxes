@@ -15,18 +15,19 @@ export const Demo$state = reaxper(class extends Reaxlass {
 	}
 });
 
-import {reaxper,orzMobx} from '#reaxes';
+import {reaxper,orzMobx} from 'reaxes-react';
 import { reaxel_counter } from './reaxel';
-
+import React,{} from 'react';
 
 const Sub = class extends React.Component {
 	
 	render(){
-		return <>
+		console.log(this.props);
+		return <span>
 			<button>
 				click me
 			</button>
-		</>
+		</span>;
 	}
 }
 
@@ -39,5 +40,5 @@ const Wrapper = (Component) => {
 }
 /*属性代理*/
 const Parent = () => {
-	return <Sub/>
+	return <Sub />;
 }

@@ -1,42 +1,57 @@
 import webpack from 'webpack';
 import portfinder from 'portfinder';
 import { fileURLToPath } from 'url';
+import { obsProjectRootDir , obsProjectRootFileURL } from '../../build/toolkit.mjs';
 import path from 'path';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 
 const {
 	DefinePlugin ,
 	ProvidePlugin,
 } = webpack;
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const rootDir = path.resolve(__dirname , '../../');
+const obsCurrentPkg = path.join(obsProjectRootDir,'packages/reaxes-react');
 
-export const webpackConfig = {/*be dynamic imported*/
-	entry : './src/index.tsx' ,
+
+export const webpackConfig = {/*will be dynamic imported*/	
+	entry : path.join(obsCurrentPkg,'src') ,
 	output : {
 		libraryTarget : 'module' ,
 		module : true ,
-		path : path.resolve(__dirname , 'dist') ,
+		path : path.join(obsCurrentPkg , "dist") ,
 		filename : 'index.js' ,
 	} ,
 	devtool : 'source-map' ,
 	experiments : {
 		outputModule : true ,
-	} , // stats : 'errors-only' ,
-	externals : ['reaxes' , 'react' , 'react-dom' , 'react-router' , 'react-router-dom' , 'lodash' , 'mobx' , 'shallowequal'] ,
+	} , 
+	// stats : 'errors-only' ,
+	externals : [
+		"reaxes",
+		'reaxes-utils' ,
+		"reaxes-toolkit" ,
+		'react' ,
+		'react-dom' ,
+		'react-router' ,
+		'react-router-dom' ,
+		'lodash' ,
+		'mobx' ,
+		'shallowequal'
+	] ,
 	mode : 'production' ,
 	performance : {
 		maxEntrypointSize : 10000000 ,
 		maxAssetSize : 30000000 ,
 	} ,
 	plugins : [
+		new CleanWebpackPlugin(),
 		getProvidePlugin() ,
 		new CopyWebpackPlugin({
 			patterns : [
 				{
-					from : path.resolve(__dirname,'./public/package.json') ,
-					to : path.resolve(__dirname,'./dist/package.json') ,
+					from : path.join(obsCurrentPkg,'public/') ,
+					to : path.join(obsCurrentPkg ,'dist/') ,
 				} ,
 			] ,
 		}) ,

@@ -31,8 +31,6 @@
 		"outDir" : "./dist" ,
 		"allowSyntheticDefaultImports" : true ,
 		"paths" : {
-			"#root/*" : [ "../../*" ] ,
-			"#packages/*" : [ "../*" ] ,
 			"reaxes" : [ "../reaxes" ] ,
 			"reaxes-utils" : [ "../reaxes-utils" ],
 		} ,
@@ -42,6 +40,6 @@
 		"allowSyntheticDefaultImports" : true 
 	} ,
 	
-	"include" : [ "./*","./.d.ts","../../workspace.d.ts"] ,
+	"include" : [ "./src","./f.d.ts"] ,
 	"exclude" : [ "node_modules" , "dist" , ".git" , ".idea" , ".svn" ]
 }

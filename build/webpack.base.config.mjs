@@ -14,20 +14,21 @@ export const webpackBaseConfig = {
 	mode: node_env,
 	output: {
 		filename: node_env === 'development' ? '[name].bundle.js' : '[name].bundle.[contenthash:6].js',
-		path: path.resolve(repoRoot, 'dist'), // publicPath : path.resolve(rootPath , 'dist') ,
+		path : path.join(obsProjectRootDir , repo , 'dist'), 
+		// publicPath : path.resolve(rootPath , 'dist') ,
 	},
 	resolve: { 
 		aliasFields: ['browser'],
 		alias: {
-			'#root': path.resolve(rootPath),
-			'#packages': packagesRoot,
-			'reaxes': path.resolve(packagesRoot, 'reaxes'),
-			'reaxes-toolkit': path.resolve(packagesRoot, 'reaxes-toolkit'),
-			'reaxes-utils': path.resolve(packagesRoot, 'utils'),
-			'reaxels': path.resolve(packagesRoot, 'reaxels'),
-			'reaxes-react': path.resolve(packagesRoot, 'reaxes-react'),
-			'reaxes-vue': path.resolve(packagesRoot, 'reaxes-vue'),
-			'reaxes-angular': path.resolve(packagesRoot, 'reaxes-angular'),
+			'#root': obsProjectRootDir,
+			'#packages': path.join(obsProjectRootDir,'packages'),
+			'reaxes': path.join(obsProjectRootDir, 'packages/reaxes'),
+			'reaxes-toolkit': path.join(obsProjectRootDir, 'packages/reaxes-toolkit'),
+			'reaxes-utils': path.join(obsProjectRootDir, 'packages/reaxes-utils'),
+			'reaxels': path.join(obsProjectRootDir, 'packages/reaxels'),
+			'reaxes-react': path.join(obsProjectRootDir, 'packages/reaxes-react'),
+			'reaxes-vue': path.join(obsProjectRootDir, 'packages/reaxes-vue'),
+			'reaxes-angular': path.join(obsProjectRootDir, 'packages/reaxes-angular'),
 		},
 		extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
 	},
@@ -45,7 +46,7 @@ export const webpackBaseConfig = {
 				use: {
 					loader: 'babel-loader',
 					options : {
-						configFile : "../babel.config.js"
+						configFile : path.join(obsProjectRootDir , 'babel.config.js'),
 					}
 				},
 				exclude: /node_modules/,
@@ -192,10 +193,9 @@ import TerserPlugin from 'terser-webpack-plugin';
 import {
 	method ,
 	node_env,
-	packagesRoot ,
-	repoRoot ,
-	rootPath,
+	repo
 } from './entrance.mjs';
+import { obsProjectRootDir , obsProjectRootFileURL } from './toolkit.mjs';
 import _ from 'lodash';
 import webpack from 'webpack';
 import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';

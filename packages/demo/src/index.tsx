@@ -42,7 +42,7 @@ const Home = reaxper( () => {
 } );
 
 const Entry = reaxper(({ name}) => {
-	const { navigate } = toolkit.useRouter();
+	const { navigate } = utils.useRouter();
 	return <p>
 		<span>22222222</span>
 		<button 
@@ -52,8 +52,6 @@ const Entry = reaxper(({ name}) => {
 		</button>
 	</p>;
 });
-
-
 
 render(
 	<Routing /> ,

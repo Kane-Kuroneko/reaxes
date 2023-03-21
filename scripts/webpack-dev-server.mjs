@@ -1,10 +1,10 @@
 Error.stackTraceLimit = 1000;
 
 const webpackDevConfig = merge( webpackServerConfig,webpackConfigWithRepo );
-
-const webpackDevServer = () => {
+delete webpackDevConfig.output;
+const webpackDevServer = async () => {
 	try {
-		const compiler = webpack(webpackDevConfig);
+		const { compiler } = await webpack_promise(webpackDevConfig);
 		const webpackServer = new WebpackDevServer(webpackDevConfig.devServer , compiler);
 		webpackServer.start().then(() => {
 			console.log(chalk.yellow(`WDS已启动在http://${ getIPV4address() }:${ port }`));
@@ -33,7 +33,7 @@ import {
 	analyze ,
 	experimental ,
 } from '../build/entrance.mjs';
-import {getIPV4address} from '../build/toolkit.mjs';
+import {getIPV4address,webpack_promise} from '../build/toolkit.mjs';
 import { webpackConfigWithRepo } from '../build/webpack.repo.config.mjs';
 import { webpackServerConfig } from '../build/webpack.devserver.config.mjs';
 import { merge } from "webpack-merge";

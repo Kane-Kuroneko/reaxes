@@ -31,17 +31,16 @@
 		"allowSyntheticDefaultImports" : true ,
 		"paths" : {
 			"reaxes" : [ "../reaxes" ] ,
+			"reaxes/*" : [ "../reaxes/*" ] ,
 			"reaxes-react" : [ "../reaxes-react" ] ,
 			"reaxes-utils" : [ "../reaxes-utils" ] ,
 			"reaxes-toolkit" : [ "../reaxes-toolkit" ] ,
-			"reaxels/*" : [ "../packages/reaxels/*" ]
+			"reaxels/*" : [ "./*" ]
 		} ,
 		"preserveConstEnums" : true ,
 		"removeComments" : true ,
 		"target" : "ESNext" ,
 		"allowSyntheticDefaultImports" : true
 	} ,
-	
-	"include" : [ "./*.*","../../workspace.d.ts" ] ,
 	"exclude" : [ "node_modules" , "dist" , ".git" , ".idea" , ".svn" ]
 }

@@ -1,4 +1,4 @@
-import * as utils from 'reaxes-utils';
+
 /**
  * pending状态和error状态
  */
@@ -48,7 +48,7 @@ if(false){
 		utils.crayon.blue(pendingState.pending);
 		setPending(true);
 		
-		orzPromise((res , rej) => {
+		utils.orzPromise((res , rej) => {
 			setTimeout(() => {
 				rej();
 			} , 1400);

@@ -1,5 +1,5 @@
 import shallowequal from 'shallowequal';
-
+export type ArrayElement<ArrayType extends any[]> = ArrayType extends (infer P)[] ? P : never;
 export const {
 	assignPick,
 	shallowEqual,

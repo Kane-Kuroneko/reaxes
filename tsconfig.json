@@ -33,10 +33,10 @@
 			"reaxes-utils": ["./packages/reaxes-utils"],
 			"reaxes-toolkit": ["./packages/reaxes-toolkit"],
 			"reaxes": ["./packages/reaxes"],
+			"reaxes/*": ["./packages/reaxes/*"],
 			"reaxes-react": ["./packages/reaxes-react"],
 			"reaxels/*": ["./packages/reaxels/*"]
 		}
 	} ,
-	"include" : [  ] ,
 	"exclude" : [ "node_modules" , "dist" , ".git" , ".idea" , ".svn" ]
 }

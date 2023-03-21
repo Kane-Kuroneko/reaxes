@@ -1,7 +1,7 @@
-/**
- * 分布式I18n reaxel
- * 如果不需要storage , 把reaxel_i18n_storage相关的部分移除即可.
- */
+// /**
+//  * 分布式I18n reaxel
+//  * 如果不需要storage , 把reaxel_i18n_storage相关的部分移除即可.
+//  */
 export const refaxel_i18n = function (
 	souceLanguage: string = "en" ,
 	languageList = [] as { name: string, lang: string, module: any }[] ,

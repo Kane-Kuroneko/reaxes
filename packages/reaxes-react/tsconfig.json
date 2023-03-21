@@ -31,8 +31,6 @@
 		"outDir" : "./dist" ,
 		"allowSyntheticDefaultImports" : true ,
 		"paths" : {
-			"#root/*" : [ "../../*" ] ,
-			"#packages/*" : [ "../*" ] ,
 			"reaxes-utils" : [ "../reaxes-utils" ],
 			"reaxes" : [ "../reaxes" ] 
 		} ,
@@ -41,7 +39,6 @@
 		"target" : "ESNext" ,
 		"allowSyntheticDefaultImports" : true 
 	} ,
-	
-	"include" : [ "./libs/*.*","./src/*.*","./.d.ts"] ,
+	"include" : ["src/*","f.d.ts" ] ,
 	"exclude" : [ "node_modules" , "dist" , ".git" , ".idea" , ".svn" ]
 }

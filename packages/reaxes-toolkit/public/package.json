@@ -1,0 +1,9 @@
+{
+	"name": "reaxes-toolkit",
+	"version" : "0.0.1" ,
+	"main" : "./",
+	"types" : "./index.d.ts" ,
+	"peerDependencies" : {
+		"react-router-dom" : ">=6.0.0"
+	}
+}

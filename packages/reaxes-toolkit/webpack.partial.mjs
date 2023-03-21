@@ -1,17 +1,61 @@
 import webpack from 'webpack';
 import portfinder from 'portfinder';
 import { fileURLToPath } from 'url';
-import _ from 'lodash';
+import { obsProjectRootDir , obsProjectRootFileURL } from '../../build/toolkit.mjs';
 import path from 'path';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 
 const {
 	DefinePlugin ,
 	ProvidePlugin,
 } = webpack;
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const rootDir = path.resolve(__dirname , '../../');
+const obsCurrentPkg = path.join(obsProjectRootDir,'packages/reaxes-toolkit');
+
+
+export const webpackConfig = {/*will be dynamic imported*/	
+	entry : path.join(obsCurrentPkg) ,
+	output : {
+		libraryTarget : 'module' ,
+		module : true ,
+		path : path.join(obsCurrentPkg , "dist") ,
+		filename : 'index.js' ,
+	} ,
+	devtool : 'source-map' ,
+	experiments : {
+		outputModule : true ,
+	} , 
+	// stats : 'errors-only' ,
+	externals : [
+		'react' ,
+		'react-dom' , 
+		'reaxes-utils' ,
+		"reaxes-toolkit" ,
+		'react-router' ,
+		'react-router-dom' ,
+		'lodash' ,
+		'mobx' ,
+		'shallowequal'
+	] ,
+	mode : 'production' ,
+	performance : {
+		maxEntrypointSize : 10000000 ,
+		maxAssetSize : 30000000 ,
+	} ,
+	plugins : [
+		new CleanWebpackPlugin(),
+		getProvidePlugin() ,
+		new CopyWebpackPlugin({
+			patterns : [
+				{
+					from : path.join(obsCurrentPkg,'public/') ,
+					to : path.join(obsCurrentPkg ,'dist/') ,
+				} ,
+			] ,
+		}) ,
+	] ,
+};
 
 function getProvidePlugin () {
 	return new ProvidePlugin({
@@ -23,56 +67,8 @@ function getProvidePlugin () {
 		useLayoutEffect : ['react' , 'useLayoutEffect'] ,
 		useMemo : ['react' , 'useMemo'] ,
 		useCallback : ['react' , 'useCallback'] ,
-		orzPromise : ['@@utils' , 'orzPromise'] ,
-		utils : ['@@utils'] ,
-		crayon : ['@@utils' , 'crayon'] ,
-		logProxy : ['@@utils' , 'logProxy'] ,
-		decodeQueryString : ['@@utils' , 'decodeQueryString'] ,
-		encodeQueryString : ['@@utils' , 'encodeQueryString'] ,
-		stringify : ['@@utils' , 'stringify'] ,
+		utils : ['reaxes-utils'] ,
+		orzPromise : ['reaxes-utils' , 'orzPromise'] ,
+		crayon : ['reaxes-utils' , 'crayon'] ,
 	});
 }
-
-const packages = path.resolve(__dirname , '../');
-const getPort = () => {
-	portfinder.basePort = 8080;
-	return portfinder.getPortPromise();
-};
-const cssLoaderOptions = {
-	sourceMap : true ,
-	modules : {
-		exportLocalsConvention : 'dashes' ,
-		localIdentName : '[local]--[hash:base64:4]' ,
-	} ,
-};
-
-export const webpackConfig = {
-	entry : './src/index.tsx' ,
-	output : {
-		libraryTarget : 'module' ,
-		module : true ,
-		path : path.resolve(__dirname , 'dist') ,
-		filename : 'index.js' ,
-	} ,
-	devtool : 'source-map' ,
-	experiments : {
-		outputModule : true ,
-	} , // stats : 'errors-only' ,
-	externals : ['reaxes' , 'react' , 'react-dom' , 'react-router' , 'react-router-dom' , 'lodash' , 'mobx' , 'shallowequal'] ,
-	mode : 'production' ,
-	performance : {
-		maxEntrypointSize : 10000000 ,
-		maxAssetSize : 30000000 ,
-	} ,
-	plugins : [
-		getProvidePlugin() ,
-		new CopyWebpackPlugin({
-			patterns : [
-				{
-					from : './public/package.json' ,
-					to : './dist/package.json' ,
-				} ,
-			] ,
-		}) ,
-	] ,
-};
