@@ -1,6 +1,6 @@
 {
 	"name" : "reaxes-react" ,
-	"version" : "0.0.1" ,
+	"version" : "0.0.2" ,
 	"description" : "a distributed and responsive data-model for React" ,
 	"main" : "./" ,
 	"types" : "./types/index.d.ts" ,
