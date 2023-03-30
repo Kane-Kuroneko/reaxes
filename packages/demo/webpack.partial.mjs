@@ -32,6 +32,7 @@ export const webpackConfig = {
 		new ProvidePlugin({
 			Reaxes : ["reaxes","Reaxes"],
 			orzMobx : ["reaxes","orzMobx"],
+			reaxel : ["reaxes","reaxel"],
 			obsReaction : ["reaxes","Reaxes","obsReaction"],
 			contrastedCallback : ["reaxes","Reaxes","contrastedCallback"],
 			collectDeps : ["reaxes","Reaxes","collectDeps"],
@@ -40,6 +41,7 @@ export const webpackConfig = {
 			orzPromise: ['reaxes-utils', 'orzPromise'],
 			utils: ['reaxes-utils'],
 			crayon: ['reaxes-utils', 'crayon'],
+			logProxy: ['reaxes-utils', 'logProxy'],
 			toolkit: ['reaxes-toolkit'],
 			orzPending: ['reaxes-toolkit','orzPending'],
 		}),

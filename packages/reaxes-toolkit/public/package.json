@@ -1,6 +1,6 @@
 {
 	"name": "reaxes-toolkit",
-	"version" : "0.0.1" ,
+	"version" : "0.0.6" ,
 	"main" : "./",
 	"types" : "./index.d.ts" ,
 	"peerDependencies" : {

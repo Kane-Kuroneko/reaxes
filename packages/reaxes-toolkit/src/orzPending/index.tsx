@@ -3,14 +3,25 @@
  * pending状态和error状态
  */
 export const orzPending = () => {
-	const [, [pendingState, setPending,setError]] = utils.makePair(orzMobx({ 
+	const [, [pendingState, setPending,setError]] = utils.makePair(orzMobx({
 		pending: false ,
 		error : false ,
 	}), ({ store, setState }) => {
+		const qMicroTask = typeof queueMicrotask!=="undefined" && queueMicrotask;
+		const getThen = () => {
+			const promise = Promise.resolve();
+			return promise.then.bind( promise );
+		};
 		return [
 			store ,
-			(pending : boolean) => queueMicrotask(() => setState({ pending })) ,
-			(error : boolean) => queueMicrotask(() => setState({ error })),
+			(pending : boolean) => {
+				(qMicroTask || getThen())(() => setState({ pending }));
+				return;
+			},
+			(error : boolean) => {
+				(qMicroTask || getThen())(() => setState({ error }));
+				return;
+			},
 		] as const;
 	});
 	return { pendingState, setPending, setError };

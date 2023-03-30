@@ -31,13 +31,13 @@ export const orzMobx = <S extends object>(state : S) => {
 	};
 };
 
-
+import { produce } from 'immer';
 type isBasicType<V> = V extends basicType ? true : false;
 
 type basicType = ( number | boolean | string | symbol | bigint | null | undefined );
 
-const setMobxState = action(<S extends {}>(store , partialState : Partial<S>) => {
-	Object.assign(store , partialState);
+const setMobxState = action(<S extends {}>(store , partialState : Partial<S>):S => {
+	return Object.assign(store , partialState);
 });
 
 const isBasicType = <V>(value : V) : isBasicType<V> => {

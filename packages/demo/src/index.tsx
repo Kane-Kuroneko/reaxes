@@ -6,18 +6,20 @@ import {} from './counter';
 import {} from './multi-reaxels';
 import {} from './test-unmount';
 import {} from './';
+import { TimeMachineTest } from './time-machine';
 
-
-console.log(toolkit,utils);
-console.log(crayon);
-console.log(null);
 
 const mapping = [
 	{
 		name:"state",
-		path:"/state",
+		path:"state",
 		Component:Demo$state
-	}
+	},
+	{
+		name:"time-machine",
+		path:"time-machine",
+		Component:TimeMachineTest
+	},
 ];
 
 const Routing = reaxper( () => {
@@ -37,16 +39,15 @@ const Routing = reaxper( () => {
 const Home = reaxper( () => {
 	
 	return <div>
-		{mapping.map(({name,path}) => <Entry key={path} name={name}/>)}
+		{mapping.map(({name,path}) => <Entry key={path} name={name} path={path}/>)}
 	</div>;
 } );
 
-const Entry = reaxper(({ name}) => {
+const Entry = reaxper(({ name,path}) => {
 	const { navigate } = utils.useRouter();
 	return <p>
-		<span>22222222</span>
 		<button 
-			onClick = { () => navigate( `/${ name }` ) }
+			onClick = { () => navigate( `${ path }` ) }
 		>
 			{ name }
 		</button>

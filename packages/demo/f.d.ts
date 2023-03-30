@@ -15,7 +15,7 @@ declare const {
 declare const {orzMobx,Reaxes,reaxel} : typeof import("reaxes");
 declare const {reaxper,Reaxlass} : typeof import("reaxes-react");
 declare const utils:typeof import("reaxes-utils");
-declare const {crayon,orzPromise} : typeof utils;
+declare const {crayon,orzPromise,logProxy} : typeof utils;
 declare const toolkit:typeof import('reaxes-toolkit');
 declare const {orzPending} : typeof toolkit;
 

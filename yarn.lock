@@ -3304,6 +3304,11 @@ image-size@~0.5.0:
   resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.5.5.tgz#09dfd4ab9d20e29eb1c3e80b8990378df9e3cb9c"
   integrity sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==
 
+immer@^9.0.21:
+  version "9.0.21"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-9.0.21.tgz#1e025ea31a40f24fb064f1fef23e931496330176"
+  integrity sha512-bc4NBHqOqSfRW7POMkHd51LvClaeMXpm8dx0e8oE2GORbq5aRK7Bxl4FyzVLdGtLmvLKL7BTDBG5ACQm4HWjTA==
+
 import-fresh@^3.2.1:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-3.3.0.tgz#37162c25fcb9ebaa2e6e53d5b4d88ce17d9e0c2b"
@@ -4427,26 +4432,34 @@ readdirp@~3.6.0:
     picomatch "^2.2.1"
 
 reaxes-react@^0.0.1:
-  version "0.0.0-alpha-2023-3-20--3cc5edaa"
-  resolved "https://registry.yarnpkg.com/reaxes-react/-/reaxes-react-0.0.0-alpha-2023-3-20--3cc5edaa.tgz#2eb43d12fadd3a306abc5eb17462e8fe823183d1"
-  integrity sha512-XCP/KyqwLIzaB/vf3zTBGehBsL1dQ32ZWMDfPtfPDchjVf9hXRZAxxkLzts078SdNyWjkgK8MZQYTAGImpH1LQ==
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/reaxes-react/-/reaxes-react-0.0.1.tgz#beece56b304df61131282312ef07228171726886"
+  integrity sha512-wg2wYGADAetvo514aMiTVa7raKi5a6rY0an8wuva+8Ks5VB9igf5yS4qNWlWUlfrqPVJU4x/PCSSyR/81Z37fA==
   dependencies:
     lodash "4.17.21"
+    reaxes-utils "^0.0.1"
 
 reaxes-toolkit@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/reaxes-toolkit/-/reaxes-toolkit-0.0.1.tgz#5887c8ba1a1cc90457f4fb348e13d6fd16517595"
   integrity sha512-DN4tzBlFlSsDCgFqlD7ysNOuQ31zZFjsGhIM5c6YrCsSv5ya0pWjvztMA7NpdTJ3eCfhNs5CEaJYI7xfzZqRRw==
 
-reaxes-utils@^0.0.0, reaxes-utils@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/reaxes-utils/-/reaxes-utils-0.0.1.tgz#995016aa77c5f9ddcb39f68c1357a8f3bc4f45f3"
-  integrity sha512-TmM70tFsCFjLg/bQZLh/PktNUqlnDUJ2VaWZ+/71N1rFFi5BYb7VnpTjVdHTMgfZR3WJ423nRAllPsVSy5QMqw==
+reaxes-utils@^0.0.0:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/reaxes-utils/-/reaxes-utils-0.0.2.tgz#e832e780071d0bca6e25466f1448d8560834d9c7"
+  integrity sha512-VaWNaRq7LKScSnnoJw3JsZdJRryYRuOq8T3jAmGBiIM8HQqvVkhJwseUIo2Xm48XblIRgJ50h+l99MGrtvoV0A==
+  dependencies:
+    shallowequal "^1.1.0"
 
 reaxes-utils@^0.0.0-alpha-2023-3-21--fbc7146a:
   version "0.0.0-alpha-2023-3-21--fbc7146a"
   resolved "https://registry.yarnpkg.com/reaxes-utils/-/reaxes-utils-0.0.0-alpha-2023-3-21--fbc7146a.tgz#a8548c4f1fa03f8ccd943f63af6b6cbf2e092cc5"
   integrity sha512-nQJACw7tyT0sgA6F3RCbvuUtSC4lqmBi4ZCR/Bp42eJRP+qfDpHuH3XvxonF/xIv6E2mqKMnlgdjdvk6kI9P1w==
+
+reaxes-utils@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/reaxes-utils/-/reaxes-utils-0.0.1.tgz#995016aa77c5f9ddcb39f68c1357a8f3bc4f45f3"
+  integrity sha512-TmM70tFsCFjLg/bQZLh/PktNUqlnDUJ2VaWZ+/71N1rFFi5BYb7VnpTjVdHTMgfZR3WJ423nRAllPsVSy5QMqw==
 
 reaxes@^0.0.1:
   version "0.0.1"
