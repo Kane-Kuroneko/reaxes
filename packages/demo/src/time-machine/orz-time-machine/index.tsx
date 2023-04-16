@@ -85,7 +85,9 @@ export const orzTimeMachine = <S extends {}>(initialState:S) => {
 			let index:number;
 			if( typeof offset === 'number') {
 				index = pointer + offset;
-				
+				if(index < -1){
+					index = -1;
+				}
 			} else {
 				const timeNode = offset; 
 				const index = timeline.indexOf(timeNode);
@@ -103,8 +105,6 @@ export const orzTimeMachine = <S extends {}>(initialState:S) => {
 	 * @overload:timeNode:传入timeNodeSymbol
 	 * @overload:offset:传入指针偏移量,如果当前已经是第一个添加的状态,则会指向initial
 	 */
-	function timeTravel(timeNode:TimeNodeSymbol):void;
-	function timeTravel(offset:number):void;
 	function timeTravel(offset:TimeNodeSymbol|number) {
 		let index:number;
 		replaceTimeline( (origTimeline) => {
@@ -112,8 +112,8 @@ export const orzTimeMachine = <S extends {}>(initialState:S) => {
 			
 			if(typeof offset === "number"){
 				index = pointer + offset;
-				if(index < 0){
-					
+				if(index < -1){
+					index = -1;
 				}
 			}else {
 				let timeNode = offset;
@@ -125,7 +125,7 @@ export const orzTimeMachine = <S extends {}>(initialState:S) => {
 			return origTimeline;
 		} );
 		
-	}
+	};
 	
 	function saveTimeline(){
 		

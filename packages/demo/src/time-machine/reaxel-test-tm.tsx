@@ -30,12 +30,12 @@ export const reaxel__time_machine = reaxel( () => {
 					invalidTimeTravel(machine.currentStore);
 				}
 			},
-			travel(timeNode:TimeNodeSymbol|number){
-				const timeNodeStore = machine.timeTravel(timeNode);
+			travel(timeNode:Parameters<typeof machine.timeTravel>[0]){
+				machine.timeTravel(timeNode);
 				if(machine.currentStore) {
 					setState(machine.currentStore);
 				}else {
-					invalidTimeTravel(timeNodeStore);
+					invalidTimeTravel(machine.currentStore);
 				}
 			},
 			get timeline(){
