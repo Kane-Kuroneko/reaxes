@@ -71,7 +71,7 @@ if ( !node_env ) {
 export const rootPath = path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../');
 
 /*只有在列表中声明的包才可以被运行*/
-export const packageList = readdirSync(path.join(obsProjectRootDir,"packages")).filter((_package) => {
+export const packageList = readdirSync(path.join(absProjectRootDir,"packages")).filter((_package) => {
 	return !excludedPackages.includes(_package);
 });
 
@@ -87,8 +87,8 @@ if(packageList.every((repoName) => repoName !== repo )){
 import {
 	getPort ,
 	overload,
-	obsProjectRootDir,
-	obsProjectRootFileURL,
+	absProjectRootDir,
+	absProjectRootFileURL,
 } from './toolkit.mjs';
 import { fileURLToPath } from "url";
 import path from "path";

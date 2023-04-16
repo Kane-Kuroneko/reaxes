@@ -3,7 +3,7 @@
  */
 import { packageList , rootPath } from './entrance.mjs';
 import chalk from 'chalk';
-import { webpack_promise , obsProjectRootDir , obsProjectRootFileURL } from './toolkit.mjs';
+import { webpack_promise , absProjectRootDir , absProjectRootFileURL } from './toolkit.mjs';
 import { merge } from 'webpack-merge';
 import { webpackBaseConfig } from './webpack.base.config.mjs';
 import { webpackBuildConfig } from './webpack.build.config.mjs';
@@ -26,8 +26,8 @@ export const buildRepo = () => {
 	});
 	return repoList.map(async (repo) => {
 		// console.log(`../packages/${ repo }/webpack.partial.mjs`);
-		const packagePath = path.join(obsProjectRootDir,`packages/${ repo }`);
-		const repoWebpackPartialConfig = (await import(path.join(obsProjectRootFileURL,`packages/${repo}/webpack.partial.mjs`))).webpackConfig;
+		const packagePath = path.join(absProjectRootDir,`packages/${ repo }`);
+		const repoWebpackPartialConfig = (await import(path.join(absProjectRootFileURL,`packages/${repo}/webpack.partial.mjs`))).webpackConfig;
 		const {entry,output} = repoWebpackPartialConfig;
 		if(entry){
 			repoWebpackPartialConfig.entry = path.resolve(packagePath,entry);
@@ -36,6 +36,7 @@ export const buildRepo = () => {
 			repoWebpackPartialConfig.output.path = path.resolve(packagePath,output.path);
 		}
 		const webpackConfig = merge(webpackBaseConfig , repoWebpackPartialConfig , webpackBuildConfig);
+		console.log(webpackConfig.output);
 		webpack_promise(webpackConfig).then(({compiler ,stats}) => {
 			if(stats.hasErrors()){
 				throw stats.toJson().errors;

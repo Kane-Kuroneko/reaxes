@@ -1,7 +1,7 @@
 Error.stackTraceLimit = 1000;
 
 const webpackDevConfig = merge( webpackServerConfig,webpackConfigWithRepo );
-delete webpackDevConfig.output;
+// delete webpackDevConfig.output;
 const webpackDevServer = async () => {
 	try {
 		const { compiler } = await webpack_promise(webpackDevConfig);

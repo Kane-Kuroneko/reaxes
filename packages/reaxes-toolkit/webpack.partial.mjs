@@ -1,7 +1,7 @@
 import webpack from 'webpack';
 import portfinder from 'portfinder';
 import { fileURLToPath } from 'url';
-import { obsProjectRootDir , obsProjectRootFileURL } from '../../build/toolkit.mjs';
+import { absProjectRootDir , absProjectRootFileURL } from '../../build/toolkit.mjs';
 import path from 'path';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
@@ -11,7 +11,7 @@ const {
 	ProvidePlugin,
 } = webpack;
 
-const obsCurrentPkg = path.join(obsProjectRootDir,'packages/reaxes-toolkit');
+const obsCurrentPkg = path.join(absProjectRootDir,'packages/reaxes-toolkit');
 
 
 export const webpackConfig = {/*will be dynamic imported*/	

@@ -5,10 +5,10 @@ import webpack from 'webpack';
 import portfinder from 'portfinder';
 
 /* reaxes目录的绝对路径,返回F:/reaxes/   */
-export const obsProjectRootDir = path.join(path.dirname(fileURLToPath(import.meta.url)) , "../");
+export const absProjectRootDir = path.join(path.dirname(fileURLToPath(import.meta.url)) , "../");
 
 /*reaxes目录的文件路径,返回file:///F:/reaxes/     */
-export const obsProjectRootFileURL = pathToFileURL(path.join(path.dirname(fileURLToPath(import.meta.url)),'../')).href
+export const absProjectRootFileURL = pathToFileURL(path.join(path.dirname(fileURLToPath(import.meta.url)),'../')).href
 
 /*封装webpack回调为promise*/
 export const webpack_promise = (config) => {

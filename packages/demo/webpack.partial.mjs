@@ -1,10 +1,11 @@
 const {
 	ProvidePlugin ,
 	DefinePlugin,
+	CleanPlugin
 } = webpack;
 
 
-const obsCurrentPkg = path.join(obsProjectRootDir,'packages/demo');
+const obsCurrentPkg = path.join(absProjectRootDir,'packages/demo');
 
 export const webpackConfig = {
 	mode : "development",
@@ -14,6 +15,7 @@ export const webpackConfig = {
 		port : await getPort(3001),
 	},
 	plugins: [
+		new CleanPlugin(),
 		new HtmlWebpackPlugin({
 			template: path.join(obsCurrentPkg ,'public/index.template.ejs'),
 			filename: 'index.html',
@@ -50,7 +52,7 @@ export const webpackConfig = {
 
 import path from 'path';
 import webpack from 'webpack';
-import {obsProjectRootDir,obsProjectRootFileURL} from '../../build/toolkit.mjs';
+import {absProjectRootDir,absProjectRootFileURL} from '../../build/toolkit.mjs';
 import { getPort } from '../../build/toolkit.mjs';
 import { env , experimental , method , mock , node_env ,repo  } from '../../build/entrance.mjs';
 import HtmlWebpackPlugin from 'html-webpack-plugin';

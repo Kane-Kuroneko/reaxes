@@ -1,7 +1,7 @@
 const proxy_configuration = async () => {
 	
 	try {
-		return (await import(path.join(obsProjectRootDir,`packages/${repo}//proxy.configuration.json`) ,{ assert : { type : 'json' } })).default;
+		return (await import(path.join(absProjectRootDir,`packages/${repo}//proxy.configuration.json`) ,{ assert : { type : 'json' } })).default;
 	}catch ( e ) {
 		return [];
 	}
@@ -54,6 +54,6 @@ import {
 	port ,
 	repo ,
 } from './entrance.mjs';
-import { obsProjectRootDir } from './toolkit.mjs';
+import { absProjectRootDir } from './toolkit.mjs';
 import path from 'path';
 import { LoggerWebpackPlugn,LogWhenSucceed } from '../build/webpack.plugins.mjs';

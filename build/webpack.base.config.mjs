@@ -14,21 +14,21 @@ export const webpackBaseConfig = {
 	mode: node_env,
 	output: {
 		filename: node_env === 'development' ? '[name].bundle.js' : '[name].bundle.[contenthash:6].js',
-		path : path.join(obsProjectRootDir , repo , 'dist'), 
+		path : path.join(absProjectRootDir ,'packages' , repo , 'dist'), 
 		// publicPath : path.resolve(rootPath , 'dist') ,
 	},
 	resolve: { 
 		aliasFields: ['browser'],
 		alias: {
-			'#root': obsProjectRootDir,
-			'#packages': path.join(obsProjectRootDir,'packages'),
-			'reaxes': path.join(obsProjectRootDir, 'packages/reaxes'),
-			'reaxes-toolkit': path.join(obsProjectRootDir, 'packages/reaxes-toolkit'),
-			'reaxes-utils': path.join(obsProjectRootDir, 'packages/reaxes-utils'),
-			'reaxels': path.join(obsProjectRootDir, 'packages/reaxels'),
-			'reaxes-react': path.join(obsProjectRootDir, 'packages/reaxes-react'),
-			'reaxes-vue': path.join(obsProjectRootDir, 'packages/reaxes-vue'),
-			'reaxes-angular': path.join(obsProjectRootDir, 'packages/reaxes-angular'),
+			'#root': absProjectRootDir,
+			'#packages': path.join(absProjectRootDir,'packages'),
+			'reaxes': path.join(absProjectRootDir, 'packages/reaxes'),
+			'reaxes-toolkit': path.join(absProjectRootDir, 'packages/reaxes-toolkit'),
+			'reaxes-utils': path.join(absProjectRootDir, 'packages/reaxes-utils'),
+			'reaxels': path.join(absProjectRootDir, 'packages/reaxels'),
+			'reaxes-react': path.join(absProjectRootDir, 'packages/reaxes-react'),
+			'reaxes-vue': path.join(absProjectRootDir, 'packages/reaxes-vue'),
+			'reaxes-angular': path.join(absProjectRootDir, 'packages/reaxes-angular'),
 		},
 		extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
 	},
@@ -46,7 +46,7 @@ export const webpackBaseConfig = {
 				use: {
 					loader: 'babel-loader',
 					options : {
-						configFile : path.join(obsProjectRootDir , 'babel.config.js'),
+						configFile : path.join(absProjectRootDir , 'babel.config.js'),
 					}
 				},
 				exclude: /node_modules/,
@@ -195,7 +195,7 @@ import {
 	node_env,
 	repo
 } from './entrance.mjs';
-import { obsProjectRootDir , obsProjectRootFileURL } from './toolkit.mjs';
+import { absProjectRootDir , absProjectRootFileURL } from './toolkit.mjs';
 import _ from 'lodash';
 import webpack from 'webpack';
 import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';
