@@ -11,7 +11,7 @@ export const orzTimeMachine = <S extends {}>(initialState:S) => {
 		item
 	})
 	const {store,setState} = orzMobx({
-		timeline:timeline,
+		timeline,
 		/*尾指针,永远指向timeline的最后一个元素的索引*/
 		tailPointer : -1,
 		/*表示当前timeline移动到哪里的指针*/
@@ -23,13 +23,7 @@ export const orzTimeMachine = <S extends {}>(initialState:S) => {
 		setObsTimeline();
 	},() => [store.pointer,store.tailPointer]);
 	
-	/*使用类来构造symbol,普通对象会被mobx深层代理,view层拿不到原始对象。*/
-	class TimeNodeSymbol {
-		desc : string;
-		constructor(desc?:string) {
-			Object.assign(this,{desc:desc ?? Math.random().toString()});
-		}
-	};
+	
 	
 	/**
 	 * 将内部的timeline数组的指针更新,并通知obsTimeline;
@@ -43,12 +37,11 @@ export const orzTimeMachine = <S extends {}>(initialState:S) => {
 		
 		const travelSymbol = new TimeNodeSymbol(desc);
 		travelMap.set(travelSymbol,state);
-		const shallowTimeline = [...timeline];
 		replaceTimeline((origTimeline) => {
 			const {pointer,tailPointer} = store;
 			/*如果处于时间线的中点而非尾端,则丢弃后面的时间线再添加节点*/
 			if(pointer < tailPointer){
-				const preservedTimeline = shallowTimeline.slice(0,pointer);
+				const preservedTimeline = origTimeline.slice(0,pointer);
 				preservedTimeline.push(travelSymbol);
 				setState( {
 					pointer : preservedTimeline.length ,
@@ -56,12 +49,12 @@ export const orzTimeMachine = <S extends {}>(initialState:S) => {
 				} );
 				return preservedTimeline;
 			}else {
-				shallowTimeline.push();
+				origTimeline.push(travelSymbol);
 				setState( {
 					pointer : store.pointer + 1 ,
 					tailPointer : store.tailPointer + 1 ,
 				} );
-				return shallowTimeline;
+				return origTimeline;
 			}
 		});
 		return travelSymbol;
@@ -74,6 +67,7 @@ export const orzTimeMachine = <S extends {}>(initialState:S) => {
 		if(index < 0){
 			return initial;
 		}
+		crayon.orange('timeline[index]',timeline[index]);
 		return travelMap.get(timeline[index]);
 	}
 	
@@ -84,12 +78,23 @@ export const orzTimeMachine = <S extends {}>(initialState:S) => {
 	 */
 	function backInTime(timeNode:TimeNodeSymbol):void;
 	function backInTime(offset:number):void;
-	function backInTime(offset):void{
+	function backInTime(offset:TimeNodeSymbol|number):void{
 		
 		replaceTimeline( ( origTimeline ) => {
 			const {pointer,tailPointer} = store;
-			
-			return origTimeline;
+			let index:number;
+			if( typeof offset === 'number') {
+				index = pointer + offset;
+				
+			} else {
+				const timeNode = offset; 
+				const index = timeline.indexOf(timeNode);
+			}
+			setState( {
+				pointer : index ,
+				tailPointer : index ,
+			} );
+			return origTimeline.slice( 0 , index + 1 );
 		} );
 	}
 	
@@ -100,24 +105,25 @@ export const orzTimeMachine = <S extends {}>(initialState:S) => {
 	 */
 	function timeTravel(timeNode:TimeNodeSymbol):void;
 	function timeTravel(offset:number):void;
-	function timeTravel(offset) {
-		
+	function timeTravel(offset:TimeNodeSymbol|number) {
+		let index:number;
 		replaceTimeline( (origTimeline) => {
 			const {pointer} = store;
-			const _pointer = pointer + offset;
+			
 			if(typeof offset === "number"){
-				if(_pointer < 0){
+				index = pointer + offset;
+				if(index < 0){
 					
 				}
 			}else {
 				let timeNode = offset;
+				index = timeline.indexOf(timeNode);
 			}
+			setState( {
+				pointer : index ,
+			} );
 			return origTimeline;
 		} );
-		
-		/*****/
-		
-		
 		
 	}
 	
@@ -143,6 +149,7 @@ export const orzTimeMachine = <S extends {}>(initialState:S) => {
 		addBackTime,
 		timeTravel,
 		backInTime,
+		TimeNodeSymbol,
 		/*获取当前所在时间片段的store*/
 		get currentStore():S{
 			return getStoreInTimeline();
@@ -157,7 +164,6 @@ export const orzTimeMachine = <S extends {}>(initialState:S) => {
 		},
 		get obsTimeline(){
 			const {tailPointer} = store;
-			
 			return store.timeline.slice(0,tailPointer + 1);
 		},
 		/**
@@ -172,8 +178,12 @@ export const orzTimeMachine = <S extends {}>(initialState:S) => {
 	// type partialState = Partial<S>;
 };
 
-export namespace orzTimeMachine{
-	
-	export type timeNodeSymbol = {desc?:string}; 
-}
+
 // import {produce} from 'immer';
+/*使用类来构造symbol,普通对象会被mobx深层代理,view层拿不到原始对象。*/
+export class TimeNodeSymbol {
+	desc : string;
+	constructor(desc?:string) {
+		Object.assign(this,{desc:desc ?? Math.random().toString()});
+	}
+};

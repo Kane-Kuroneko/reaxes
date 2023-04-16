@@ -8,7 +8,9 @@ export const TimeTunnelFragments = reaxper( () => {
 		timeline,
 	} = reaxel__time_machine();
 	
-	
+	useEffect(() => {
+		crayon.blue( 'TimeTunnelFragments rendered' ,timeline);
+	})
 	return <div>
 		{timeline.map((timeNode) => {
 			return <button

@@ -2,11 +2,12 @@
 export const TimeMachineTest = reaxper( () => {
 	const {
 		machine ,
-		timeM_add_to_content_list ,
+		addToTimeline ,
+		travel,
 		user_input_content ,
 		content_list ,
 		setState ,
-		undo,
+		revoke,
 	} = reaxel__time_machine();
 	
 	const inputRef = useRef<HTMLInputElement>();
@@ -17,14 +18,14 @@ export const TimeMachineTest = reaxper( () => {
 				{ content_list.map( ( str ) => <li key = { str + Math.random() }>{ str }</li> ) }
 			</ul>
 			<input
-				value = {user_input_content}
+				value = { user_input_content }
 				placeholder = '请输入'
-				ref = {inputRef}
+				ref = { inputRef }
 				onChange = { ( e ) => {
 					setState( { user_input_content : e.target.value } );
 				} }
 				onKeyDown = { ( e ) => {
-					if( e.code == 'Enter' || e.code == "NumpadEnter" ) {
+					if( e.code == 'Enter' || e.code == 'NumpadEnter' ) {
 						addToTimeline();
 					}
 				} }
@@ -37,18 +38,33 @@ export const TimeMachineTest = reaxper( () => {
 			>
 				添加为时空碎片
 			</button>
+			<div>
+				<button
+					style = { machine.currentTimelineIndex < 0 && { display : 'none' } || {} }
+					onClick = { () => {
+						travel(-1);
+					} }
+				>
+					后退
+				</button>
+				<button
+					style = { machine.currentTimelineIndex + 1 >= machine.obsTimeline.length && { display : 'none' } || {} }
+					onClick = { () => {
+						travel(1);
+					} }
+				>
+					前进
+				</button>
+			</div>
 			<button
-				onClick = { () => { undo(); } }
+				onClick = { () => { revoke(); } }
 			>
 				撤销
 			</button>
 		</div>
-		<TimeTunnelFragments/>
+		<TimeTunnelFragments />
 	</>;
 	
-	function addToTimeline(){
-		timeM_add_to_content_list();
-	}
 } );
 
 import { orzTimeMachine } from './orz-time-machine';

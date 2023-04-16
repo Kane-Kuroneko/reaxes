@@ -8,12 +8,11 @@ export const reaxel__time_machine = reaxel( () => {
 	
 	const invalidTimeTravel = (timeNodeStore):never => {
 		console.log(logProxy(machine.timeline),timeNodeStore);
-		throw `无法时空旅行,改数据可能已被WeakMap释放`;
+		throw `无法时空旅行,该数据可能已被WeakMap释放`;
 	};
 	
 	
 	return () => {
-		
 		return {
 			get content_list(){
 				return store.content_list
@@ -23,18 +22,18 @@ export const reaxel__time_machine = reaxel( () => {
 			},
 			setState,
 			machine,
-			undo(){
+			revoke(){
 				const timeNodeStore = machine.backInTime( -1 );
-				if(timeNodeStore){
-					setState(timeNodeStore);
+				if(machine.currentStore){
+					setState(machine.currentStore);
 				}else {
-					invalidTimeTravel(timeNodeStore);
+					invalidTimeTravel(machine.currentStore);
 				}
 			},
-			travel(timeNode:orzTimeMachine.timeNodeSymbol){
+			travel(timeNode:TimeNodeSymbol|number){
 				const timeNodeStore = machine.timeTravel(timeNode);
-				if(timeNodeStore) {
-					setState(timeNodeStore);
+				if(machine.currentStore) {
+					setState(machine.currentStore);
 				}else {
 					invalidTimeTravel(timeNodeStore);
 				}
@@ -42,15 +41,16 @@ export const reaxel__time_machine = reaxel( () => {
 			get timeline(){
 				return machine.obsTimeline;
 			},
-			timeM_add_to_content_list(){
+			addToTimeline(){
+				const user_input_content = store.user_input_content;
 				const tempStore = setState({
-					content_list : [...store.content_list,store.user_input_content],
+					content_list : [...store.content_list,user_input_content],
 					user_input_content : ''
 				});
-				machine.addBackTime( { ...tempStore },Math.random().toString());
+				machine.addBackTime( { ...tempStore },`backTimeID:${user_input_content}`);
 			},
 		};
 	};
 } );
 
-import { orzTimeMachine } from './orz-time-machine';
+import { orzTimeMachine,TimeNodeSymbol } from './orz-time-machine';
