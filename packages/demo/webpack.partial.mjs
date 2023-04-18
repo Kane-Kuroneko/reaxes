@@ -14,6 +14,14 @@ export const webpackConfig = {
 	devServer : {
 		port : await getPort(3001),
 	},
+	module : {
+		rules : [
+			{
+				test : /\.vue$/,
+				loader : "vue-loader"
+			},
+		],
+	},
 	plugins: [
 		new CleanPlugin(),
 		new HtmlWebpackPlugin({

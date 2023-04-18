@@ -35,6 +35,7 @@
 			"reaxes": ["./packages/reaxes"],
 			"reaxes/*": ["./packages/reaxes/*"],
 			"reaxes-react": ["./packages/reaxes-react"],
+			"reaxes-vue2": ["./packages/reaxes-vue2"],
 			"reaxels/*": ["./packages/reaxels/*"]
 		}
 	} ,

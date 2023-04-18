@@ -33,6 +33,7 @@
 			"reaxes" : [ "../reaxes" ] ,
 			"reaxes/*" : [ "../reaxes/*" ] ,
 			"reaxes-react" : [ "../reaxes-react" ] ,
+			"reaxes-vue2" : [ "../reaxes-vue2" ] ,
 			"reaxes-utils" : [ "../reaxes-utils" ] ,
 			"reaxes-toolkit" : [ "../reaxes-toolkit" ] ,
 			"reaxels/*" : [ "./*" ]

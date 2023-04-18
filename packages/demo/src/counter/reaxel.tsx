@@ -10,15 +10,18 @@ export const reaxel_counter = function(){
 		count : 0 ,
 	} );
 	
+	function setCount(count:number = store.count + 1){
+		crayon.blue('count:',count);
+		setState( { count } );
+	}
+	
 	return () => {
 		return ret = {
 			get count(){
 				return store.count;
 			},
-			setCount(count:number = store.count + 1){
-				setState( { count } );
-			},
-			plus:ret.setCount,
+			setCount,
+			plus:setCount,
 			minus(){
 				setState( { count : store.count - 1 } );
 			},

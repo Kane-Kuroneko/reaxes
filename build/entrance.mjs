@@ -20,7 +20,7 @@ export let {
 	experimental = "non-exp" ,
 } = overload(args , [
 	{
-		regExp : /\bdemo|reaxes|reaxels|reaxes-react|reaxes-vue|reaxes-angular|reaxes-toolkit|reaxes-utils\b/ ,
+		regExp : /\bdemo|reaxes|reaxels|reaxes-react|reaxes-vue2|reaxes-angular|reaxes-toolkit|reaxes-utils\b/ ,
 		key : "repo" ,
 	} ,
 	{

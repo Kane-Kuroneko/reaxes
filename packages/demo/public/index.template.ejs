@@ -17,7 +17,7 @@
 		<title>reaxes-demo</title>
 	</head>
 	<body>
-		<div id = "react-app-root"></div>
+		<div id = "reaxes-demo-root"></div>
 	</body>
 	<%= htmlWebpackPlugin.files.js.reduce((accu , filePath) => {
 		return accu + `<script src="/${ filePath }"></script>\n`} , ``)%>
