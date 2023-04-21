@@ -55,7 +55,7 @@ const Entry = reaxper(({ name,path}) => {
 
 render(
 	<Routing /> ,
-	document.getElementById( 'reaxes-demo-root' ) ,
+	document.getElementById( 'reaxes-react-root' ) ,
 );
 
 if (module.hot) { module.hot.accept( function () { location.reload(); } ); }

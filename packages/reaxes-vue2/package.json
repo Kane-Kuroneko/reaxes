@@ -11,7 +11,7 @@
 	"license" : "WTFPL" ,
 	"dependencies" : {
 		"reaxes" : "^0.0.1-alpha-2023-3-21--7ed793ff",
-		"reaxes-utils" : "^0.0.0-alpha-2023-3-21--fbc7146a",
+		"reaxes-utils" : "^1.0.1",
 		"lodash" : "4.17.21"
 	} ,
 	"peerDependencies" : {

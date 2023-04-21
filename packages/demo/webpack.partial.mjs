@@ -28,6 +28,7 @@ export const webpackConfig = {
 		}
 	},
 	plugins: [
+		new VueLoaderPlugin(),
 		new CleanPlugin(),
 		new HtmlWebpackPlugin({
 			template: path.join(obsCurrentPkg ,'public/index.template.ejs'),
@@ -65,7 +66,8 @@ export const webpackConfig = {
 
 import path from 'path';
 import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { VueLoaderPlugin } from 'vue-loader';
 import {absProjectRootDir,absProjectRootFileURL} from '../../build/toolkit.mjs';
 import { getPort } from '../../build/toolkit.mjs';
 import { env , experimental , method , mock , node_env ,repo  } from '../../build/entrance.mjs';
-import HtmlWebpackPlugin from 'html-webpack-plugin';

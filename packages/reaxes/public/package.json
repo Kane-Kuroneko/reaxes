@@ -9,7 +9,7 @@
 	"dependencies" : {
 		"mobx" : "^6.8.0",
 		"lodash" : "4.17.21",
-		"reaxes-utils" : "~0.0.2"
+		"reaxes-utils" : "^1.0.1"
 	} ,
 	"peerDependencies" : {
 		

@@ -4,14 +4,14 @@
 <!--	</div>-->
 <!--</template>-->
 
-<template>
-	<div @click='setAge'>
-		age: {{ state.age }}
-	</div>
-</template>
+<!--<template>-->
+<!--	<div @click='setCount'>-->
+<!--		age: {{ count }}-->
+<!--	</div>-->
+<!--</template>-->
 
 <script>
-import {observable,action,untracked,transaction,_allowStateChanges} from 'mobx';
+import { observable , action , untracked , transaction , _allowStateChanges , autorun } from 'mobx';
 import Vue,{} from 'vue';
 import {observer,Observer} from 'mobx-vue';
 import Component from "vue-class-component";
@@ -34,22 +34,35 @@ const state = observable({ son : 333 });
 // 	}
 // }
 
-const obsState = observable({age:11});
+const obsState = observable({age:11,count:123});
 
 export default observer({
 	data(){
 		return {
-			state : obsState
+			state : obsState,
+			count : obsState.count
 			// son:state.son
 		}
 	},
+	render (h) {
+		console.log(h);
+		console.log(<span></span>);
+		return <div
+			onClick = { () => {
+				this.setAge();
+			} }
+		>
+			age: { obsState.age }
+		</div>;
+	},
+	
 	methods:{
-		setAge (){
-			_allowStateChanges(true,() => {
-				obsState.age += 1;
-			})
-			console.log(this.state.age);
-		}
+		setAge : action(() => {
+			obsState.age += 1;
+		}),
+		setCount:action(() => {
+			obsState.count++;
+		})
 		// setSon(){
 		// 	action(() => {
 		// 		state.son ++;

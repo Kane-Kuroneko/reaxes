@@ -41,15 +41,37 @@ export const webpackBaseConfig = {
 					fullySpecified: false,
 				},
 			},
+			/*for react/ts/tsx etc. generation js files */
 			{
-				test: /\.(jsx?|tsx?)$/,
+				test: (filename) => {
+					/*排除.vue文件和.vue.xx*/
+					if(/\.vue\b/i.test(filename)){
+						return;
+					}
+					return /\.(jsx?|tsx?)$/i.test(filename);
+				},
 				use: {
 					loader: 'babel-loader',
 					options : {
-						configFile : path.join(absProjectRootDir , 'babel.config.js'),
-					}
+						...babelConfigFn('react'),
+					},
 				},
-				exclude: /node_modules/,
+				exclude: [
+					/node_modules/,
+				],
+			},
+			/*for .vue configuration*/
+			{
+				test: /(\.vue\.js)$/i ,
+				use: {
+					loader: 'babel-loader',
+					options : {
+						...babelConfigFn('vue'),
+					},
+				},
+				exclude: [
+					/node_modules/,
+				],
 			},
 			{
 				test: /\.module\.less$/,
@@ -188,14 +210,14 @@ export const webpackBaseConfig = {
 	],
 };
 
+import _ from 'lodash';
 import path from 'path';
+import webpack from 'webpack';
 import TerserPlugin from 'terser-webpack-plugin';
+import { babelConfigFn } from './babel.config.mjs';
 import {
 	method ,
 	node_env,
 	repo
 } from './entrance.mjs';
 import { absProjectRootDir , absProjectRootFileURL } from './toolkit.mjs';
-import _ from 'lodash';
-import webpack from 'webpack';
-import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';

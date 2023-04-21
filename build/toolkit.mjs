@@ -16,7 +16,7 @@ export const webpack_promise = (config) => {
 		const compiler = webpack(config, (error, stats) => {
 			if (error == null) {
 				resolve({compiler,error,stats});
-			} else if(stats.hasErrors()){
+			} else if(stats?.hasErrors()){
 				throw  stats.toJson().errors;
 			} else {
 				reject({

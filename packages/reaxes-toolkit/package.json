@@ -7,6 +7,6 @@
 	} ,
 	"dependencies" : {
 		"reaxes" : "^0.0.1",
-		"reaxes-utils" : "^0.0.1"
+		"reaxes-utils" : "^1.0.1"
 	}
 }

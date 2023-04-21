@@ -1,9 +1,6 @@
-"use strict";
+import { basename } from 'path';
 
-var _require = require("path"),
-    basename = _require.basename;
-
-var ImportTypeEnum = {
+const ImportTypeEnum = {
   /*support:import * as namespace*/
   NAMESPACE: Symbol("NAMESPACE"),
   DEFAULT: Symbol("DEFAULT"),
@@ -11,7 +8,7 @@ var ImportTypeEnum = {
   ANONYMOUS: Symbol("ANONYMOUS")
 };
 
-module.exports = function (_ref) {
+export default function (_ref) {
   var t = _ref.types;
   return {
     visitor: {

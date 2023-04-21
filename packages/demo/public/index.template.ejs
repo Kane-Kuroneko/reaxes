@@ -17,7 +17,8 @@
 		<title>reaxes-demo</title>
 	</head>
 	<body>
-		<div id = "reaxes-demo-root"></div>
+		<div id = "reaxes-vue-root"></div>
+		<div id = "reaxes-react-root"></div>
 	</body>
 	<%= htmlWebpackPlugin.files.js.reduce((accu , filePath) => {
 		return accu + `<script src="/${ filePath }"></script>\n`} , ``)%>
