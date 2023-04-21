@@ -1,13 +1,15 @@
 {
 	"name" : "reaxes-react" ,
-	"version" : "0.0.2" ,
+	"version" : "0.0.3" ,
 	"description" : "a distributed and responsive data-model for React" ,
 	"main" : "./" ,
 	"types" : "./types/index.d.ts" ,
 	"author" : "Kane" ,
 	"license" : "WTFPL" ,
 	"dependencies" : {
-		"lodash" : "4.17.21"
+		"lodash" : "4.17.21",
+		"reaxes" : "0.0.1-beta-c5f90442",
+		"reaxes-utils" : "^1.0.1"
 	} ,
 	"peerDependencies" : {
 		"react" : ">=16.8.0" ,

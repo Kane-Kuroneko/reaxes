@@ -1,7 +1,7 @@
 /**
  * A simple counter using reaxes architecture
  */
-export const reaxel_counter = function(){
+export const reaxel_counter = reaxel(() => {
 	let ret;
 	const {
 		store ,
@@ -11,7 +11,7 @@ export const reaxel_counter = function(){
 	} );
 	
 	function setCount(count:number = store.count + 1){
-		crayon.blue('count:',count);
+		// crayon.blue('count:',count);
 		setState( { count } );
 	}
 	
@@ -27,4 +27,6 @@ export const reaxel_counter = function(){
 			},
 		}
 	}
-}(); 
+});
+
+import {reaxel,orzMobx} from 'reaxes';

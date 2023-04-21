@@ -22,6 +22,11 @@ export const webpackConfig = {
 			},
 		],
 	},
+	resolve : {
+		alias : {
+			"mobx-vue" : path.join(obsCurrentPkg,"mobx-vue")
+		}
+	},
 	plugins: [
 		new CleanPlugin(),
 		new HtmlWebpackPlugin({

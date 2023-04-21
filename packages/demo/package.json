@@ -8,6 +8,7 @@
 	"dependencies": {
 		"vue" : "2.7.14",
 		"vue-class-component" : "^7.2.6",
+		"vue-template-compiler" : "^2.7.14",
 		"lodash": "4.17.21",
 		"mobx": "6.5.0",
 		"react": "17.0.2",
