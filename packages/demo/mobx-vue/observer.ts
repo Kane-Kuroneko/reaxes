@@ -26,13 +26,16 @@ function observer<VC extends VueClass<Vue>>(Component: VC | ComponentOptions<Vue
 		name,
 		...originalOptions,
 		data(vm: Vue) {
+			console.log(vm.obsState);
 			return collectDataForVue(vm || this, dataDefinition);
+		},
+		mounted(vm) {
+			console.log(vm);
 		},
 		// overrider the cached constructor to avoid extending skip
 		// @see https://github.com/vuejs/vue/blob/6cc070063bd211229dff5108c99f7d11b6778550/src/core/global-api/extend.js#L24
 		_Ctor: {},
 	};
-
 	// we couldn't use the Component as super class when Component was a VueClass, that will invoke the lifecycle twice after we called Component.extend
 	const superProto = typeof Component === 'function' && Object.getPrototypeOf(Component.prototype);
 	const Super = superProto instanceof Vue ? superProto.constructor : Vue;
@@ -48,6 +51,7 @@ function observer<VC extends VueClass<Vue>>(Component: VC | ComponentOptions<Vue
 		let nativeRenderOfVue: any;
 		const reactiveRender = () => {
 			reaction.track(() => {
+				dataDefinition?.call(this,this);
 				if (!mounted) {
 					$mount.apply(this, args);
 					mounted = true;

@@ -1,60 +1,21 @@
 <template>
 	<div id='reaxes-demo-root'>
-		<p>current count : {{ x }}</p>
-		<button @click = 'setX'>
-			click me
-		</button>
-		
-		
-		<p>current C : {{ c }}</p>
-		<button @click = 'cClick'>
-			click me
-		</button>
-		
-		<vue-son></vue-son>
+		<count-view-fn/>
+		<count-view-class/>
 	</div>
 </template>
-
 <script>
-import { reaxper } from 'reaxes-vue2';
-import { reaxel_counter } from '../reaxel';
-import { observer , VueClass } from 'mobx-vue';
-import {  observable } from "mobx";
-import vue2 from './view-2.vue';
-const state = observable({
-	c:222
-});
-
-const {
-	plus ,
-	minus ,
-} = reaxel_counter();
-
-
+import {} from 'reaxes';
+import {observer} from '../../../mobx-vue';
+import count_view_fn from './view-fuctionnl.vue';
+import count_view_class from './view-class.vue'
 
 export default observer({
 	components : {
-		"vue-son" : vue2,
-	},
-	data () {
-		
-		const { count } = reaxel_counter();
-		return {
-			x : 123,
-			c : state.c,
-			count
-		};
-	} ,
-	methods : {
-		setX(){
-			this.x ++;
-		},
-		cClick(){
-			state.c = state.c + 1;
-			console.log(state.c);
-		},
-		minus ,
-		plus ,
-	} 
-});
+		"count-view-fn" : count_view_fn, 
+		"count-view-class" : count_view_class, 
+	}
+	
+})
 </script>
+
