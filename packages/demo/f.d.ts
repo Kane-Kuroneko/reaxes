@@ -24,6 +24,9 @@ declare const __EXPERIMENTAL__: boolean;
 declare const __METHOD__: "server"|"build";
 declare const __NODE_ENV__ : "development"|"production";
 declare module "*.vue";
+declare module "vue" {
+	export * from 'vue3';
+}
 /*DOM*/
 
 /*CSS*/

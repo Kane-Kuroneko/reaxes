@@ -13,6 +13,7 @@ const webpackDevServer = async () => {
 		});
 	}
 	catch ( e ) {
+		console.error(e);
 		return Promise.reject(e);
 	}
 	finally {

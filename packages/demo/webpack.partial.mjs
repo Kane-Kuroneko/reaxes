@@ -7,28 +7,22 @@ const {
 
 const obsCurrentPkg = path.join(absProjectRootDir,'packages/demo');
 
-export const webpackConfig = {
+export const webpackConfig = merge({
 	mode : "development",
 	devtool : "source-map",
 	entry : path.join(obsCurrentPkg,"src"),
 	devServer : {
 		port : await getPort(3001),
 	},
-	module : {
-		rules : [
-			{
-				test : /\.vue$/,
-				loader : "vue-loader"
-			},
-		],
-	},
 	resolve : {
 		alias : {
-			"mobx-vue" : path.join(obsCurrentPkg,"mobx-vue")
-		}
+			"mobx-vue" : path.join(obsCurrentPkg,"mobx-vue"),
+			"mobx-vue-lite" : path.join(obsCurrentPkg,"mobx-vue-lite"),
+			//rewrite import "vue" to "vue2"
+			"vue" : env_vue
+		},
 	},
 	plugins: [
-		new VueLoaderPlugin(),
 		new CleanPlugin(),
 		new HtmlWebpackPlugin({
 			template: path.join(obsCurrentPkg ,'public/index.template.ejs'),
@@ -62,12 +56,19 @@ export const webpackConfig = {
 			orzPending: ['reaxes-toolkit','orzPending'],
 		}),
 	],
-};
+},{
+	"vue2" : vue2_webpack_config,
+	"vue3" : vue3_webpack_config,
+}[env_vue]);
+
+
+import { vue2_webpack_config } from '../../build/vue/vue2/webpack.mjs';
+import { vue3_webpack_config } from '../../build/vue/vue3/webpack.mjs';
 
 import path from 'path';
 import webpack from 'webpack';
+import { merge } from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { VueLoaderPlugin } from 'vue-loader';
 import {absProjectRootDir,absProjectRootFileURL} from '../../build/toolkit.mjs';
 import { getPort } from '../../build/toolkit.mjs';
-import { env , experimental , method , mock , node_env ,repo  } from '../../build/entrance.mjs';
+import { env , experimental , method , mock , node_env ,repo,vue as env_vue  } from '../../build/entrance.mjs';

@@ -7,8 +7,8 @@
 <script>
 import {} from 'reaxes';
 import {observer} from '../../../mobx-vue';
-import count_view_fn from './view-fuctionnl.vue';
-import count_view_class from './view-class.vue'
+import count_view_fn from './view-functional.vue2.vue';
+import count_view_class from './view-class.vue2.vue'
 
 export default observer({
 	components : {

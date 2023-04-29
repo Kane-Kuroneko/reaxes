@@ -15,7 +15,7 @@
 		"strictBindCallApply" : false ,
 		"strictNullChecks" : false ,
 		"allowUnreachableCode" : true ,
-		"module" : "CommonJS" ,
+		"module" : "ESNext" ,
 		"moduleResolution" : "node" ,
 		"noEmit" : true ,
 		"noImplicitAny" : false ,
@@ -26,7 +26,7 @@
 		"preserveConstEnums" : true ,
 		"removeComments" : true ,
 		"sourceMap" : true ,
-		"target" : "ES2020" ,
+		"target" : "ESNext" ,
 		"watch" : false ,
 		"allowSyntheticDefaultImports" : true ,
 		"paths" : {

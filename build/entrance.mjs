@@ -18,7 +18,12 @@ export let {
 	env = "unset",
 	node_env = "development",
 	experimental = "non-exp" ,
+	vue,
 } = overload(args , [
+	{
+		regExp : /\bvue2|3\b/ ,
+		key : "vue" ,
+	} ,
 	{
 		regExp : /\bdemo|reaxes|reaxels|reaxes-react|reaxes-vue2|reaxes-angular|reaxes-toolkit|reaxes-utils\b/ ,
 		key : "repo" ,

@@ -2,21 +2,21 @@ import AutoImportPlugin from './babel-plugin-auto-import.mjs';
 
 /**
  * 
- * @param jsx {"react"|"vue"}
+ * @param jsx {"react"|"vue2"|"vue3"}
  */
 export const babelConfigFn = (jsx = "react") => {
-	let react,vue;
-	if(jsx === "react"){
-		react = true;
-	}else if(jsx === "vue"){
-		vue = true;
+	let react,vue2,vue3;
+	switch ( jsx ) {
+		case 'react': react = true;break;
+		case 'vue2': vue2 = true;break;
+		case 'vue3': vue3 = true;break;
 	}
 	const empty = [];
 	return {
 		"presets": [
 			"@babel/preset-env",
 			...(react ? ["@babel/preset-react"] : empty),
-			...(vue ? ["@vue/babel-preset-jsx"] : empty),
+			...(vue2 ? ["@vue/babel-preset-jsx"] : empty),
 			"@babel/preset-typescript",
 		],
 		"plugins": [
@@ -37,6 +37,7 @@ export const babelConfigFn = (jsx = "react") => {
 			["@babel/plugin-proposal-decorators" , {
 				"legacy": true,
 			}],
+			...(vue3 ? ["@vue/babel-plugin-jsx"] : empty),
 		],
 	}
 };

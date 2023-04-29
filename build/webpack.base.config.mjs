@@ -60,19 +60,6 @@ export const webpackBaseConfig = {
 					/node_modules/,
 				],
 			},
-			/*for .vue configuration*/
-			{
-				test: /(\.vue\.js)$/i ,
-				use: {
-					loader: 'babel-loader',
-					options : {
-						...babelConfigFn('vue'),
-					},
-				},
-				exclude: [
-					/node_modules/,
-				],
-			},
 			{
 				test: /\.module\.less$/,
 				use: [
