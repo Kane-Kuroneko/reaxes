@@ -1,10 +1,10 @@
 <template>
 	<div style='background-color: aliceblue'>
 		<p>current count : {{ reax_count.count }}</p>
-		<button @click='reax_count.plus'>
+		<button @click='reax_count.plus()'>
 			plus 1
 		</button>
-		<button @click='reax_count.minus'>
+		<button @click='reax_count.minus()'>
 			minus 1
 		</button>
 		

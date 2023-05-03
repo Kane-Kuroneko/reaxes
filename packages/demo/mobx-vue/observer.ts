@@ -3,14 +3,16 @@
  * @homepage https://github.com/kuitos/
  * @since 2018-05-22 16:39
  */
-import { Reaction } from 'mobx';
+import { Reaction , observable,action } from 'mobx';
 import Vue, { ComponentOptions } from 'vue';
 import collectDataForVue from './collectData';
 
+const obs = observable( { count : 1 } );
+const setObs = action(() => obs.count ++ );
+
 export type VueClass<V> = (new(...args: any[]) => V & Vue) & typeof Vue;
 
-// @formatter:off
-// tslint:disable-next-line
+
 const noop = () => {};
 const disposerSymbol = Symbol('disposerSymbol');
 // @formatter:on
@@ -25,9 +27,8 @@ function observer<VC extends VueClass<Vue>>(Component: VC | ComponentOptions<Vue
 	const options = {
 		name,
 		...originalOptions,
-		data(vm: Vue) {
-			console.log(vm.obsState);
-			return collectDataForVue(vm || this, dataDefinition);
+		data(vm){
+			return collectDataForVue( vm || this , dataDefinition );
 		},
 		mounted(vm) {
 			console.log(vm);
@@ -42,16 +43,16 @@ function observer<VC extends VueClass<Vue>>(Component: VC | ComponentOptions<Vue
 	const ExtendedComponent = Super.extend(options);
 
 	const { $mount, $destroy } = ExtendedComponent.prototype;
-
+	
+	let nativeRenderOfVue: any;
 	ExtendedComponent.prototype.$mount = function (this: any, ...args: any[]) {
 
 		let mounted = false;
 		this[disposerSymbol] = noop;
 
-		let nativeRenderOfVue: any;
 		const reactiveRender = () => {
 			reaction.track(() => {
-				dataDefinition?.call(this,this);
+				options.data.call(this,this);
 				if (!mounted) {
 					$mount.apply(this, args);
 					mounted = true;
@@ -63,10 +64,10 @@ function observer<VC extends VueClass<Vue>>(Component: VC | ComponentOptions<Vue
 					nativeRenderOfVue.call(this, this);
 				}
 			});
-
+			
 			return this;
 		};
-
+		
 		const reaction = new Reaction(`${name}.render()`, reactiveRender);
 
 		// @ts-expect-error

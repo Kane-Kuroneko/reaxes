@@ -33,7 +33,19 @@ export default function collectData(vm: Vue, data?: DefaultData<Vue>) {
 				// @formatter:on
 			});
 		} else {
-			result[field] = value;
+			Object.defineProperty(result,field,{
+				enumerable:true,
+				// set() {},
+				get() {
+					return data?.call( vm , vm )[field];
+				}
+			})
+			// Object.assign( result , {
+			// 	get [field]() {
+			// 		return data?.call( vm , vm )[field];
+			// 	} ,
+			// } );
+			// result[field] = value;
 		}
 
 		return result;

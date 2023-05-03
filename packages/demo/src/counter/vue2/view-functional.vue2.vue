@@ -1,10 +1,10 @@
 <template>
 	<div>
-		<p>current count : {{ count }}</p>
-		<button @click='plus'>
+		<p>current count : {{ (console.count('render time') ,count) }}</p>
+		<button @click='plus()'>
 			plus 1
 		</button>
-		<button @click='minus'>
+		<button @click='minus()'>
 			minus 1
 		</button>
 	</div>
@@ -42,9 +42,10 @@ const reax_count = reaxel_counter() , {
 
 export default observer({
 	data(){
-		
+		const {count} = reaxel_counter();
 		return {
-			count : reax_count.count,
+			console,
+			count,
 		};
 	},
 	obsState,
@@ -66,12 +67,8 @@ export default observer({
 		
 	},
 	methods:{
-		plus(){
-			return plus();
-		},
-		minus(){
-			return minus();
-		},
+		plus,
+		minus,
 		// setAge : action(() => {
 		// 	obsState.age += 1;
 		// }),

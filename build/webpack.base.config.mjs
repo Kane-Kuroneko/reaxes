@@ -197,14 +197,18 @@ export const webpackBaseConfig = {
 	],
 };
 
+
+
 import _ from 'lodash';
 import path from 'path';
 import webpack from 'webpack';
+import fs from 'fs';
 import TerserPlugin from 'terser-webpack-plugin';
+import './pre-exec.mjs';
 import { babelConfigFn } from './babel.config.mjs';
 import {
 	method ,
 	node_env,
-	repo
+	repo,
 } from './entrance.mjs';
 import { absProjectRootDir , absProjectRootFileURL } from './toolkit.mjs';

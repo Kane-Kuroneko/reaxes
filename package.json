@@ -3,7 +3,7 @@
 	"description": "",
 	"scripts": {
 		"build": "node build/build-target-package.mjs",
-		"start": "node --inspect-brk scripts/webpack-dev-server.mjs demo",
+		"start": "node scripts/webpack-dev-server.mjs demo",
 		"publish": "bash scripts/publish.sh",
 		"test": "yarn workspace reaxes jest"
 	},

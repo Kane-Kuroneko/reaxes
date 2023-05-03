@@ -62,10 +62,12 @@ export const webpackConfig = merge({
 }[env_vue]);
 
 
+
 import { vue2_webpack_config } from '../../build/vue/vue2/webpack.mjs';
 import { vue3_webpack_config } from '../../build/vue/vue3/webpack.mjs';
 
 import path from 'path';
+import fs from 'fs';
 import webpack from 'webpack';
 import { merge } from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
