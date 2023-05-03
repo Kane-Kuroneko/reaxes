@@ -2,7 +2,7 @@ import { render } from 'react-dom';
 import {BrowserRouter,Route,Routes} from 'react-router-dom';
 import { Demo$state } from './state';
 import {} from './intro';
-import {} from './counter';
+import { React_Counter } from './counter';
 import {} from './multi-reaxels';
 import {} from './test-unmount';
 import { TimeMachineTest } from './time-machine';
@@ -13,6 +13,11 @@ const mapping = [
 		name:"state",
 		path:"state",
 		Component:Demo$state
+	},
+	{
+		name:"counter",
+		path:"counter",
+		Component:React_Counter
 	},
 	{
 		name:"time-machine",

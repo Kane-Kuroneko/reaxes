@@ -32,9 +32,6 @@ import { reaxel_counter } from '../reaxel';
 // 	}
 // }
 
-const obsState = observable({age:11,count:123});
-
-
 const reax_count = reaxel_counter() , {
 	plus ,
 	minus,
@@ -48,7 +45,6 @@ export default observer({
 			count,
 		};
 	},
-	obsState,
 	// render (h) {
 	// 	console.log(h);
 	// 	console.log(<span></span>);

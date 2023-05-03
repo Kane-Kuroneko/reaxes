@@ -12,7 +12,6 @@
 		"lodash" : "4.17.21"
 	} ,
 	"peerDependencies" : {
-		"mobx" : "^6.8.0"
 	} ,
 	"devDependencies" : {
 	}

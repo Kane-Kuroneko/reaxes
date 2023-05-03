@@ -3,10 +3,7 @@
 	"version" : "1.1.1" ,
 	"main" : "./src",
 	"peerDependencies" : {
-		"mobx" : "^6.8.0"
 	} ,
 	"dependencies" : {
-		"reaxes" : "^0.0.1",
-		"reaxes-utils" : "^1.0.1"
 	}
 }

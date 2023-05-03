@@ -3849,11 +3849,6 @@ mobx@6.5.0:
   resolved "https://registry.yarnpkg.com/mobx/-/mobx-6.5.0.tgz#dc2d028b1882737f6e813fc92454381e438b7ad3"
   integrity sha512-pHZ/cySF00FVENDWIDzJyoObFahK6Eg4d0papqm6d7yMkxWTZ/S/csqJX1A3PsYy4t5k3z2QnlwuCfMW5lSEwA==
 
-mobx@^6.8.0:
-  version "6.9.0"
-  resolved "https://registry.yarnpkg.com/mobx/-/mobx-6.9.0.tgz#8a894c26417c05bed2cf7499322e589ee9787397"
-  integrity sha512-HdKewQEREEJgsWnErClfbFoVebze6rGazxFLU/XUyrII8dORfVszN1V0BMRnQSzcgsNNtkX8DHj3nC6cdWE9YQ==
-
 mrmime@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/mrmime/-/mrmime-1.0.1.tgz#5f90c825fad4bdd41dc914eff5d1a8cfdaf24f27"
@@ -4401,22 +4396,6 @@ readdirp@~3.6.0:
   integrity sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==
   dependencies:
     picomatch "^2.2.1"
-
-reaxes-utils@^0.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/reaxes-utils/-/reaxes-utils-1.0.1.tgz#dfa037aff6328b7500c97b370ccdec9b0ce94d7a"
-  integrity sha512-t6WGL3xq9qgtvF4d0+VtfOc3hnBj/30QG5iE4p5YIj825pKllLDK/NE709UnghDfhClO3X0DeJ6ZuzzszrAxtg==
-  dependencies:
-    shallowequal "^1.1.0"
-
-reaxes@^0.0.1, reaxes@^0.0.1-alpha-2023-3-21--7ed793ff:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/reaxes/-/reaxes-0.0.1.tgz#1d12718845dbb356c088a8188cb6e96cab22ec22"
-  integrity sha512-wSzbf0zQcGKg1k07Jp1nAC1lRp0IW9TaacOtjdeJmom4oS98ghNdSse81pEM5DuXvB2qgjFli3KOROjpOPzGnw==
-  dependencies:
-    lodash "4.17.21"
-    mobx "^6.8.0"
-    reaxes-utils "^0.0.0"
 
 regenerate-unicode-properties@^10.1.0:
   version "10.1.0"
