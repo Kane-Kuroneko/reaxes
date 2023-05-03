@@ -1,20 +1,23 @@
 <script setup>
 import { ref } from 'vue3';
 import { reaxel_counter } from '../reaxel';
-import {} from 'mobx-vue-lite';
+import { reaxper } from 'reaxes-vue3';
 import { observable , action } from 'mobx';
-// const count = ref(0);
-const plus = () => reax_count.plus();
 
-const reax_count = reaxel_counter();
+const reax_count = reaxel_counter() , {
+	plus,
+	minus
+} = reax_count;
 const obs = observable({ c : 111 });
-const n = action(() => {
-	obs.c ++;
-});
+const setObs = action(() => obs.c ++); 
 </script>
 <template>
 	<Observer>
-<!--		<div @click = 'plus'>vue3 {{ reax_count.count }}</div>-->
-			<div @click='n'>vue3 {{ obs.c }}</div>
+		<!--		<div @click = 'plus'>vue3 {{ reax_count.count }}</div>-->
+		<p>vue3 count : {{ reax_count.count }}</p>
+		<button @click='plus()'>plus  1</button>
+		<button @click='minus()'>minus 1</button>
+		
+		<p @click='setObs()'>obs:{{ obs.c }}</p>
 	</Observer>
 </template>

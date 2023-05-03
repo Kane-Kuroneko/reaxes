@@ -1,36 +1,37 @@
 <template>
 	<div style='background-color: aliceblue'>
-		<p>current count : {{ reax_count.count }}</p>
-		<button @click='reax_count.plus()'>
-			plus 1
+		<p>current count : {{ count }}</p>
+		<button @click='plus(2)'>
+			plus 2
 		</button>
-		<button @click='reax_count.minus()'>
-			minus 1
+		<button @click='minus(2)'>
+			minus 2
 		</button>
-		
-		<p @click='d.a ++'>{{ d.a }}</p>
 	</div>
 </template>
 
 <script>
 import { reaxper } from 'reaxes-vue2';
 import { reaxel_counter } from '../reaxel';
-import { observer , VueClass ,Observer} from 'mobx-vue';
-import {  observable } from "mobx";
 import Vue from 'vue';
 import Component from "vue-class-component";
 
-
-@Observer
+const {
+	plus ,
+	minus,
+} = reaxel_counter();
+@reaxper
 @Component
 export default class App extends Vue {
-	d = {
-		a:0
-	}
-	reax_count = reaxel_counter();
 	
-	render(){
-		return <p>{this.reax_count.count + 100}</p>
+	data(){
+		const { count } = reaxel_counter();
+		return {
+			count : count + 3,
+		}
 	}
+	
+	plus = plus;
+	minus = minus;
 }
 </script>

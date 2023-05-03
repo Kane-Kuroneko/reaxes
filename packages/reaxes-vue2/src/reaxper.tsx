@@ -3,5 +3,5 @@ export const reaxper = (component) => {
 };
 
 
-import { observer, } from 'mobx-vue';
+import { observer } from 'reaxes-vue2/libs/mobx-vue';
 

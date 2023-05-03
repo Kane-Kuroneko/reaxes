@@ -2,10 +2,14 @@
  * @author Kuitos
  * @homepage https://github.com/kuitos/
  * @since 2018-06-08 10:16
+ * 
+ * @amend Kane 2023/5/4
  */
 
 import { isObservable } from 'mobx';
+//@ts-ignore
 import Vue from 'vue';
+//@ts-ignore
 import { DefaultData } from 'vue/types/options';
 
 /**
@@ -33,7 +37,12 @@ export default function collectData(vm: Vue, data?: DefaultData<Vue>) {
 				// @formatter:on
 			});
 		} else {
-			result[field] = value;
+			Object.defineProperty( result , field , {
+				enumerable : true ,
+				get() {
+					return data?.call( vm , vm )[field];
+				} ,
+			} );
 		}
 
 		return result;

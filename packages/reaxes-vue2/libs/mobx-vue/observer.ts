@@ -3,14 +3,16 @@
  * @homepage https://github.com/kuitos/
  * @since 2018-05-22 16:39
  */
-import { Reaction } from 'mobx';
+import { Reaction , observable,action } from 'mobx';
 import Vue, { ComponentOptions } from 'vue';
 import collectDataForVue from './collectData';
 
+const obs = observable( { count : 1 } );
+const setObs = action(() => obs.count ++ );
+
 export type VueClass<V> = (new(...args: any[]) => V & Vue) & typeof Vue;
 
-// @formatter:off
-// tslint:disable-next-line
+
 const noop = () => {};
 const disposerSymbol = Symbol('disposerSymbol');
 // @formatter:on
@@ -25,29 +27,32 @@ function observer<VC extends VueClass<Vue>>(Component: VC | ComponentOptions<Vue
 	const options = {
 		name,
 		...originalOptions,
-		data(vm: Vue) {
-			return collectDataForVue(vm || this, dataDefinition);
+		data(vm){
+			return collectDataForVue( vm || this , dataDefinition );
+		},
+		mounted(vm) {
+			console.log(vm);
 		},
 		// overrider the cached constructor to avoid extending skip
 		// @see https://github.com/vuejs/vue/blob/6cc070063bd211229dff5108c99f7d11b6778550/src/core/global-api/extend.js#L24
 		_Ctor: {},
 	};
-
 	// we couldn't use the Component as super class when Component was a VueClass, that will invoke the lifecycle twice after we called Component.extend
 	const superProto = typeof Component === 'function' && Object.getPrototypeOf(Component.prototype);
 	const Super = superProto instanceof Vue ? superProto.constructor : Vue;
 	const ExtendedComponent = Super.extend(options);
 
 	const { $mount, $destroy } = ExtendedComponent.prototype;
-
+	
+	let nativeRenderOfVue: any;
 	ExtendedComponent.prototype.$mount = function (this: any, ...args: any[]) {
 
 		let mounted = false;
 		this[disposerSymbol] = noop;
 
-		let nativeRenderOfVue: any;
 		const reactiveRender = () => {
 			reaction.track(() => {
+				options.data.call(this,this);
 				if (!mounted) {
 					$mount.apply(this, args);
 					mounted = true;
@@ -59,10 +64,10 @@ function observer<VC extends VueClass<Vue>>(Component: VC | ComponentOptions<Vue
 					nativeRenderOfVue.call(this, this);
 				}
 			});
-
+			
 			return this;
 		};
-
+		
 		const reaction = new Reaction(`${name}.render()`, reactiveRender);
 
 		// @ts-expect-error

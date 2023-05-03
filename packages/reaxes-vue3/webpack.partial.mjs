@@ -28,7 +28,7 @@ export const webpackConfig = {/*will be dynamic imported*/
 	} , 
 	resolve:{
 		alias : {
-			
+			"mobx-vue" : path.join(absProjectRootDir,"libs/mobx-vue"),
 		}
 	},
 	// stats : 'errors-only' ,

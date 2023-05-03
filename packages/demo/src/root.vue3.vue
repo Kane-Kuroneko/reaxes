@@ -1,5 +1,5 @@
 <script setup>
-import Counter from './counter/vue3/view.vue3.vue';
+import Counter from './counter/vue3/view-options.vue3.vue';
 </script>
 <template>
 	<Observer>

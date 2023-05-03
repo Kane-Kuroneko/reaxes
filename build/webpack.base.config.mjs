@@ -28,6 +28,7 @@ export const webpackBaseConfig = {
 			'reaxels': path.join(absProjectRootDir, 'packages/reaxels'),
 			'reaxes-react': path.join(absProjectRootDir, 'packages/reaxes-react'),
 			'reaxes-vue2': path.join(absProjectRootDir, 'packages/reaxes-vue2'),
+			'reaxes-vue3': path.join(absProjectRootDir, 'packages/reaxes-vue3'),
 			'reaxes-angular': path.join(absProjectRootDir, 'packages/reaxes-angular'),
 		},
 		extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],

@@ -1,22 +1,21 @@
 {
 	"compilerOptions" : {
 		"allowJs" : true ,
-		"skipLibCheck" : true ,
 		"allowSyntheticDefaultImports" : true ,
 		"allowUnusedLabels" : true ,
 		"baseUrl" : "." ,
 		"declaration" : true ,
+		"declarationMap" : false ,
 		"esModuleInterop" : true ,
 		"experimentalDecorators" : true ,
-		"jsx" : "react-jsx" ,
+		"jsx" : "react" ,
 		"resolveJsonModule" : true ,
-		"outDir" : "dist" ,
 		"strictFunctionTypes" : false ,
 		"strict" : false ,
 		"strictBindCallApply" : false ,
 		"strictNullChecks" : false ,
 		"allowUnreachableCode" : true ,
-		"module" : "ESNext" ,
+		"module" : "CommonJS" ,
 		"moduleResolution" : "node" ,
 		"emitDeclarationOnly" : true ,
 		"noImplicitAny" : false ,
@@ -24,26 +23,23 @@
 		"noImplicitUseStrict" : false ,
 		"noUnusedLocals" : false ,
 		"noUnusedParameters" : false ,
+		"preserveConstEnums" : true ,
+		"removeComments" : true ,
+		"sourceMap" : true ,
+		"target" : "ES2020" ,
+		"watch" : false ,
+		"outDir" : "./dist" ,
+		"allowSyntheticDefaultImports" : true ,
 		"paths" : {
-			"reaxes" : ["../reaxes"],
-			"reaxels" : ["../reaxels"],
-			"reaxes-react" : ["../reaxes-react"],
-			"reaxes-vue2" : ["../reaxes-vue2"],
-			"reaxes-vue3" : ["../reaxes-vue3"],
-			"reaxes-utils" : ["../reaxes-utils"],
-			"reaxes-toolkit" : ["../reaxes-toolkit"]
+			"reaxes-utils" : [ "../reaxes-utils" ] ,
+			"reaxes-vue3/*" : [ "../reaxes-vue3/*" ] ,
+			"reaxes" : [ "../reaxes" ]
 		} ,
 		"preserveConstEnums" : true ,
 		"removeComments" : true ,
-		"target" : "ES2020" ,
-		"allowSyntheticDefaultImports" : true 
+		"target" : "ESNext" ,
+		"allowSyntheticDefaultImports" : true
 	} ,
-	"include" : ["./" ] ,
-	"exclude" : [
-		"dist",
-		"node_modules" ,
-		".git" ,
-		".idea" ,
-		".svn"
-	]
+	"include" : [ "src/*" , "f.d.ts" ] ,
+	"exclude" : [ "node_modules" , "dist" , ".git" , ".idea" , ".svn" ]
 }

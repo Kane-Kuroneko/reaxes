@@ -16,8 +16,6 @@ export const webpackConfig = merge({
 	},
 	resolve : {
 		alias : {
-			"mobx-vue" : path.join(obsCurrentPkg,"mobx-vue"),
-			"mobx-vue-lite" : path.join(obsCurrentPkg,"mobx-vue-lite"),
 			//rewrite import "vue" to "vue2"
 			"vue" : env_vue
 		},
@@ -33,6 +31,7 @@ export const webpackConfig = merge({
 			inject: false,
 		}),
 		new DefinePlugin({
+			__ENV_VUE__ : JSON.stringify(env_vue),
 			__IS_MOCK__ : mock ? 'true' : 'false' ,
 			__ENV__ : JSON.stringify(env) ,
 			__NODE_ENV__ : JSON.stringify(node_env),

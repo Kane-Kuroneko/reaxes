@@ -19,6 +19,7 @@ declare const {crayon,orzPromise,logProxy} : typeof utils;
 declare const toolkit:typeof import('reaxes-toolkit');
 declare const {orzPending} : typeof toolkit;
 
+declare const __ENV_VUE__: "vue2"|"vue3";
 declare const __IS_MOCK__: boolean;
 declare const __EXPERIMENTAL__: boolean;
 declare const __METHOD__: "server"|"build";

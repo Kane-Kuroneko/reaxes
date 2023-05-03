@@ -10,9 +10,9 @@ export const reaxel_counter = reaxel(() => {
 		count : 0 ,
 	} );
 	
-	function setCount(count:number = store.count + 1){
+	function setCount(count:number = 1){
 		// crayon.blue('count:',count);
-		setState( { count } );
+		setState( { count : store.count + count } );
 	}
 	
 	Reaxes.obsReaction( () => {
@@ -26,8 +26,8 @@ export const reaxel_counter = reaxel(() => {
 			},
 			setCount,
 			plus:setCount,
-			minus(){
-				setState( { count : store.count - 1 } );
+			minus(count:number = 1){
+				setState( { count : store.count - count } );
 			},
 		}
 	}

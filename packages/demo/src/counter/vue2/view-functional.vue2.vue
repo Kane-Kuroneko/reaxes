@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<p>current count : {{ (console.count('render time') ,count) }}</p>
+		<p>current count : {{ count }}</p>
 		<button @click='plus()'>
 			plus 1
 		</button>
@@ -13,7 +13,7 @@
 <script>
 import { observable , action , untracked , transaction , _allowStateChanges , autorun } from 'mobx';
 import Vue,{} from 'vue';
-import {observer,Observer} from 'mobx-vue';
+import {reaxper} from 'reaxes-vue2';
 import { reaxel_counter } from '../reaxel';
 
 // @observer
@@ -37,7 +37,7 @@ const reax_count = reaxel_counter() , {
 	minus,
 } = reax_count;
 
-export default observer({
+export default reaxper({
 	data(){
 		const {count} = reaxel_counter();
 		return {
