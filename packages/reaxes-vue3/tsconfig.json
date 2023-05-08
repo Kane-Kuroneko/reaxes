@@ -32,7 +32,8 @@
 		"allowSyntheticDefaultImports" : true ,
 		"paths" : {
 			"reaxes-utils" : [ "../reaxes-utils" ] ,
-			"reaxes-vue3/*" : [ "../reaxes-vue3/*" ] ,
+			"reaxes-vue3/*" : [ "./*" ] ,
+			"reaxes-vue3" : [ "./" ] ,
 			"reaxes" : [ "../reaxes" ]
 		} ,
 		"preserveConstEnums" : true ,

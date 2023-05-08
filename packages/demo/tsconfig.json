@@ -29,7 +29,9 @@
 			"reaxels" : ["../reaxels"],
 			"reaxes-react" : ["../reaxes-react"],
 			"reaxes-vue2" : ["../reaxes-vue2"],
+			"reaxes-vue2/*" : ["../reaxes-vue2/*"],
 			"reaxes-vue3" : ["../reaxes-vue3"],
+			"reaxes-vue3/*" : ["../reaxes-vue3/*"],
 			"reaxes-utils" : ["../reaxes-utils"],
 			"reaxes-toolkit" : ["../reaxes-toolkit"]
 		} ,

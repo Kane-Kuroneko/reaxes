@@ -1,6 +1,6 @@
 <template>
 	<div style='background-color: aliceblue'>
-		<p>current count : {{ count }}</p>
+		<p>vue2-class-count : {{ count }}</p>
 		<button @click='plus(2)'>
 			plus 2
 		</button>

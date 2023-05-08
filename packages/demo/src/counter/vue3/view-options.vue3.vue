@@ -1,12 +1,11 @@
 <script>
-import {} from 'reaxes-vue3';
-import { } from 'reaxes-vue3';
+import { reaxper } from 'reaxes-vue3';
 import { reaxel_counter } from '../reaxel';
 const reax_count = reaxel_counter() , {
 	plus ,
 	minus,
 } = reax_count;
-export default ({
+export default reaxper({
 	data(){
 		const {count} = reaxel_counter();
 		return {
@@ -24,7 +23,7 @@ export default ({
 <template>
 	<Observer>
 		<div>
-			<p>current count : {{ count }}</p>
+			<p>Vue3-options-count : {{ count }}</p>
 			<button @click='plus()'>
 				plus 1
 			</button>

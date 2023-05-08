@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<p>current count : {{ count }}</p>
+		<p>vue2-fp-count : {{ count }}</p>
 		<button @click='plus()'>
 			plus 1
 		</button>
