@@ -2,8 +2,8 @@
 	"name": "mono-reaxes",
 	"description": "",
 	"scripts": {
-		"build": "node build/build-target-package.mjs",
 		"start": "node scripts/webpack-dev-server.mjs demo",
+		"build": "node build/build-target-package.mjs",
 		"publish": "bash scripts/publish.sh",
 		"test": "yarn workspace reaxes jest"
 	},

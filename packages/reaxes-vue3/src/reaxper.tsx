@@ -1,111 +1,89 @@
-/**
- * @author Kuitos
- * @homepage https://github.com/kuitos/
- * @since 2018-05-22 16:39
- */
-import { Reaction , observable,action } from 'mobx';
-import Vue, { ComponentOptions } from 'vue';
-import collectDataForVue from './collectData';
-
-const obs = observable( { count : 1 } );
-const setObs = action(() => obs.count ++ );
-
-export type VueClass<V> = (new(...args: any[]) => V & Vue) & typeof Vue;
-
+import { action , observable , Reaction } from 'mobx';
+import { collectVueData } from './collectData';
+import type { DefineComponent } from 'vue3';
 
 const noop = () => {};
-const disposerSymbol = Symbol('disposerSymbol');
-// @formatter:on
-function observer<VC extends VueClass<Vue>>(Component: VC | ComponentOptions<Vue>): VC;
-function observer<VC extends VueClass<Vue>>(Component: VC | ComponentOptions<Vue>) {
+const disposerSymbol = Symbol( 'disposerSymbol' );
+
+export const reaxper = <ops extends DefineComponent<any>>( options: ops ) => {
+	crayon.blue( 'vue-component' , _.cloneDeep( options ) );
 	
-	const name = (Component as any).name || (Component as any)._componentTag || (Component.constructor && Component.constructor.name) || '<component>';
+	const name = (
+		options as any
+	).name || options._componentTag || (
+		options.constructor && options.constructor.name
+	) || '<component>';
 	
-	const originalOptions = typeof Component === 'object' ? Component : (Component as any).options;
-	// To not mutate the original component options, we need to construct a new one
-	const dataDefinition = originalOptions.data;
-	const options = {
-		name,
-		...originalOptions,
-		data(vm){
-			return collectDataForVue( vm || this , dataDefinition );
-		},
-		mounted(vm) {
-			console.log(vm);
-		},
-		// overrider the cached constructor to avoid extending skip
-		// @see https://github.com/vuejs/vue/blob/6cc070063bd211229dff5108c99f7d11b6778550/src/core/global-api/extend.js#L24
-		_Ctor: {},
+	const {
+		data : ori_data ,
+		render : ori_render ,
+		mounted : ori_mounted ,
+		unmounted : ori_unmounted ,
+		setup : ori_setup,
+		methods : ori_methods ,
+	} = options;
+	
+	let vm;
+	
+	const _options = {
+		name ,
+		...options ,
+		data( _vm ) {
+			vm = _vm;
+			return collectVueData( vm , ori_data );
+		} ,
+		mounted( ...args ) {
+			return reactionMounted.apply( this , args );
+		} ,
+		unmounted() {
+			ori_unmounted?.call( this );
+			this[disposerSymbol]?.();
+		} ,
+		// render:function(  ) {
+		// 	/*是原生vue渲染(true)还是mobx更新(false)*/
+		// 	let renderFlag = false;
+		// 	return function( _ctx , _cache , $props , $setup , $data , $options ) {
+		// 		let ret ;
+		// 		const renderer = () => {
+		// 			reaction.track(() => {
+		// 				if(renderFlag){
+		// 					ret = ori_render.call( this , _ctx , _cache , $props , $setup , $data , $options );
+		// 				}
+		// 			})
+		// 		};
+		// 		const reaction = new Reaction( 'render' , renderer );
+		// 		return ret;
+		// 	}
+		// }() ,
+		methods : typeof ori_methods === 'function' ? (
+			ori_methods as () => any
+		)() : ori_methods ,
+		
 	};
-	// we couldn't use the Component as super class when Component was a VueClass, that will invoke the lifecycle twice after we called Component.extend
-	const superProto = typeof Component === 'function' && Object.getPrototypeOf(Component.prototype);
-	const Super = superProto instanceof Vue ? superProto.constructor : Vue;
-	const ExtendedComponent = Super.extend(options);
-	
-	const { $mount, $destroy } = ExtendedComponent.prototype;
-	
-	let nativeRenderOfVue: any;
-	ExtendedComponent.prototype.$mount = function (this: any, ...args: any[]) {
-		
+	const mobxSymbol = Symbol('');
+	const reactionMounted = function( ...args ) {
 		let mounted = false;
-		this[disposerSymbol] = noop;
-		
+		let dosposer = () => null;
+		crayon.yellow('CPI',this);
 		const reactiveRender = () => {
-			reaction.track(() => {
-				options.data.call(this,this);
-				if (!mounted) {
-					$mount.apply(this, args);
+			reaction.track( () => {
+				ori_data?.call( vm , vm );
+				if( !mounted ) {
+					ori_mounted?.apply( this , args );
 					mounted = true;
-					nativeRenderOfVue = this._watcher.getter;
-					// rewrite the native render method of vue with our reactive tracker render
-					// thus if component updated by vue watcher, we could re track and collect dependencies by mobx
-					this._watcher.getter = reactiveRender;
 				} else {
-					nativeRenderOfVue.call(this, this);
+					console.count()
+					this.$forceUpdate();
 				}
-			});
-			
-			return this;
+			} );
 		};
 		
-		const reaction = new Reaction(`${name}.render()`, reactiveRender);
-		
+		const reaction = new Reaction( `${ name }.render()` , reactiveRender );
 		// @ts-expect-error
 		this[disposerSymbol] = reaction.getDisposer_?.() || reaction.getDisposer?.();
-		
-		return reactiveRender();
+		reactiveRender();
 	};
-	
-	ExtendedComponent.prototype.$destroy = function (this: Vue) {
-		(this as any)[disposerSymbol]();
-		$destroy.apply(this);
-	};
-	
-	const extendedComponentNamePropertyDescriptor = Object.getOwnPropertyDescriptor(ExtendedComponent, 'name') || {};
-	if (extendedComponentNamePropertyDescriptor.configurable === true) {
-		Object.defineProperty(ExtendedComponent, 'name', {
-			writable: false,
-			value: name,
-			enumerable: false,
-			configurable: false,
-		});
-	}
-	
-	return ExtendedComponent;
-}
-
-export {
-	observer,
-};
-
-
-
-
-
-
-
-export const reaxper = (component) => {
-	return observer( component );
+	return _options;
 };
 
 // import {Observer} from 'reaxes-vue3/libs/mobx-vue-lite';

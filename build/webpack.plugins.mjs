@@ -76,8 +76,8 @@ export class LoggerWebpackPlugn {
 		compiler.hooks.done.tap(this.PLUGIN_NAME , (stats) => {
 			const logger = compiler.getInfrastructureLogger(this.PLUGIN_NAME);
 			if ( stats.hasErrors() ) {
-				console.log(stats);
-				debugger;
+				// console.log(stats);
+				// debugger;
 				return failLog(stats);
 			}
 			this.done();

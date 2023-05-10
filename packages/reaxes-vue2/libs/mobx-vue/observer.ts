@@ -7,9 +7,6 @@ import { Reaction , observable,action } from 'mobx';
 import Vue, { ComponentOptions } from 'vue';
 import collectDataForVue from './collectData';
 
-const obs = observable( { count : 1 } );
-const setObs = action(() => obs.count ++ );
-
 export type VueClass<V> = (new(...args: any[]) => V & Vue) & typeof Vue;
 
 
