@@ -3,12 +3,14 @@ import { reaxper } from 'reaxes-vue3';
 import { defineComponent , ref } from 'vue3';
 import { reaxel_counter } from '../reaxel';
 
+const { store,setState } = orzMobx({c:124});
 export default /*reaxper*/defineComponent({
 	data () {
 		const { count } = reaxel_counter();
 		return {
 			console ,
 			count ,
+			store,
 		};
 	} ,
 	setup () {
@@ -24,6 +26,7 @@ export default /*reaxper*/defineComponent({
 		return {
 			plus ,
 			minus,
+			setState,
 		};
 	}() ,
 });
@@ -39,6 +42,6 @@ export default /*reaxper*/defineComponent({
 			minus 1
 		</button>
 		
-		<p @click='c++'>ref : {{ c }}</p>
+		<p @click='setState({c:store.c+1})'>ref : {{ store.c }}</p>
 	</div>
 </template>

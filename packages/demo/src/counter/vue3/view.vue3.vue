@@ -5,7 +5,7 @@ import {reaxper} from 'reaxes-vue3';
 
 export default {
 	components : {
-		// "reaxes-options" : reaxper(Options),
+		"reaxes-options" : reaxper(Options),
 		"reaxes-composition" : reaxper(Composition),
 	},
 	
@@ -13,7 +13,7 @@ export default {
 </script>
 <template>
 	<div>
-<!--		<reaxes-options></reaxes-options>-->
+		<reaxes-options></reaxes-options>
 		<reaxes-composition></reaxes-composition>
 	</div>
 </template>

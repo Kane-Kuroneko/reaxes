@@ -14,10 +14,8 @@ const webpackDevServer = async () => {
 	}
 	catch ( e ) {
 		console.error(e);
+		console.warn('WDS可能意外退出了!');
 		return Promise.reject(e);
-	}
-	finally {
-		return Promise.resolve(true);
 	}
 };
 
