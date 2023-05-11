@@ -1,11 +1,7 @@
-/**
- * @author Kuitos
- * @homepage https://github.com/kuitos/
- * @since 2018-05-22 16:39
- */
 import { Reaction , observable,action } from 'mobx';
-import Vue, { ComponentOptions } from 'vue';
 import collectDataForVue from './collectData';
+// @ts-expect-error
+import Vue, { ComponentOptions } from 'vue';
 
 export type VueClass<V> = (new(...args: any[]) => V & Vue) & typeof Vue;
 
@@ -15,7 +11,6 @@ const disposerSymbol = Symbol('disposerSymbol');
 // @formatter:on
 function observer<VC extends VueClass<Vue>>(Component: VC | ComponentOptions<Vue>): VC;
 function observer<VC extends VueClass<Vue>>(Component: VC | ComponentOptions<Vue>) {
-
 	const name = (Component as any).name || (Component as any)._componentTag || (Component.constructor && Component.constructor.name) || '<component>';
 
 	const originalOptions = typeof Component === 'object' ? Component : (Component as any).options;
@@ -26,9 +21,6 @@ function observer<VC extends VueClass<Vue>>(Component: VC | ComponentOptions<Vue
 		...originalOptions,
 		data(vm){
 			return collectDataForVue( vm || this , dataDefinition );
-		},
-		mounted(vm) {
-			console.log(vm);
 		},
 		// overrider the cached constructor to avoid extending skip
 		// @see https://github.com/vuejs/vue/blob/6cc070063bd211229dff5108c99f7d11b6778550/src/core/global-api/extend.js#L24

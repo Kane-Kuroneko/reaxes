@@ -1,5 +1,6 @@
 import { isObservable } from 'mobx';
-import Vue , { App } from 'vue3';
+import Vue , { } from 'vue3';
+import type {ComponentInternalInstance} from 'vue3';
 
 /**
  * collect the data which defined for vue
@@ -8,11 +9,8 @@ import Vue , { App } from 'vue3';
  * @param {DefaultData<Vue>} data
  * @returns {any} filtered data for vue definition
  */
-export function collectVueData( vm: Vue , data?: object | ( ( this ) => object ) ) {
-	
-	const dataDefinition = typeof data === 'function' ? data.call( vm , vm ) : (
-		data || {}
-	);
+export function collectVueData( vm: ComponentInternalInstance , data?: ( this:ComponentInternalInstance ) => object ) {
+	const dataDefinition = typeof data === 'function' ? data.call( vm , vm ) : (data || {});
 	const filteredData = Object.keys( dataDefinition ).reduce( ( result: any , field ) => {
 		
 		const value = dataDefinition[field];
@@ -35,7 +33,6 @@ export function collectVueData( vm: Vue , data?: object | ( ( this ) => object )
 				} ,
 			} );
 		}
-		
 		return result;
 		
 	} , {} );

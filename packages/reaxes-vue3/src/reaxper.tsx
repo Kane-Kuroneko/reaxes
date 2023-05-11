@@ -1,18 +1,14 @@
 import { action , observable , Reaction } from 'mobx';
 import { collectVueData } from './collectData';
-import type { DefineComponent } from 'vue3';
+import type { ComponentOptions } from 'vue3';
 
 const noop = () => {};
 const disposerSymbol = Symbol( 'disposerSymbol' );
 
-export const reaxper = <ops extends DefineComponent<any>>( options: ops ) => {
+export const reaxper = <ops extends ComponentOptions>( options: ops ) => {
 	crayon.blue( 'vue-component' , _.cloneDeep( options ) );
-	
-	const name = (
-		options as any
-	).name || options._componentTag || (
-		options.constructor && options.constructor.name
-	) || '<component>';
+
+	const name = options.name || options._componentTag || ( options.constructor && options.constructor.name) || '<component>';
 	
 	const {
 		data : ori_data ,
@@ -30,7 +26,7 @@ export const reaxper = <ops extends DefineComponent<any>>( options: ops ) => {
 		...options ,
 		data( _vm ) {
 			vm = _vm;
-			return collectVueData( vm , ori_data );
+			return collectVueData( vm , (ori_data as any) );
 		} ,
 		mounted( ...args ) {
 			return reactionMounted.apply( this , args );
@@ -39,46 +35,61 @@ export const reaxper = <ops extends DefineComponent<any>>( options: ops ) => {
 			ori_unmounted?.call( this );
 			this[disposerSymbol]?.();
 		} ,
-		// render:function(  ) {
-		// 	/*是原生vue渲染(true)还是mobx更新(false)*/
-		// 	let renderFlag = false;
-		// 	return function( _ctx , _cache , $props , $setup , $data , $options ) {
-		// 		let ret ;
-		// 		const renderer = () => {
-		// 			reaction.track(() => {
-		// 				if(renderFlag){
-		// 					ret = ori_render.call( this , _ctx , _cache , $props , $setup , $data , $options );
-		// 				}
-		// 			})
-		// 		};
-		// 		const reaction = new Reaction( 'render' , renderer );
-		// 		return ret;
-		// 	}
-		// }() ,
-		methods : typeof ori_methods === 'function' ? (
-			ori_methods as () => any
-		)() : ori_methods ,
+		render(_ctx , _cache , $props , $setup , $data , $options){
+			let ret ;
+			reaction.track(() => {
+				ret = ori_render.call(this,_ctx , _cache , $props , $setup , $data , $options);
+			});
+			return ret;
+		},
+		methods : typeof ori_methods === 'function' ? ( ori_methods as () => any )() : ori_methods ,
 		
 	};
 	const mobxSymbol = Symbol('');
+	
+	const reactiveRender = function(_ctx , _cache? , $props? , $setup? , $data? , $options?) {
+		
+	};
+	
+	
+	
 	const reactionMounted = function( ...args ) {
+		debugger;
+		
 		let mounted = false;
 		let dosposer = () => null;
 		crayon.yellow('CPI',this);
-		const reactiveRender = () => {
+		const reactiveRender = (_ctx , _cache? , $props? , $setup? , $data? , $options?) => {
+			let renderResult;
+			/*是否是mobx触发的,如果mobx触发则调用$forceUpdate,否则返回hook后的nativeRender*/
+			const reactiveCall = _ctx === mobxSymbol;
 			reaction.track( () => {
 				ori_data?.call( vm , vm );
 				if( !mounted ) {
-					ori_mounted?.apply( this , args );
-					mounted = true;
+					if(reactiveCall){
+						
+					}else {
+						debugger
+						ori_mounted?.apply( vm , args );
+						Reflect.defineProperty( vm.$options , 'render' , {
+							value:reactiveRender ,
+						} );
+						mounted = true;
+					}
+					
 				} else {
-					console.count()
-					this.$forceUpdate();
+					console.log('updated');
+					if(reactiveCall){
+						vm.$forceUpdate();
+					}else {
+						renderResult = ori_render.call(vm,_ctx , _cache , $props , $setup , $data , $options);
+					}
 				}
 			} );
+			return renderResult;
 		};
 		
-		const reaction = new Reaction( `${ name }.render()` , reactiveRender );
+		const reaction = new Reaction( `${ name }.render()` , () => reactiveRender( mobxSymbol ) );
 		// @ts-expect-error
 		this[disposerSymbol] = reaction.getDisposer_?.() || reaction.getDisposer?.();
 		reactiveRender();
