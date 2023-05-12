@@ -25,6 +25,7 @@ export const {
 
 
 /*无依赖@@utils的放上面*/
+export * from './asyncCall.utility';
 export * from './isPromise.utility';
 export * from './debounce.utility';
 export * from './stringify.utility';

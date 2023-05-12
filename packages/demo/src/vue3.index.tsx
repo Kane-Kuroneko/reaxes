@@ -1,4 +1,4 @@
-import {createApp} from 'vue3';
+import {createApp} from 'vue';
 import { Plugin } from 'reaxes-vue3';
 import App from './root.vue3.vue';
 

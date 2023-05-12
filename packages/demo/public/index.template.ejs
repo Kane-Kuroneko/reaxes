@@ -18,8 +18,16 @@
 	</head>
 	<body>
 		<div id = "reaxes-react-root"></div>
-		<div id = "reaxes-vue3-root">when vue2 running , this block is not available</div>
-		<div id = "reaxes-vue2-root">when vue3 running , this block is not available</div>
+		<div id = "reaxes-vue3-root">
+			<div id = "reaxes-vue3-root-container">
+				when vue2 running , this block is not available
+			</div>
+		</div>
+		<div id = "reaxes-vue2-root">
+			<div id = "reaxes-vue2-root-container">
+				when vue3 running , this block is not available
+			</div>
+		</div>
 	</body>
 	<%= htmlWebpackPlugin.files.js.reduce((accu , filePath) => {
 		return accu + `<script src="/${ filePath }"></script>\n`} , ``)%>

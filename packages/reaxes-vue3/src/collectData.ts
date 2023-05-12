@@ -1,6 +1,6 @@
 import { isObservable } from 'mobx';
-import Vue , { } from 'vue3';
-import type {ComponentInternalInstance} from 'vue3';
+import Vue , { } from 'vue';
+import type {ComponentInternalInstance} from 'vue';
 
 /**
  * collect the data which defined for vue

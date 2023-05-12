@@ -1,6 +1,6 @@
 import { action , observable , Reaction } from 'mobx';
 import { collectVueData } from './collectData';
-import type { ComponentOptions } from 'vue3';
+import type { ComponentOptions } from 'vue';
 
 const disposerSymbol = Symbol( 'disposerSymbol' );
 

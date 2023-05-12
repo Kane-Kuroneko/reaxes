@@ -2,7 +2,7 @@
 	"name": "mono-reaxes",
 	"description": "",
 	"scripts": {
-		"start": "node --inspect scripts/webpack-dev-server.mjs demo",
+		"start": "node --inspect-brk scripts/webpack-dev-server.mjs demo",
 		"build": "node build/build-target-package.mjs",
 		"publish": "bash scripts/publish.sh",
 		"test": "yarn workspace reaxes jest"
@@ -75,16 +75,17 @@
 		"webpack-merge": "5.8.0"
 	},
 	"dependencies": {
+		"@vue/babel-plugin-jsx": "^1.1.1",
 		"@vue/babel-preset-jsx": "^1.4.0",
 		"@vue/compiler-sfc": "^3.2.47",
+		"@vueuse/core": "8.7.5",
 		"immer": "^9.0.21",
 		"vue-template-compiler": "2.7.14",
 		"vue2": "npm:vue@2.7.14",
 		"vue2-babel-helper-vue-jsx-merge-props": "npm:@vue/babel-helper-vue-jsx-merge-props",
+		"vue2-router": "npm:vue-router@^3.6.5",
 		"vue2-vue-loader": "npm:vue-loader@15.10.1",
 		"vue3": "npm:vue@3",
-		"@vue/babel-plugin-jsx": "^1.1.1",
-		"@vueuse/core" : "8.7.5" ,
 		"vue3-vue-loader": "npm:vue-loader@17.1.0"
 	}
 }
