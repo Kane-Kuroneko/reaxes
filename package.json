@@ -2,7 +2,7 @@
 	"name": "mono-reaxes",
 	"description": "",
 	"scripts": {
-		"start": "node --inspect-brk scripts/webpack-dev-server.mjs demo",
+		"start": "node --inspect scripts/webpack-dev-server.mjs demo",
 		"build": "node build/build-target-package.mjs",
 		"publish": "bash scripts/publish.sh",
 		"test": "yarn workspace reaxes jest"
@@ -51,8 +51,8 @@
 		"@svgr/webpack": "6.5.1",
 		"@types/less": "3.0.3",
 		"@types/lodash": "4.14.182",
-		"@types/react": "17.0.58",
-		"@types/react-dom": "17.0.19",
+		"@types/react": "17.0.59",
+		"@types/react-dom": "17.0.20",
 		"babel-loader": "8.3.0",
 		"clean-webpack-plugin": "4.0.0",
 		"compression-webpack-plugin": "10.0.0",

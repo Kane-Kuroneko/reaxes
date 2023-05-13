@@ -33,7 +33,6 @@ export const webpackConfig = {/*will be dynamic imported*/
 		'reaxes-utils' ,
 		"reaxes-toolkit" ,
 		'react-router' ,
-		'react-router-dom' ,
 		'lodash' ,
 		'mobx' ,
 		'shallowequal'

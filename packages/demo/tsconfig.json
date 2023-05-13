@@ -8,7 +8,7 @@
 		"declaration" : true ,
 		"esModuleInterop" : true ,
 		"experimentalDecorators" : true ,
-		"jsx" : "react-jsx" ,
+		"jsx" : "react" ,
 		"resolveJsonModule" : true ,
 		"outDir" : "dist" ,
 		"strictFunctionTypes" : false ,
@@ -25,6 +25,7 @@
 		"noUnusedLocals" : false ,
 		"noUnusedParameters" : false ,
 		"paths" : {
+			"src/*" : ["./src/*"],
 			"reaxes" : ["../reaxes"],
 			"reaxels" : ["../reaxels"],
 			"reaxes-react" : ["../reaxes-react"],

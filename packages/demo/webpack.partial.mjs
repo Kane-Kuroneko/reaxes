@@ -17,7 +17,8 @@ export const webpackConfig = merge({
 	resolve : {
 		alias : {
 			//rewrite import "vue" to "vue2"
-			"vue" : env_vue === "vue2" ? "vue2/dist/vue.esm.browser.min" : env_vue
+			"src" : path.join(obsCurrentPkg,'src'),
+			"vue" : env_vue === "vue2" ? "vue2/dist/vue.esm.browser.min" : env_vue,
 		},
 	},
 	plugins: [

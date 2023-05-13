@@ -27,7 +27,7 @@ utils.asyncCall(() => {
 		router,
 		el : "#reaxes-vue2-root-container",
 		render(h){
-			return h({template:`<router-view/>`});
+			return h(RouterView);
 		},
 	});
 });

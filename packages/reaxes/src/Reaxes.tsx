@@ -12,8 +12,6 @@ export const Reaxes = new (class {
 			}
 		});
 		return callback(true , disposer);
-		
-		
 	};
 	
 	/**
@@ -39,9 +37,9 @@ export const Reaxes = new (class {
 			},
 		];
 		
-		function next(_callback: (ret:ReturnType<T>) => void){
-			return () => _callback(currentReturn);
-		}
+		// function next(_callback: (ret:ReturnType<T>) => void){
+		// 	return () => _callback(currentReturn);
+		// }
 	}
 	
 	/**

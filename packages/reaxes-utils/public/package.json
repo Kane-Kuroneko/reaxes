@@ -7,6 +7,6 @@
 		"shallowequal" : "^1.1.0"
 	} ,
 	"peerDependencies" : {
-		"react-router-dom" : ">=6.0.0"
+		
 	}
 }

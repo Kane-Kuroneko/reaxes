@@ -25,12 +25,12 @@ declare const __EXPERIMENTAL__: boolean;
 declare const __METHOD__: "server"|"build";
 declare const __NODE_ENV__ : "development"|"production";
 declare module "*.vue";
-declare module "vue" {
-	import * as vue2 from 'vue2';
-	import * as vue3 from 'vue3';
-	// export = vue2;
-	export = vue2;
-}
+// declare module "vue" {
+// 	// import * as vue2 from 'vue2';
+// 	import * as vue3 from 'vue3';
+// 	// export = vue2;
+// 	export = vue2;
+// }
 /*DOM*/
 
 /*CSS*/
