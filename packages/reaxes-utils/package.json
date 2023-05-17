@@ -7,12 +7,10 @@
 		"test": "jest"
 	},
 	"dependencies": {
-		"lodash": "4.17.21",
-		"shallowequal": "^1.1.0"
+		"lodash": "4.17.21"
 	},
 	"peerDependencies": {
-		"react": ">=17.0.2",
-		"react-dom": ">=17.0.2"
+		
 	},
 	"devDependencies": {
 	}

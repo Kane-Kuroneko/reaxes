@@ -15,7 +15,6 @@ export * from './orzPromise.utility';
 export * from './assert-group.utility';
 export * from './dataflow.utility';
 export * from './logProxy.utility';
-export * from "./hooks";
 export { default as Cookie } from './cookie.utility';
 export { default as checkType } from './checkType.utility';
 export { default as getNestedValue } from './getNestedValue.utility';

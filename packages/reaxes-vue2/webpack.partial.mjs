@@ -38,8 +38,7 @@ export const webpackConfig = {/*will be dynamic imported*/
 		"reaxes-toolkit" ,
 		"vue",
 		'lodash' ,
-		'mobx' ,
-		'shallowequal'
+		'mobx',
 	] ,
 	mode : 'production' ,
 	performance : {

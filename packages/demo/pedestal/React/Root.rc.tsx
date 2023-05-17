@@ -5,7 +5,7 @@ export const Root = reaxper( () => {
 	</div>;
 } );
 
-const Entry = reaxper( ( { name , path , pathId } ) => {
+const Entry = reaxper( ( { name , path } ) => {
 	
 	const { navigate } = reaxel_router();
 	const navigateTo = useNavigate();

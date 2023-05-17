@@ -1,0 +1,18 @@
+{
+	"name" : "reaxes-vue2" ,
+	"version" : "0.0.2" ,
+	"description" : "a distributed and responsive data-model for Vue2" ,
+	"main" : "./" ,
+	"types" : "./types/index.d.ts" ,
+	"author" : "Kane" ,
+	"license" : "WTFPL" ,
+	"dependencies" : {
+		"lodash" : "4.17.21",
+		"reaxes-utils" : "^1.0.7"
+	} ,
+	"peerDependencies" : {
+		"vue" : "^2.7.14"
+	} ,
+	"devDependencies" : {
+	}
+}

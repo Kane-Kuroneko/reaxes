@@ -28,11 +28,6 @@ export const webpackConfig = {/*will be dynamic imported*/
 	} , 
 	// stats : 'errors-only' ,
 	externals : [
-		'react' ,
-		'react-dom' , 
-		'reaxes-utils' ,
-		"reaxes-toolkit" ,
-		'react-router' ,
 		'lodash' ,
 		'mobx' ,
 		'shallowequal'

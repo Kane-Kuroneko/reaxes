@@ -1,10 +1,10 @@
 {
 	"name": "reaxes-utils",
-	"version" : "1.0.1" ,
+	"version" : "1.0.8" ,
 	"main" : "./",
 	"types" : "./types/index.d.ts" ,
 	"dependencies" : {
-		"shallowequal" : "^1.1.0"
+		
 	} ,
 	"peerDependencies" : {
 		

@@ -1,4 +1,4 @@
-import { Reaction , observable,action } from 'mobx';
+import { Reaction } from 'mobx';
 import collectDataForVue from './collectData';
 // @ts-expect-error
 import Vue, { ComponentOptions } from 'vue';
@@ -11,6 +11,8 @@ const disposerSymbol = Symbol('disposerSymbol');
 // @formatter:on
 function observer<VC extends VueClass<Vue>>(Component: VC | ComponentOptions<Vue>): VC;
 function observer<VC extends VueClass<Vue>>(Component: VC | ComponentOptions<Vue>) {
+	
+	// typeof Component === "function" && (Component = Component());
 	const name = (Component as any).name || (Component as any)._componentTag || (Component.constructor && Component.constructor.name) || '<component>';
 
 	const originalOptions = typeof Component === 'object' ? Component : (Component as any).options;

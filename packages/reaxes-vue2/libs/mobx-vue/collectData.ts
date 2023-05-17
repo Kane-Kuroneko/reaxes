@@ -1,11 +1,3 @@
-/**
- * @author Kuitos
- * @homepage https://github.com/kuitos/
- * @since 2018-06-08 10:16
- * 
- * @amend Kane 2023/5/4
- */
-
 import { isObservable } from 'mobx';
 //@ts-ignore
 import Vue from 'vue';

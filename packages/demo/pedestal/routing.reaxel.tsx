@@ -11,6 +11,10 @@ export const reaxel_router = reaxel(() => {
 			path : "/counter",
 			id : "counter",
 		},
+		{
+			path : "/tic-tac-toe",
+			id : "tic-tac-toe",
+		},
 	] as Array<RouteUnit>;
 	
 	const {store,setState} = orzMobx({
@@ -18,7 +22,8 @@ export const reaxel_router = reaxel(() => {
 	});
 	
 	const navigate = (id) => {
-		setState( { pathId : id } );
+		// setState( { pathId : id } );
+		window.location.pathname = routes.find((unit) => unit.id === id ).path;
 	};
 	
 	addEventListener( 'popstate' , ( e ) => {

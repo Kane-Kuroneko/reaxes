@@ -99,3 +99,4 @@ import {
 	reaction ,
 	IReactionDisposer ,
 } from 'mobx';
+import * as utils from 'reaxes-utils';

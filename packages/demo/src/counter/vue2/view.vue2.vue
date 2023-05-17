@@ -6,7 +6,7 @@
 </template>
 <script>
 import { reaxper } from 'reaxes-vue2';
-import {defineComponent} from 'vue2';
+import {defineComponent} from 'vue';
 import count_view_fn from './view-functional.vue2.vue';
 import count_view_class from './view-class.vue2.vue';
 
