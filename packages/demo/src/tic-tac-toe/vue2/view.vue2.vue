@@ -51,6 +51,6 @@ td {
 	height : 50px;
 	padding : 0 ;
 	border : 1px solid gray;
-	textAlign : center;
+	text-align : center;
 }
 </style>

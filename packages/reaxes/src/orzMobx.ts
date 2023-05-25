@@ -23,9 +23,16 @@ export const orzMobx = <S extends object>(state : S) => {
 		
 	};
 	
+	/**
+	 * 以赋值形式直接修改store内数据,免去层层partial的麻烦
+	 */
+	const mutate = <T extends (store:S) => void>(callback:T) => {
+		action(() => callback(store))();
+	};
 	
 	return {
 		store ,
+		mutate,
 		setState : (partialState : Partial<S>) => setMobxState(store , partialState) ,
 		mutatePartialState ,
 	};

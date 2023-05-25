@@ -83,9 +83,10 @@
 		"vue-template-compiler": "2.7.14",
 		"vue2": "npm:vue@2.7.14",
 		"vue2-babel-helper-vue-jsx-merge-props": "npm:@vue/babel-helper-vue-jsx-merge-props",
-		"vue2-router": "npm:vue-router@^3.6.5",
+		"vue2-router": "npm:vue-router@3.6",
 		"vue2-vue-loader": "npm:vue-loader@15.10.1",
 		"vue3": "npm:vue@3",
+		"vue3-router": "npm:vue-router@4.2",
 		"vue3-vue-loader": "npm:vue-loader@17.1.0"
 	}
 }

@@ -15,6 +15,10 @@ export const reaxel_router = reaxel(() => {
 			path : "/tic-tac-toe",
 			id : "tic-tac-toe",
 		},
+		{
+			path : "/complex-todo",
+			id : "complex-todo",
+		},
 	] as Array<RouteUnit>;
 	
 	const {store,setState} = orzMobx({
