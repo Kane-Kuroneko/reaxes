@@ -23,6 +23,10 @@ export const orzMobx = <S extends object>(state : S) => {
 		
 	};
 	
+	const setMobxState = action(<S extends {}>(store , partialState : Partial<S>):S => {
+		return Object.assign(store , partialState);
+	});
+	
 	/**
 	 * 以赋值形式直接修改store内数据,免去层层partial的麻烦
 	 */
@@ -43,9 +47,7 @@ type isBasicType<V> = V extends basicType ? true : false;
 
 type basicType = ( number | boolean | string | symbol | bigint | null | undefined );
 
-const setMobxState = action(<S extends {}>(store , partialState : Partial<S>):S => {
-	return Object.assign(store , partialState);
-});
+
 
 const isBasicType = <V>(value : V) : isBasicType<V> => {
 	

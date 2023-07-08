@@ -33,7 +33,7 @@ export const RC_Complex_Todo = reaxper(() => {
 	console.log(user_id);
 	return <div>
 		{ user_id && <List /> }
-		<LoginOut />
+		<Auth />
 	</div>; 
 }); 
 
@@ -55,7 +55,7 @@ const List = reaxper(() => {
 	</aside>;
 });
 
-const LoginOut = () => {
+const Auth = () => {
 	const { login , user_list , setUserState , select_user_id , user_id,logout } = reaxel_user();
 	
 	const JSX_user_options = [{name:"无",user_id:""},...user_list].map(({name,user_id}) => {

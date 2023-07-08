@@ -8,6 +8,13 @@ export const reaxel_relay = reaxel(() => {
 		/*structure like {"$user_id":Array<todo_list>,...}*/
 		user_id_todo_list_mapping : null ,
 	} );
+	;
+	/*远程同步状态*/
+	const { 
+		pendingState : pendingStateRemote ,
+		setPending : setPendingSyncFromRemote ,
+		setError : setErrorSyncFromRemote,
+	} = toolkit.orzPending();
 	//将远端数据读取并转换为本地格式,分发给其他reaxel
 	//还没确定远端数据存在哪,先用mock	
 	async function syncFromRemote(){
@@ -43,6 +50,8 @@ export const reaxel_relay = reaxel(() => {
 				user_id_todo_list_mapping
 			});
 			setUserList(user_list);
+		}).catch((e) => {
+			setErrorSyncFromRemote(true);
 		});
 		return res;
 	};
@@ -75,3 +84,5 @@ import _ from 'lodash';
 import { orzMobx , reaxel , Reaxes } from 'reaxes';
 import { reaxel_user } from './user.reaxel';
 import { mock_database } from '../mock.db';
+
+

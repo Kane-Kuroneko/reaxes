@@ -5,12 +5,11 @@
 
 export const args = process.argv.slice(2);
 
-export const port = await getPort();
-
 /*排除构建的包,不作为独立的package*/
 export const excludedPackages = [];
 
 export let {
+	port = await getPort(3000),
 	repo = null,
 	mock = null,
 	analyze = false ,
@@ -19,7 +18,14 @@ export let {
 	node_env = "development",
 	experimental = "non-exp" ,
 	vue,
-} = overload(args , [
+} = reflect(args , [
+	{
+		/*本应由正则判断,但这里将其伪造为正则调用test函数.*/
+		regExp : {test(_port) {
+			return typeof _port === 'number' && _port >= 0 && _port <= 65535;
+		}},
+		key : "port",
+	},
 	{
 		regExp : /\bvue2|3\b/ ,
 		key : "vue" ,
@@ -91,7 +97,7 @@ if(packageList.every((repoName) => repoName !== repo )){
 
 import {
 	getPort ,
-	overload,
+	reflect,
 	absProjectRootDir,
 	absProjectRootFileURL,
 } from './toolkit.mjs';

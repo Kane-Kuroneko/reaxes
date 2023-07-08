@@ -12,7 +12,7 @@ export const webpackConfig = merge({
 	devtool : "source-map",
 	entry : path.join(obsCurrentPkg,"src"),
 	devServer : {
-		port : await getPort(3001),
+		port,
 	},
 	resolve : {
 		alias : {
@@ -73,4 +73,4 @@ import { merge } from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import {absProjectRootDir,absProjectRootFileURL} from '../../build/toolkit.mjs';
 import { getPort } from '../../build/toolkit.mjs';
-import { env , experimental , method , mock , node_env ,repo,vue as env_vue  } from '../../build/entrance.mjs';
+import { env , experimental , method , mock , node_env , repo , vue as env_vue , port } from '../../build/entrance.mjs';

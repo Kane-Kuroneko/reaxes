@@ -5,6 +5,9 @@ const store = {
 	user_list : [],
 	lists : [
 		{
+			/*是否正在编辑列表名,正在列表内编辑还是task任务区顶部编辑*/
+			// false/"list"/"task"
+			editing : "",
 			title : "今日待办",
 			list_id : "58a68284",
 			tasks : [

@@ -15,7 +15,7 @@ export const webpackServerConfig = {
 			// directory : path.resolve(rootPath , 'dist')
 		} ,
 		compress : false ,
-		port : port ,
+		port ,
 		server : "https" ,
 		host : '0.0.0.0' ,
 		hot : true ,
@@ -40,7 +40,7 @@ export const webpackServerConfig = {
 		// new LogWhenSucceed('development'),
 		new LoggerWebpackPlugn({
 			initialize () {
-				console.log(`webpack is start\n`);
+				console.log(`webpack is starting...\n`);
 			} ,
 			done () {
 				console.log(`compiled successfully\n`);
@@ -49,7 +49,7 @@ export const webpackServerConfig = {
 	],
 };
 
-
+import { exec } from 'child_process';
 import {
 	port ,
 	repo ,
