@@ -3,3 +3,10 @@
  */
 
 
+class App extends React.Component<any , any> implements React.Component{
+	render(){
+		return {
+			a:1
+		};
+	}
+}

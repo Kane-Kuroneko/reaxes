@@ -1,11 +1,12 @@
 {
 	"name": "reaxes-toolkit",
-	"version" : "0.0.8" ,
-	"main" : "./",
-	"types" : "./index.d.ts" ,
+	"version" : "0.0.9" ,
+	"main" : "index.js",
+	"module" : "index.js",
+	"types" : "index.d.ts" ,
 	"dependencies" : {
-		"reaxes" : "^0.0.4",
-		"reaxes-utils" : "^1.0.1"
+		"reaxes" : "^0.0.7",
+		"reaxes-utils" : "^1.0.9"
 	} ,
 	"peerDependencies" : {
 		"react-router-dom" : ">=6.0.0"

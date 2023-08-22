@@ -1,4 +1,4 @@
-export function shallowEqual(objA, objB, compare, compareContext) {
+export function shallowEqual(objA, objB, compare?, compareContext?) {
 	var ret = compare ? compare.call(compareContext, objA, objB) : void 0;
 	
 	if (ret !== void 0) {

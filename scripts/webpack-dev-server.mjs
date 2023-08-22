@@ -9,7 +9,7 @@ const webpackDevServer = async () => {
 		webpackServer.start().then(() => {
 			console.log(chalk.yellow(`WDS已启动在https://${ getIPV4address() }:${ port }`));
 		}).catch((e) => {
-			console.error(e);
+			// console.error(e);
 		});
 	}
 	catch ( e ) {

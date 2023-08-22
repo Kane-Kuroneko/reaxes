@@ -44,7 +44,7 @@ export const buildRepo = () => {
 			console.log(chalk.green(`package <${chalk.blue(repo)}> built successfully`));
 			debugger;
 		}).catch((e) => {
-			console.log(chalk.bgRed(`package <${chalk.red(repo)}> built failed,please debug with --inspect-brk mode`));
+			console.log(chalk.bgRed(`package <${chalk.red(repo)}> built failed,please debug with "--inspect-brk" mode`));
 			console.error(e);
 		});
 	})

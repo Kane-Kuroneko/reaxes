@@ -62,15 +62,12 @@ export const webpackConfig = merge({
 }[env_vue]);
 
 
-
 import { vue2_webpack_config } from '../../build/vue/vue2/webpack.mjs';
 import { vue3_webpack_config } from '../../build/vue/vue3/webpack.mjs';
 
 import path from 'path';
-import fs from 'fs';
 import webpack from 'webpack';
 import { merge } from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import {absProjectRootDir,absProjectRootFileURL} from '../../build/toolkit.mjs';
-import { getPort } from '../../build/toolkit.mjs';
-import { env , experimental , method , mock , node_env , repo , vue as env_vue , port } from '../../build/entrance.mjs';
+import { absProjectRootDir } from '../../build/toolkit.mjs';
+import { env , experimental , method , mock , node_env , port , vue as env_vue } from '../../build/entrance.mjs';

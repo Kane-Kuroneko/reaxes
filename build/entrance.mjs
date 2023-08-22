@@ -9,7 +9,7 @@ export const args = process.argv.slice(2);
 export const excludedPackages = [];
 
 export let {
-	port = await getPort(3000),
+	_port,
 	repo = null,
 	mock = null,
 	analyze = false ,
@@ -22,9 +22,9 @@ export let {
 	{
 		/*本应由正则判断,但这里将其伪造为正则调用test函数.*/
 		regExp : {test(_port) {
-			return typeof _port === 'number' && _port >= 0 && _port <= 65535;
+			return (Number.isSafeInteger(parseInt(_port))) && (_port >= 0) && (_port <= 65535);
 		}},
-		key : "port",
+		key : "_port",
 	},
 	{
 		regExp : /\bvue2|3\b/ ,
@@ -77,6 +77,8 @@ if ( !node_env ) {
 	
 }
 
+console.log(_port);
+export const port = await getPort(_port);
 
 
 export const rootPath = path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../');
