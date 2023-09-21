@@ -11,7 +11,7 @@ const {
 	ProvidePlugin,
 } = webpack;
 
-const obsCurrentPkg = path.join(absProjectRootDir,'packages/reaxes-vue2');
+const obsCurrentPkg = path.join(absProjectRootDir,'packages/reaxes-vue3');
 
 
 export const webpackConfig = {/*will be dynamic imported*/	
@@ -28,7 +28,7 @@ export const webpackConfig = {/*will be dynamic imported*/
 	} , 
 	resolve:{
 		alias : {
-			"mobx-vue" : path.join(absProjectRootDir,"libs/mobx-vue"),
+			"mobx-vue" : path.join(absProjectRootDir,"libs/mobx-vue-lite"),
 		}
 	},
 	// stats : 'errors-only' ,
@@ -39,7 +39,6 @@ export const webpackConfig = {/*will be dynamic imported*/
 		"vue",
 		'lodash' ,
 		'mobx' ,
-		'shallowequal'
 	] ,
 	mode : 'production' ,
 	performance : {

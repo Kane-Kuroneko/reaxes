@@ -26,11 +26,6 @@ export const webpackConfig = {/*will be dynamic imported*/
 	experiments : {
 		outputModule : true ,
 	} , 
-	resolve:{
-		alias : {
-			
-		}
-	},
 	// stats : 'errors-only' ,
 	externals : [
 		"reaxes",

@@ -1,6 +1,6 @@
 {
 	"name": "reaxes-toolkit",
-	"version" : "0.0.9" ,
+	"version" : "0.0.10" ,
 	"main" : "index.js",
 	"module" : "index.js",
 	"types" : "index.d.ts" ,
@@ -8,7 +8,6 @@
 		"reaxes" : "^0.0.7",
 		"reaxes-utils" : "^1.0.9"
 	} ,
-	"peerDependencies" : {
 		"react-router-dom" : ">=6.0.0"
 	}
 }
