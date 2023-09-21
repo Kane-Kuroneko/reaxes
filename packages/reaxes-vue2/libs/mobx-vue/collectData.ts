@@ -23,18 +23,16 @@ export default function collectData(vm: Vue, data?: DefaultData<Vue>) {
 				get() {
 					return value;
 				},
-				// @formatter:off
-				// tslint:disable-next-line
 				set() {}
-				// @formatter:on
 			});
 		} else {
-			Object.defineProperty( result , field , {
-				enumerable : true ,
-				get() {
-					return data?.call( vm , vm )[field];
-				} ,
-			} );
+			result[field] = value;
+			// Object.defineProperty( result , field , {
+			// 	enumerable : true ,
+			// 	get() {
+			// 		return data?.call( vm , vm )[field];
+			// 	}
+			// } );
 		}
 
 		return result;

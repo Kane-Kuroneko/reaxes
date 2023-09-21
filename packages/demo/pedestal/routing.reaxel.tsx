@@ -19,6 +19,10 @@ export const reaxel_router = reaxel(() => {
 			path : "/complex-todo",
 			id : "complex-todo",
 		},
+		{
+			path : "/vue2-watch",
+			id : "vue2-test-watch",
+		},
 	] as Array<RouteUnit>;
 	
 	const {store,setState} = orzMobx({

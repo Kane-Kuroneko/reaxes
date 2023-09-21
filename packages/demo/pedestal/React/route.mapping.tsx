@@ -10,7 +10,7 @@ export const routeMapping = {
 export const routeMappingWithRC = routes.reduce((accu,item) => {
 	accu.push({
 		...item,
-		RC : routeMapping[item.id]
+		RC : routeMapping[item.id] ?? (() => null),
 	});
 	return accu;
 },[]);
