@@ -50,7 +50,7 @@
 		"@hot-loader/react-dom": "17.0.2",
 		"@svgr/webpack": "6.5.1",
 		"@types/less": "3.0.3",
-		"@types/lodash": "4.14.182",
+		"@types/lodash": "4.14.199",
 		"@types/react": "17.0.59",
 		"@types/react-dom": "17.0.20",
 		"babel-loader": "^9.1.3",

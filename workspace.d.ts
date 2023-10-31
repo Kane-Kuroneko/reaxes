@@ -12,6 +12,8 @@
 // } : typeof React;
 // declare const {orzMobx,Reaxes} : typeof import('reaxes');
 // declare const utils,{orzPromise,crayon,logProxy} : typeof import('reaxes-utils');
+// @ts-ignore
+// @ts-ignore
 
 
 // declare const __IS_MOCK__: boolean;
@@ -43,4 +45,24 @@ declare interface NodeModule {
 
 
 /*todo 后续放入requester插件*/
-declare type PayloadBody<T> = () => Promise<T>; 
+declare type PayloadBody<T> = () => Promise<T>;
+
+
+declare global {
+	export const _ : typeof import("lodash");
+	export const orzMobx : typeof import("reaxes").orzMobx;
+	export const Reaxes : typeof import("reaxes").Reaxes;
+	export const reaxel : typeof import("reaxes").reaxel;
+	export const utils : typeof import("reaxes-utils");
+	
+	export const crayon : typeof import("reaxes-utils").crayon;
+	export const logProxy : typeof import("reaxes-utils")['logProxy'];
+	export const orzPromise : typeof import("reaxes-utils")['orzPromise'];
+	
+	export const toolkit : typeof import("reaxes-toolkit");
+	export const orzPending : typeof import("reaxes-toolkit")['orzPending'];
+	
+	export const obsReaction : typeof import('reaxes').Reaxes['obsReaction'];
+	export const collectDeps : typeof import('reaxes').Reaxes['collectDeps'];
+	export const contrastedCallback : typeof import('reaxes').Reaxes['contrastedCallback'];
+}

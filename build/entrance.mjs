@@ -17,7 +17,7 @@ export let {
 	env = "unset",
 	node_env = "development",
 	experimental = "non-exp" ,
-	vue,
+	vue = 'vue2',
 } = reflect(args , [
 	{
 		/*本应由正则判断,但这里将其伪造为正则调用test函数.*/
