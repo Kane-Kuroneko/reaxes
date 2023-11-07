@@ -1,13 +1,11 @@
 {
-	"name": "reaxes-toolkit",
-	"version" : "0.0.11" ,
-	"main" : "index.js",
-	"module" : "index.js",
+	"name" : "reaxes-toolkit" ,
+	"version" : "0.0.12" ,
+	"main" : "index.js" ,
+	"module" : "index.js" ,
 	"types" : "index.d.ts" ,
 	"dependencies" : {
-		"reaxes" : "^0.0.11",
+		"reaxes" : "^0.0.11" ,
 		"reaxes-utils" : "^1.0.10"
-	} ,
-		"react-router-dom" : ">=6.0.0"
 	}
 }

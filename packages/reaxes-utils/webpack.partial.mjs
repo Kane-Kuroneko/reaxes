@@ -61,7 +61,11 @@ function getProvidePlugin () {
 		useLayoutEffect : ['react' , 'useLayoutEffect'] ,
 		useMemo : ['react' , 'useMemo'] ,
 		useCallback : ['react' , 'useCallback'] ,
+		
 		utils : ['reaxes-utils'] ,
+		Reaxes : ['reaxes','Reaxes'] ,
+		orzMobx : ['reaxes','orzMobx'] ,
+		obsReaction : ['reaxes','obsReaction'] ,
 		orzPromise : ['reaxes-utils' , 'orzPromise'] ,
 		crayon : ['reaxes-utils' , 'crayon'] ,
 	});
