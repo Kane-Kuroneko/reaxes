@@ -1,14 +1,3 @@
-<template>
-	<div style='background-color: aliceblue'>
-		<p>vue2-class-count : {{ count }}</p>
-		<button @click='plus(2)'>
-			plus 2
-		</button>
-		<button @click='minus(2)'>
-			minus 2
-		</button>
-	</div>
-</template>
 
 <script>
 import { reaxper } from 'reaxes-vue2';
@@ -20,18 +9,36 @@ const {
 	plus ,
 	minus,
 } = reaxel_counter();
+
+
 @reaxper
-@Component
-export default class App extends Vue {
-	
-	data(){
+@Component({
+	console,
+	status(){
 		const { count } = reaxel_counter();
 		return {
 			count : count + 3,
 		}
 	}
-	
+})
+export default class CCD extends Vue {
 	plus = plus;
 	minus = minus;
+	mounted(){
+		console.log(this);
+	}
+
+	render () {
+		return <div style = 'background-color: aliceblue'>
+			<p>vue2-class-count+3 : { this.count }</p>
+			<button onClick = { () => this.plus() }>
+				plus
+			</button>
+			<button onClick = { () => this.minus() }>
+				minus
+			</button>
+		</div>;
+	}
+	
 }
 </script>

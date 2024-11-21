@@ -1,5 +1,5 @@
 /*global provider*/
-declare const _ : typeof import('lodash');
+// declare const _ : typeof import('lodash');
 declare const React: typeof import('react');
 declare const { 
 	useEffect , 
@@ -54,6 +54,7 @@ declare interface NodeModule {
 	};
 }
 
+declare global {}
 
 
 /*todo 后续放入requester插件*/

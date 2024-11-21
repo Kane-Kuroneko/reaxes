@@ -1,5 +1,4 @@
 export { withHoC } from './withHoC';
-export { didrenderLifecycleHoC } from './componentDidInvoke';
 
 export const compose = <T extends Function[]>( wrappers ) => {
 	

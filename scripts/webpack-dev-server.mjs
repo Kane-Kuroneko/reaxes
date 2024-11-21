@@ -8,6 +8,7 @@ const webpackDevServer = async () => {
 		const webpackServer = new WebpackDevServer(webpackDevConfig.devServer , compiler);
 		webpackServer.start().then(() => {
 			console.log(chalk.yellow(`WDS已启动在https://${ getIPV4address() }:${ port }`));
+			console.log(chalk.yellow(`WDS已启动在https://127.0.0.1:${ port }`));
 		}).catch((e) => {
 			// console.error(e);
 		});

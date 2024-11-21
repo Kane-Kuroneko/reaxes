@@ -8,7 +8,7 @@ export const reaxel_relay = reaxel(() => {
 		/*structure like {"$user_id":Array<todo_list>,...}*/
 		user_id_todo_list_mapping : null ,
 	} );
-	;
+	
 	/*远程同步状态*/
 	const { 
 		pendingState : pendingStateRemote ,

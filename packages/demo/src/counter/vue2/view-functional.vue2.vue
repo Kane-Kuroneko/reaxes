@@ -27,16 +27,15 @@ const obs = observable({ c : 999 });
 const setObs = action(() => obs.c ++);
 
 export default reaxper({
-	data () {
+	status() {
 		const { count } = reaxel_counter();
 		return {
 			obs,
-			console ,
 			count ,
 		};
 	} ,
 	mounted () {
-		console.log();
+		
 	} ,
 	methods : {
 		setObs,

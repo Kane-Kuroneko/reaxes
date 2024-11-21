@@ -1,46 +1,30 @@
-// declare const _ : typeof import('lodash');
-// declare const React : typeof import('react');
-// declare const {
-// 	useEffect ,
-// 	useLayoutEffect ,
-// 	useMemo ,
-// 	useRef ,
-// 	useState ,
-// 	useContext ,
-// 	useCallback ,
-// 	useReducer,
-// } : typeof React;
-// declare const {orzMobx,Reaxes} : typeof import('reaxes');
-// declare const utils,{orzPromise,crayon,logProxy} : typeof import('reaxes-utils');
-
-
-// declare const __IS_MOCK__: boolean;
-// declare const __EXPERIMENTAL__: boolean;
-// declare const __METHOD__: "server"|"build";
-// declare const __NODE_ENV__ : "development"|"production";
-/*DOM*/
-/*CSS*/
-// declare module '*.module.less' {
-// 	const classes : {
-// 		readonly [ key: string ]: string;
-// 	};
-//	
-// 	export default classes;
-// }
-// declare module '*.theme.less' {
-// 	const theme : string;
-// 	export default theme;
-// }
-
-/*获取数组泛型参数*/
-// declare type ArrayElement<ArrayType extends any[]> = ArrayType extends (infer P)[] ? P : never;
-declare interface NodeModule {
-	hot?: {
-		accept: Function;
-	};
+declare global {
+	// export const requester : typeof import('#src/requester').requester;
+	
+	//@ts-ignore
+	export const _ : typeof import('lodash');
+	export const reaxel : typeof import('reaxes')['reaxel'];
+	export const orzMobx : typeof import('reaxes')['orzMobx'];
+	export const contrastedCallback : typeof import('reaxes')['Reaxes']['contrastedCallback'];
+	export const obsReaction : typeof import('reaxes')['Reaxes']['obsReaction'];
+	export const collectDeps : typeof import('reaxes')['Reaxes']['collectDeps'];
+	export const reaxper : typeof import('reaxes-react')['reaxper'];
+	
+	export const utils : typeof import('packages/reaxes-utils')['crayon'];
+	export const orzPromise : typeof import('packages/reaxes-utils').orzPromise;
+	export const crayon : typeof import('packages/reaxes-utils').crayon;
+	export const logProxy : typeof import('packages/reaxes-utils').logProxy;
+	export const makePair : typeof import('packages/reaxes-utils').makePair;
+	export const assert : typeof import('packages/reaxes-utils').assert;
+	export const decodeQueryString : typeof import('packages/reaxes-utils').decodeQueryString;
+	export const encodeQueryString : typeof import('packages/reaxes-utils').encodeQueryString;
+	export const stringify : typeof import('packages/reaxes-utils').stringify;
+	
+	export const useEffect : typeof import('react').useEffect;
+	export const useRef : typeof import('react').useRef;
+	export const useMemo : typeof import('react').useMemo;
+	export const useState : typeof import('react').useState;
+	
 }
 
-
-
-/*todo 后续放入requester插件*/
-declare type PayloadBody<T> = () => Promise<T>; 
+export {}

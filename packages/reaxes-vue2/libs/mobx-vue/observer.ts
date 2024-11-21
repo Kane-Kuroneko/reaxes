@@ -44,19 +44,21 @@ function observer<VC extends VueClass<Vue>>(Component: VC | ComponentOptions<Vue
 			reaction.track(() => {
 				// options.data.call(this,this);
 				if (!mounted) {
-					
-					const status = originalOptions.status();
-					for(const key in status){
-						if(status.hasOwnProperty(key)){
-							Object.defineProperty(vm,key,{
-								enumerable : true,
-								configurable : true,
-								get (){
-									return originalOptions.status()[key];
-								}
-							});
+					const status = originalOptions.status?.();
+					if(status) {
+						for(const key in status){
+							if(status.hasOwnProperty(key)){
+								Object.defineProperty(vm,key,{
+									enumerable : true,
+									configurable : true,
+									get(){
+										return originalOptions.status()[key];
+									}
+								});
+							}
 						}
 					}
+					
 					
 					$mount.apply(this, args);
 					mounted = true;
@@ -76,7 +78,7 @@ function observer<VC extends VueClass<Vue>>(Component: VC | ComponentOptions<Vue
 
 		// @ts-expect-error
 		this[disposerSymbol] = reaction.getDisposer_?.() || reaction.getDisposer?.();
-
+		
 		return reactiveRender();
 	};
 

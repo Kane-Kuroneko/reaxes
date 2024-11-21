@@ -1,6 +1,6 @@
 {
 	"name" : "reaxes" ,
-	"version" : "0.0.8" ,
+	"version" : "0.0.9" ,
 	"description" : "a distributed and responsive data-model for React" ,
 	"main" : "index.js" ,
 	"module" : "index.js" ,

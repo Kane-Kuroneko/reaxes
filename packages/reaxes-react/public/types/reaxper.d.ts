@@ -1,1 +1,1 @@
-export declare const reaxper: <T extends {}>(component: T) => T;
+export declare const reaxper: <T extends {}>(component: T ) => T;

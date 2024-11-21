@@ -26,7 +26,7 @@ export function withHoC<T extends ( React.Component & React.FC )>( OriginalCompo
 	
 	const baseRender = OriginalComponent.prototype.render;
 	
-	function HooksProvider( { instance,random } , ref ,  ): any {
+	function HooksProvider( { instance } , ref ,  ): any {
 		
 	
 		return baseRender.call(instance);

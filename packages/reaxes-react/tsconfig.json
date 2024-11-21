@@ -32,6 +32,7 @@
 		"allowSyntheticDefaultImports" : true ,
 		"paths" : {
 			"reaxes-utils" : [ "../reaxes-utils" ],
+			"reaxes-react/*" : [ "./*" ],
 			"reaxes" : [ "../reaxes" ] 
 		} ,
 		"preserveConstEnums" : true ,

@@ -1,0 +1,18 @@
+{
+	"name": "reaxel-persist",
+	"version": "0.0.1",
+	"description": "For Reaxes apps, provide persistent capabilities.",
+	"main": "index.tsx",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/CainKane/Reaxes.git"
+	},
+	"private": true,
+	"dependencies": {
+		"jsencrypt": "^3.3.2",
+		"reaxes" : "^0.0.11"
+	}
+}

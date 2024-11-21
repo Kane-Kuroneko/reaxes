@@ -17,7 +17,7 @@ export let {
 	env = "unset",
 	node_env = "development",
 	experimental = "non-exp" ,
-	vue,
+	vue = 'vue2',
 } = reflect(args , [
 	{
 		/*本应由正则判断,但这里将其伪造为正则调用test函数.*/
@@ -77,7 +77,7 @@ if ( !node_env ) {
 	
 }
 
-console.log(_port);
+console.log('port:',_port);
 export const port = await getPort(_port);
 
 
@@ -97,13 +97,7 @@ if(packageList.every((repoName) => repoName !== repo )){
 }
 
 
-import {
-	getPort ,
-	reflect,
-	absProjectRootDir,
-	absProjectRootFileURL,
-} from './toolkit.mjs';
-import { fileURLToPath } from "url";
-import path from "path";
-import { merge } from "webpack-merge";
-import {readdirSync} from 'fs';
+import { absProjectRootDir , getPort , reflect  } from './toolkit.mjs';
+import { fileURLToPath } from 'url';
+import path from 'path';
+import { readdirSync } from 'fs';

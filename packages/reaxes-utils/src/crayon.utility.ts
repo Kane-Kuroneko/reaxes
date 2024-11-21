@@ -44,7 +44,9 @@ const batchTransformCSSHumpToLowercase = (object:{[key in keyof CSSStyleDeclarat
 /* secondary是console.log第二项的cssPropertiesString*/
 const argumentsAgent = (secondary , ...args) => args.reduce((accu, arg , index ) => (accu[0] += typeof arg === "string" ? arg : (accu.push(arg),"%o"),accu) ,['%c',secondary]);
 
-
+/**
+ * todo 实现crayon({...css}).group('xxx')
+ */
 export const crayon : crayon = new Proxy((cssProperties:Partial<CSSStyleDeclaration> = {}) => {
 	/*using as crayon({CSSProperties})('wanna log msg')*/
 	return (...logs) => {

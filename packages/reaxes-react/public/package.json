@@ -1,6 +1,6 @@
 {
 	"name" : "reaxes-react" ,
-	"version" : "0.0.6" ,
+	"version" : "0.0.9" ,
 	"description" : "a distributed and responsive data-model for React" ,
 	"main" : "index.js" ,
 	"module" : "index.js" ,
@@ -14,6 +14,6 @@
 	"peerDependencies" : {
 		"react" : ">=16.8.0" ,
 		"react-dom" : ">=16.8.0",
-		"reaxes" : "^0.0.7"
+		"reaxes" : "latest"
 	}
 }

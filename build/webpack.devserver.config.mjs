@@ -16,7 +16,13 @@ export const webpackServerConfig = {
 		} ,
 		compress : false ,
 		port ,
-		server : "https" ,
+		server : {
+			type : 'https',
+			options : {
+				cert : './build/cert/127.0.0.1+5.pem',
+				key : './build/cert/127.0.0.1+5-key.pem',
+			}
+		},
 		host : '0.0.0.0' ,
 		hot : true ,
 		open : false ,
