@@ -1,6 +1,7 @@
 {
 	"compilerOptions" : {
 		"allowJs" : true ,
+		"skipLibCheck" : true ,
 		"allowSyntheticDefaultImports" : true ,
 		"allowUnusedLabels" : true ,
 		"baseUrl" : "." ,
@@ -15,7 +16,7 @@
 		"strictBindCallApply" : false ,
 		"strictNullChecks" : false ,
 		"allowUnreachableCode" : true ,
-		"module" : "CommonJS" ,
+		"module" : "ESNext" ,
 		"moduleResolution" : "node" ,
 		"emitDeclarationOnly" : true ,
 		"noImplicitAny" : false ,

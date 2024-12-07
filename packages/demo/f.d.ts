@@ -54,8 +54,27 @@ declare interface NodeModule {
 	};
 }
 
-declare global {}
-
+declare global {
+	declare const _ : typeof import('lodash');
+	declare const React: typeof import('react');
+	declare const {
+		useEffect ,
+		useState ,
+		useLayoutEffect ,
+		Component ,
+		useRef ,
+		useMemo ,
+		useContext ,
+		useReducer ,
+		useCallback,
+	}: typeof React;
+	declare const {orzMobx,Reaxes,reaxel} : typeof import("reaxes");
+	declare const {reaxper,Reaxlass} : typeof import("reaxes-react");
+	declare const utils:typeof import("reaxes-utils");
+	declare const {crayon,orzPromise,logProxy} : typeof utils;
+	declare const toolkit:typeof import('reaxes-toolkit');
+	declare const {orzPending} : typeof toolkit;
+}
 
 /*todo 后续放入requester插件*/
 // declare type PayloadBody<T> = () => Promise<T>; 

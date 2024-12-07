@@ -173,6 +173,10 @@ export const webpackBaseConfig = {
 			new TerserPlugin({
 				extractComments: false,
 				terserOptions: {
+					compress: {
+						drop_debugger : false,
+						ecma : 2015
+					},
 					format: {
 						comments: false,
 					},

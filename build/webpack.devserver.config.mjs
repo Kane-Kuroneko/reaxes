@@ -49,17 +49,17 @@ export const webpackServerConfig = {
 				console.log(`webpack is starting...\n`);
 			} ,
 			done () {
-				console.log(`compiled successfully\n`);
+				console.log(chalk.green(`compiled successfully in https://${getIPV4address()}:${port}\n`));
 			} ,
 		}),
 	],
 };
-
+import chalk from 'chalk';
 import { exec } from 'child_process';
 import {
 	port ,
 	repo ,
 } from './entrance.mjs';
-import { absProjectRootDir } from './toolkit.mjs';
+import { absProjectRootDir,getIPV4address } from './toolkit.mjs';
 import path from 'path';
 import { LoggerWebpackPlugn,LogWhenSucceed } from '../build/webpack.plugins.mjs';

@@ -1,3 +1,7 @@
+# 0.0.11
+修复orzMobx().setState泛型不正确
+# 0.0.10
+修复:缺少orzMobx().mutate函数dts声明
 # 0.0.8
 修复由于react-hot-loader/babel引起的打包后产物出现__WEBPACK_EXTERNAL_MODULE的问题
 # v0.0.4
