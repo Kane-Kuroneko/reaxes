@@ -1,7 +1,7 @@
 <script lang = 'ts'>
 import { reaxel_router } from '../routing.reaxel';
 import { reaxper } from 'reaxes-vue2';
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue2';
 import { routeMapping } from './route.mapping';
 
 const { routes } = reaxel_router();

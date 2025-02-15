@@ -29,7 +29,8 @@ export const webpackConfig = {/*will be dynamic imported*/
 	// stats : 'errors-only' ,
 	externals : [
 		'react' ,
-		'react-dom' , 
+		'react-dom' ,
+		'reaxes' ,
 		'reaxes-utils' ,
 		"reaxes-toolkit" ,
 		'react-router' ,
@@ -67,6 +68,10 @@ function getProvidePlugin () {
 		useLayoutEffect : ['react' , 'useLayoutEffect'] ,
 		useMemo : ['react' , 'useMemo'] ,
 		useCallback : ['react' , 'useCallback'] ,
+		
+		orzMobx : ['reaxes','orzMobx'],
+		obsReaction : ['reaxes','obsReaction'],
+		collectDeps : ['reaxes',''],
 		utils : ['reaxes-utils'] ,
 		orzPromise : ['reaxes-utils' , 'orzPromise'] ,
 		crayon : ['reaxes-utils' , 'crayon'] ,

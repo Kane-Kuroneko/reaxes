@@ -26,6 +26,9 @@ export const orzMobx = <S extends object>(state : S) => {
 	const setMobxState = action(<S extends {}>(store , partialState : Partial<S>):S => {
 		return Object.assign(store , partialState);
 	});
+	const mergeMobxState = action(<S extends {}>(store , partialState : Partial<S>):S => {
+		return _.merge(store , partialState);
+	});
 	
 	/**
 	 * 以赋值形式直接修改store内数据,免去层层partial的麻烦
@@ -38,9 +41,18 @@ export const orzMobx = <S extends object>(state : S) => {
 		store ,
 		mutate,
 		setState : (partialState : Partial<S>) => setMobxState(store , partialState) ,
+		mergeState : (partialState : Partial<S>) => mergeMobxState(store , partialState) ,
 		mutatePartialState ,
 	};
 };
+
+/**
+ * 创建store时为某个属性设置监听深度
+ * todo
+ */
+export const depth = <T>(target:T,depth:number):T => {
+	
+}
 
 type isBasicType<V> = V extends basicType ? true : false;
 

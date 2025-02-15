@@ -14,6 +14,22 @@ export const {
 		});
 		return object as Pick<O , ArrayElement<K>>;
 	};
+	
+	/**
+	 * @description 传入一个数组,若其中每个值都为true,则返回true.否则false.用于取代if(x && xxx && xxxx ...);
+	 * @param list {boolean[]} 一个装着bool的列表
+	 */
+	every = <T extends boolean[]>(list:T) => {
+		return list.every(e => e === true);
+	}
+	
+	/**
+	 * @description 传入一个数组,若其中至少有一个为true,则返回true.否则false.用于取代if(x || xxx || xxxx ...);
+	 * @param list {boolean[]} 一个装着bool的列表
+	 */
+	some = <T extends boolean[]>(list:T) => {
+		return list.some(e => e === true);
+	}
 }();
 
 

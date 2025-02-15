@@ -1,6 +1,5 @@
 /**
- * 成对使用数据
- * @param value 也可是callback
+ * @description 成对使用数据 value也可是callback
  */
 export const makePair =
 	<I , F extends (value : I) => any >

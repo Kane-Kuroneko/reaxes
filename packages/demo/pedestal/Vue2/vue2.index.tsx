@@ -3,6 +3,7 @@ import { routeMappingWithVMC } from './route.mapping';
 import VueRouter from 'vue2-router';
 // @ts-expect-error
 import Vue from 'vue';
+import PluginTest from 'src/test-vue2-plugin/index';
 import Root from './Root.vue2.vue';
 
 const router = new VueRouter( {
@@ -21,6 +22,8 @@ utils.asyncCall(() => {
 		},
 	});
 });
+
+Vue.use(PluginTest);
 
 const RouterRoot = {
 	template : `<router-view></router-view>`,
