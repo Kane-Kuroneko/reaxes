@@ -1,0 +1,5 @@
+{
+	"name" : "vue" ,
+	"description" : "for compatible and distribute vue v2&v3" ,
+	"main" : "index.ts"
+}

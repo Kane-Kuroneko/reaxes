@@ -1,0 +1,19 @@
+{
+	"name": "reaxes-parcel-builder",
+	"scripts": {
+		"start": "node ./start.mjs demo"
+	},
+	"alias": {
+		"#packages": "../../packages",
+		"#toolkit": "../../packages/reaxes-toolkit",
+		"#utils": "../../packages/utils",
+		"#reaxes": "../../packages/reaxes-react"
+	},
+	"devDependencies": {
+		"@babel/preset-env": "^7.20.2",
+		"@parcel/config-default": "^2.8.3",
+		"@parcel/core": "^2.8.3",
+		"babel-plugin-module-resolver": "^5.0.0",
+		"parcel": "^2.8.3"
+	}
+}

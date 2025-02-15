@@ -1,0 +1,17 @@
+{
+	"name": "reaxes-utils",
+	"version" : "1.0.9" ,
+	"main": "src",
+	"license": "WTFPL",
+	"scripts": {
+		"test": "jest"
+	},
+	"dependencies": {
+		"lodash": "4.17.21"
+	},
+	"peerDependencies": {
+		
+	},
+	"devDependencies": {
+	}
+}
