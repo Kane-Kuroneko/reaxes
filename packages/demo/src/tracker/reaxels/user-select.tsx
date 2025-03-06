@@ -3,7 +3,7 @@
  */
 export const UserSelect_reaxel = reaxel(() => {
 	
-	const {store,setState,} = orzMobx({
+	const {store,setState,} = createReaxable({
 		user : null,
 		options : [
 			{

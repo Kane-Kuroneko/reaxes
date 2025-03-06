@@ -1,0 +1,12 @@
+.todo-app-root {
+  background-color: transparent;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.todo-app-root > * {
+  zoom: 3.5;
+}
+/*# sourceMappingURL=style.module.css.map */

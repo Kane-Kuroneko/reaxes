@@ -1,8 +1,8 @@
 import { Reaction } from 'mobx';
 import collectDataForVue from './collectData';
-// @ts-expect-error
 import Vue, { ComponentOptions } from 'vue';
 import {Reaxes} from 'reaxes';
+import _ from 'lodash';
 
 export type VueClass<V> = (new(...args: any[]) => V & Vue) & typeof Vue;
 
@@ -30,6 +30,7 @@ function observer<VC extends VueClass<Vue>>(Component: VC | ComponentOptions<Vue
 	delete options.status;
 	// we couldn't use the Component as super class when Component was a VueClass, that will invoke the lifecycle twice after we called Component.extend
 	const superProto = typeof Component === 'function' && Object.getPrototypeOf(Component.prototype);
+	/*@ts-expect-error*/
 	const Super = superProto instanceof Vue ? superProto.constructor : Vue;
 	const ExtendedComponent = Super.extend(options);
 
@@ -56,7 +57,7 @@ function observer<VC extends VueClass<Vue>>(Component: VC | ComponentOptions<Vue
 										return originalOptions.status()[key];
 									},
 									set(){
-										throw "这个属性归属于reaxes store , 只能通过orzMobx暴露出的方法修改"
+										throw "这个属性归属于reaxes store , 只能通过createReaxable暴露出的方法修改"
 									},
 								});
 							}

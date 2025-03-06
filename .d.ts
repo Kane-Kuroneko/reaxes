@@ -9,4 +9,7 @@ declare interface NodeModule {
 
 
 /*todo 后续放入requester插件*/
-declare type PayloadBody<T> = () => Promise<T>; 
+declare type PayloadBody<T> = () => Promise<T>;
+
+
+declare const _: typeof import('lodash');

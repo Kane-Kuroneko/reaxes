@@ -1,0 +1,20 @@
+{
+	"files" : [ ] ,
+	"compilerOptions" : {
+		"noEmit" : true,
+		"baseUrl" : "." ,
+		"paths" : {
+			"reaxes": ["../../../reaxes"],
+			"reaxes-vue3" : ["../../../reaxes-vue3"],
+			"reaxes-utils" : ["../../../reaxes-utils"]
+		}
+	} ,
+	"references" : [
+		{
+			"path" : "./tsconfig.node.json"
+		} ,
+		{
+			"path" : "./tsconfig.app.json"
+		}
+	]
+}

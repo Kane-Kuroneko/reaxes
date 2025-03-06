@@ -3,7 +3,7 @@ import { reaxper } from 'reaxes-vue3';
 import { defineComponent , ref } from 'vue3';
 import { reaxel_counter } from '../reaxel';
 
-const { store,setState } = orzMobx({c:124});
+const { store,setState } = createReaxable({c:124});
 export default /*reaxper*/defineComponent({
 	data () {
 		const { count } = reaxel_counter();

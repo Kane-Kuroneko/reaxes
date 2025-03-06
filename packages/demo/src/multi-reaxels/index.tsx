@@ -1,7 +1,7 @@
 import {
 	Reaxlass ,
 	reaxper ,
-	orzMobx ,
+	createReaxable ,
 	Reaxes ,
 } from 'reaxes-react';
 

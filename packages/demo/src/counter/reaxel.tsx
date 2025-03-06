@@ -6,7 +6,7 @@ export const reaxel_counter = reaxel(() => {
 	const {
 		store ,
 		setState,
-	} = orzMobx( {
+	} = createReaxable( {
 		count : 0 ,
 	} );
 	
@@ -33,4 +33,4 @@ export const reaxel_counter = reaxel(() => {
 	}
 });
 
-import {Reaxes,reaxel,orzMobx} from 'reaxes';
+import {Reaxes,reaxel,createReaxable} from 'reaxes';

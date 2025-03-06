@@ -25,13 +25,14 @@ export const reaxel_router = reaxel(() => {
 		},
 	] as Array<RouteUnit>;
 	
-	const {store,setState} = orzMobx({
+	const {store,setState} = createReaxable({
 		pathId : 'root',
 	});
 	
 	const navigate = (id) => {
 		// setState( { pathId : id } );
-		window.location.pathname = routes.find((unit) => unit.id === id ).path;
+		// window.location.pathname = routes.find((unit) => unit.id === id ).path;
+		location.hash = routes.find((unit) => unit.id === id ).path
 	};
 	
 	addEventListener( 'popstate' , ( e ) => {

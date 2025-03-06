@@ -1,5 +1,5 @@
-export const reaxper = <T extends {}>(component:T):T => {
-	return observer( component ) as T;
+export const reaxper = <T extends any>(component:T):T => {
+	return observer( component ) as unknown as T;
 };
 
 

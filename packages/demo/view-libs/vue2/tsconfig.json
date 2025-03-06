@@ -1,0 +1,20 @@
+{
+	"extends" : "@vue/tsconfig/tsconfig.web.json" ,
+	"include" : [ "env.d.ts" , "src/**/*" , "src/**/*.vue" ] ,
+	"compilerOptions" : {
+		"allowSyntheticDefaultImports" : true ,
+		"baseUrl" : "." ,
+		"noEmit" : true ,
+		"paths" : {
+			"@/*" : [ "./src/*" ] ,
+			"reaxes-vue" : [ "../../../reaxes-vue2" ] ,
+			"reaxes" : [ "../../../reaxes" ]
+		}
+	} ,
+	
+	"references" : [
+		{
+			"path" : "./tsconfig.config.json"
+		}
+	]
+}

@@ -9,12 +9,12 @@
 
 <script>
 import {reaxper} from 'reaxes-vue2';
-import {reaxel,orzMobx} from 'reaxes';
+import {reaxel,createReaxable} from 'reaxes';
 
 const {
 	store ,
 	setState,
-} = orzMobx({ count : 0 });
+} = createReaxable({ count : 0 });
 
 export default reaxper({
 	status (){

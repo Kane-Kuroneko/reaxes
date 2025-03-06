@@ -31,14 +31,13 @@
 		"watch" : false ,
 		"outDir" : "dist" ,
 		"allowSyntheticDefaultImports" : true ,
-		"paths" : {
-			"reaxes-utils" : [ "../reaxes-utils" ]
-		} ,
 		"preserveConstEnums" : true ,
 		"removeComments" : true ,
 		"target" : "ESNext" ,
-		"allowSyntheticDefaultImports" : true 
+		"allowSyntheticDefaultImports" : true,
+		"paths" : {
+			"reaxes-utils" : [ "../reaxes-utils" ]
+		}
 	} ,
-	"include" : [ "." ] ,
 	"exclude" : [ "node_modules" , "dist" , ".git" , ".idea" , ".svn" ]
 }

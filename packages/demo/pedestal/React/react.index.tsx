@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import { routeMappingWithRC } from './route.mapping';
 import { reaxel_router } from '../routing.reaxel';
 import { Component, StrictMode } from 'react';
@@ -11,15 +11,19 @@ const Routing = reaxper( () => {
 	console.log( pathId );
 	
 	
-	return <BrowserRouter>
+	return <HashRouter>
 		<Routes>
-			{ routeMappingWithRC.map( ( { id , path , RC } ) => <Route
-				key = { id }
-				path = { path }
-				element = { <RC /> }
-			/> ) }
+			{ routeMappingWithRC.map( ( { id , path , RC } ) => {
+				console.log(path);
+				
+				return <Route
+					key = { id }
+					path = {'/'+ path }
+					element = { <RC /> }
+				/>;
+			} ) }
 		</Routes>
-	</BrowserRouter>;
+	</HashRouter>;
 } );
 
 @reaxper
@@ -46,6 +50,6 @@ class Test extends Component {
 const root = createRoot( document.getElementById( 'reaxes-react-root' ) );
 root.render(
 	<>
-		<Test />
+		<Routing />
 	</>,
 );

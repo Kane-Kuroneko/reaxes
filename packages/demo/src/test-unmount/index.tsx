@@ -48,7 +48,7 @@ export const Test_Reaxel_i18n = reaxper( class extends Reaxlass {
 
 export const reaxel_i18n = function(){
 	
-	const {store,setState} = orzMobx( {
+	const {store,setState} = createReaxable( {
 		lang : "en" ,
 	} );
 	/*已经加载好的i18n文件*/

@@ -1,5 +1,5 @@
 
-import {orzMobx} from 'reaxes';
+import {createReaxable} from 'reaxes';
 /**
  * A simple counter using reaxes architecture
  */
@@ -8,7 +8,7 @@ export const reaxel_counter = function(){
 	const {
 		store ,
 		setState,
-	} = orzMobx( {
+	} = createReaxable( {
 		count : 0 ,
 	} );
 	

@@ -1,0 +1,17 @@
+.todo-list-item {
+  list-style: none;
+}
+.todo-list-item :global .star {
+  cursor: pointer;
+  user-select: none;
+}
+.todo-list-item :global .gray-star {
+  filter: grayscale(1);
+  visibility: hidden;
+  cursor: pointer;
+  user-select: none;
+}
+.todo-list-item:hover :global(.gray-star) {
+  visibility: visible;
+}
+/*# sourceMappingURL=style.module.css.map */

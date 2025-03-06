@@ -3,7 +3,7 @@
  */
 export const reaxel_relay = reaxel(() => {
 	const { setUserList,setUserTodoList } = reaxel_user();
-	const { store , setState } = orzMobx( {
+	const { store , setState } = createReaxable( {
 		user_list : [] ,
 		/*structure like {"$user_id":Array<todo_list>,...}*/
 		user_id_todo_list_mapping : null ,
@@ -81,7 +81,7 @@ export const reaxel_relay = reaxel(() => {
 
 import _ from 'lodash';
 
-import { orzMobx , reaxel , Reaxes } from 'reaxes';
+import { createReaxable , reaxel , Reaxes } from 'reaxes';
 import { reaxel_user } from './user.reaxel';
 import { mock_database } from '../mock.db';
 

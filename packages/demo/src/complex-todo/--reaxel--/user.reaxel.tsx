@@ -5,7 +5,7 @@ export const reaxel_user = reaxel( () => {
 		user_list : [],
 		todo_list : [],
 	};
-	const {store,setState} = orzMobx(initialState);
+	const {store,setState} = createReaxable(initialState);
 	
 	async function login(){
 		if(!store.select_user_id){
@@ -44,5 +44,5 @@ export const reaxel_user = reaxel( () => {
 } );
 
 
-import { orzMobx , reaxel , Reaxes } from 'reaxes';
+import { createReaxable , reaxel , Reaxes } from 'reaxes';
 import { reaxel_relay } from './remote.reaxel';

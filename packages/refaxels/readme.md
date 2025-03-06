@@ -33,7 +33,7 @@ import Persist from 'refaxel-persist';
 const reaxel_User = reaxel(() => {
 	const {
 		store
-	} = orzMobx({...});
+	} = createReaxable({...});
 	//...
 	
 	//将userStore持久化,当内容变化时自动写入到storage里,当页面刷新时自动尝试从storage里还原数据
@@ -42,7 +42,7 @@ const reaxel_User = reaxel(() => {
 
 //user-post.reaxel.ts
 export const reaxel_Post = reaxel(() => {
-	const {store} = orzMobx({
+	const {store} = createReaxable({
 		content : ''
 	});
 	//...

@@ -15,7 +15,7 @@ export const Demo$state = reaxper(class extends Reaxlass {
 	}
 });
 
-import {reaxper,orzMobx} from 'reaxes-react';
+import {reaxper,createReaxable} from 'reaxes-react';
 import { reaxel_counter } from './reaxel';
 import React,{} from 'react';
 

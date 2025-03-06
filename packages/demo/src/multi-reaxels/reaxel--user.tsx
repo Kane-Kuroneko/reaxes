@@ -2,7 +2,7 @@ export const reaxel__user = function () {
 	const {
 		store ,
 		setState ,
-	} = orzMobx( {
+	} = createReaxable( {
 		userInfo : null ,
 		pending : false,
 	} );

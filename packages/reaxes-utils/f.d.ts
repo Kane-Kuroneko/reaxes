@@ -12,7 +12,7 @@
 // 	useReducer ,
 // 	useCallback,
 // }: typeof React;
-// declare const {orzMobx,Reaxes,reaxel} : typeof import("reaxes");
+// declare const {createReaxable,Reaxes,reaxel} : typeof import("reaxes");
 // declare const {reaxper,Reaxlass} : typeof import("reaxes-react");
 // declare const utils:typeof import("reaxes-utils");
 // declare const {crayon,orzPromise} : typeof utils;

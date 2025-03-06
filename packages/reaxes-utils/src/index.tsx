@@ -34,6 +34,7 @@ export const {
 
 
 /*无依赖@@utils的放上面*/
+export * from './react-hooks'
 export * from './shallowequal.utility';
 export * from './asyncCall.utility';
 export * from './isPromise.utility';

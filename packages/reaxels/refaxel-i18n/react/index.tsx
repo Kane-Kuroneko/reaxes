@@ -10,7 +10,7 @@ export const refaxel_i18n = function (
 	const {
 		store ,
 		setState ,
-	} = orzMobx( {
+	} = createReaxable( {
 		lang : souceLanguage ,
 		loading : false ,
 	} );
@@ -123,5 +123,5 @@ export const refaxel_i18n = function (
 };
 
 import { reaxel_i18n_storage } from './i18n-storage';
-import { orzMobx } from 'reaxes';
+import { createReaxable } from 'reaxes';
 import { reaxper } from 'reaxes-react';

@@ -26,4 +26,4 @@ const store = {
 
 export * from './user.reaxel';
 export * from './remote.reaxel';
-import { reaxel , Reaxes , orzMobx } from 'reaxes';
+import { reaxel , Reaxes , createReaxable } from 'reaxes';

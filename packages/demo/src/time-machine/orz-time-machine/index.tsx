@@ -10,7 +10,7 @@ export const orzTimeMachine = <S extends {}>(initialState:S) => {
 	timeline.map((item) => {
 		item
 	})
-	const {store,setState} = orzMobx({
+	const {store,setState} = createReaxable({
 		timeline,
 		/*尾指针,永远指向timeline的最后一个元素的索引*/
 		tailPointer : -1,

@@ -1,4 +1,4 @@
-import { orzMobx } from "reaxes";
+import { createReaxable } from "reaxes";
 
 /**
  * todo 监听原生storage变化,提供实时更新的observable store;
@@ -7,7 +7,7 @@ export const reaxel_storage = function(){
 	const {
 		store ,
 		setState,
-	} = orzMobx( {} );
+	} = createReaxable( {} );
 	window.addEventListener('storage',() => {
 		
 	})

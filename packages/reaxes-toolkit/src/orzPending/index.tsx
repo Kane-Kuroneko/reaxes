@@ -3,7 +3,7 @@
  * pending状态和error状态
  */
 export const orzPending = () => {
-	const [, [pendingState, setPending,setError]] = utils.makePair(orzMobx({
+	const [, [pendingState, setPending,setError]] = utils.makePair(createReaxable({
 		pending: false ,
 		error : false ,
 	}), ({ store, setState }) => {

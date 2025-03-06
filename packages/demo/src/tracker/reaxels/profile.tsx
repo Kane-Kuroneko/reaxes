@@ -4,7 +4,7 @@
 
 export const Profile_reaxel = reaxel(() => {
 	
-	const {store,setState} = orzMobx({
+	const {store,setState} = createReaxable({
 		profile : null,
 	});
 	const { pendingState , setPending , setError } = orzPending();

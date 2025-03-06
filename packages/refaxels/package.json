@@ -1,0 +1,14 @@
+{
+	"name" : "refaxels" ,
+	"version" : "1.0.0" ,
+	"description" : "" ,
+	"main" : "index.js" ,
+	"scripts" : {
+		"build:i18n": ""
+	} ,
+	"repository" : {
+		"type" : "git" ,
+		"url" : "https://github.com/CainKane/Reaxes.git"
+	} ,
+	"private" : true
+}

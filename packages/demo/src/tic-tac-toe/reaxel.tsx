@@ -13,7 +13,7 @@ export const reaxel_tic_tac_toe = reaxel(() => {
 		winner : true as symbol|boolean|"draw",
 		winLine : [],
 	};
-	const { store , setState } = orzMobx( initial);
+	const { store , setState } = createReaxable( initial);
 	
 	/*每下完一步棋自动检查是否存在赢家*/
 	Reaxes.obsReaction( () => {
@@ -127,4 +127,4 @@ export const reaxel_tic_tac_toe = reaxel(() => {
 
 import { action } from 'mobx';
 import { crayon } from "reaxes-utils";
-import { orzMobx, Reaxes, reaxel } from "reaxes";
+import { createReaxable, Reaxes, reaxel } from "reaxes";

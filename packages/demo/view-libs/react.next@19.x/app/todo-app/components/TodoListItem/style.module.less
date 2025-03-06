@@ -1,0 +1,26 @@
+.todo-list-item {
+	list-style:none;
+	
+	;:global{
+		.star{
+			cursor: pointer;
+			user-select: none;
+		}
+		
+		.gray-star{
+			filter: grayscale(1);
+			visibility: hidden;
+			cursor: pointer;
+			user-select: none;
+		}
+		
+	}
+	
+	&:hover{
+		:global(.gray-star){
+			visibility: visible;
+		}
+		
+	}
+	
+}

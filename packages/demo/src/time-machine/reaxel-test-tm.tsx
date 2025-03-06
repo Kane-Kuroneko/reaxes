@@ -1,5 +1,5 @@
 export const reaxel__time_machine = reaxel( () => {
-	const {store,setState} = orzMobx({
+	const {store,setState} = createReaxable({
 		content_list : [],
 		user_input_content : "",
 	});

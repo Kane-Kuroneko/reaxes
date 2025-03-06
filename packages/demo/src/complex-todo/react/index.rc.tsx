@@ -1,4 +1,4 @@
-const {store,setState} = orzMobx({
+const {store,setState} = createReaxable({
 	userinfo : {
 		username:"",
 		
