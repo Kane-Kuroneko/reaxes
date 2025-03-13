@@ -1,17 +1,16 @@
 {
-	"name" : "reaxes" ,
-	"version" : "1.0.0" ,
-	"description" : "A distributed and reactive programming style, which allows you to write the core logic of the app, can run on every view framework." ,
-	"main" : "esm/index.js" ,
-	"module" : "esm/index.js" ,
-	"types" : "types/index.d.ts" ,
-	"author" : "Kane" ,
-	"license" : "WTFPL" ,
-	"dependencies" : {
-		"mobx" : "^6.13.6" ,
-		"lodash" : "4.17.21",
-		"reaxes-utils" : "^1.0.10"
-	} ,
-	"peerDependencies" : {
-	}
+	"name": "reaxes",
+	"version": "1.2.1",
+	"description": "A distributed and reactive programming style, which allows you to write the core logic of the app, can run on every view framework.",
+	"main": "esm/index.js",
+	"module": "esm/index.js",
+	"types": "types/index.d.ts",
+	"author": "Kane",
+	"license": "WTFPL",
+	"dependencies": {
+		"mobx": "^6.13.6",
+		"lodash": "4.17.21",
+		"reaxes-utils": "^2.0.1"
+	},
+	"peerDependencies": {}
 }

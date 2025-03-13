@@ -43,5 +43,5 @@ const requestProfilePromise = (name:string) => utils.orzPromise((res) => {
 	},300);
 });
 
-import { orzPending } from 'reaxes-toolkit';
+import { orzPending } from '../../../../reaxes-toolkit/src';
 import { UserSelect_reaxel } from './user-select';

@@ -10,7 +10,7 @@
 		"experimentalDecorators" : true ,
 		"jsx" : "react-jsx" ,
 		"resolveJsonModule" : true ,
-		"outDir" : "dist" ,
+		"outDir" : "dist/types" ,
 		"strictFunctionTypes" : false ,
 		"strict" : false ,
 		"strictBindCallApply" : false ,

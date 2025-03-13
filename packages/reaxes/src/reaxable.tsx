@@ -1,28 +1,15 @@
 export const createReaxable  = <S extends object>(state : S) => {
 	const store = observable<S>(state);
-	/**
-	 * 可变地修改store内数据, 不使用不可变从外部替换.
-	 * @param partialState 深度递归部分合并state ,
-	 */
-	const mutatePartialState = <T extends object = S>(partialState : Partial<T> , deepStore : any = store) => {
-		for( const key in partialState ) {
-			const value = partialState[key];
-			if( _.isPlainObject(value) ) {
-				if( _.isPlainObject(deepStore[key]) ) {
-					mutatePartialState(value as any , deepStore[key]);
-				}
-			} else if( isBasicType(value) ) {
-				action(() => {
-					deepStore[key] = value;
-				})();
+
+	const setMobxState = action(<S extends {}>(store , partialState : Partial<S>):S => {
+		for(let k of Object.keys(partialState)){
+			if(store.hasOwnProperty(k)){
+				store[k] = partialState[k];
 			}
 		}
-		
-	};
-	
-	const setMobxState = action(<S extends {}>(store , partialState : Partial<S>):S => {
-		return Object.assign(store , partialState);
+		return store;
 	});
+	
 	const mergeMobxState = action(<S extends {}>(store , partialState : Partial<S>):S => {
 		return _.merge(store , partialState);
 	});
@@ -32,6 +19,7 @@ export const createReaxable  = <S extends object>(state : S) => {
 	 */
 	const mutate = <T extends (store:S) => void>(callback:T) => {
 		action(() => callback(store))();
+		return store;
 	};
 	
 	return {
@@ -39,40 +27,12 @@ export const createReaxable  = <S extends object>(state : S) => {
 		mutate,
 		setState : (partialState : Partial<S>) => setMobxState(store , partialState) ,
 		mergeState : (partialState : Partial<S>) => mergeMobxState(store , partialState) ,
-		_UNSTABLE_mutatePartialState :mutatePartialState,
 	};
 };
-/**
- * 创建store时为某个属性设置监听深度
- * 
- * @todo Not implemented yet.
- */
-export const depth = <T = any>(target:T,depth:number):T => {
-	return null
-}
 
-type isBasicType<V> = V extends basicType ? true : false;
-
-type basicType = ( number | boolean | string | symbol | bigint | null | undefined );
-
-
-
-const isBasicType = <V extends any>(value : V) : isBasicType<V> => {
-	
-	if( [ "boolean" , "string" , "undefined" , "number" , "symbol" , "bigint" ].
-	includes(typeof value) ) {
-		return true as any;
-	} else if( value === null ) {
-		return true as any;
-	} else {
-		return false as any;
-	}
-};
 type RecursivePartial<S extends object> = {
 	[p in keyof S]+? : S[p] extends object ? RecursivePartial<S[p]> : S[p];
 };
 
-import {
-	observable ,
-	action ,
-} from 'mobx';
+import { action , observable  } from 'mobx';
+import _ from 'lodash';

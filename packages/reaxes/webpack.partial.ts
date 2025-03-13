@@ -3,10 +3,8 @@ const {
 	ProvidePlugin ,
 } = webpack;
 
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 
 /*will be dynamic imported*/
 export default {
@@ -17,25 +15,11 @@ export default {
 	} ,
 	externals : [
 		'reaxes-utils' ,
-		"reaxes-toolkit" ,
 		'lodash' ,
 		'mobx' ,
 	] ,
 	plugins : [
 		new CleanWebpackPlugin() ,
-		new ProvidePlugin({
-			_ : [ 'lodash' ] ,
-			React : [ 'react' ] ,
-			useState : [ 'react' , 'useState' ] ,
-			useEffect : [ 'react' , 'useEffect' ] ,
-			useRef : [ 'react' , 'useRef' ] ,
-			useLayoutEffect : [ 'react' , 'useLayoutEffect' ] ,
-			useMemo : [ 'react' , 'useMemo' ] ,
-			useCallback : [ 'react' , 'useCallback' ] ,
-			orzPromise : [ 'reaxes-utils' , 'orzPromise' ] ,
-			utils : [ 'reaxes-utils' ] ,
-			crayon : [ 'reaxes-utils' , 'crayon' ] ,
-		}) ,
 		new CopyWebpackPlugin({
 			patterns : [
 				{

@@ -1,6 +1,11 @@
 export const Refaxel_I18n = function (
-	config: Config[] ,
+	languages: LangConf[] ,
+	options?:Options,
 ) {
+	_.assign(options,{
+		setDocumentLang : true,
+	});
+	
 	const { setState , mutate , store } = createReaxable( {
 		language : null as Languages ,
 		//如果loading则是正在加载的语言的Promise
@@ -8,7 +13,7 @@ export const Refaxel_I18n = function (
 	} );
 	
 	const languageMaps: LanguageMap = {};
-	const sourceLanguage = config.find( conf => conf.isSource )?.language;
+	const sourceLanguage = languages.find( conf => conf.isSource )?.language;
 	if(_.isEmpty(sourceLanguage)){
 		throw new Error( '传入的配置中必须有一项拥有<isSource>属性,它作为自然语言编写于代码中' );
 	}
@@ -44,11 +49,13 @@ export const Refaxel_I18n = function (
 			languageChangeCount ++;
 		}
 		
-		document.documentElement.lang = lang;
+		if(options.setDocumentLang){
+			document.documentElement.lang = lang;
+		}
 	};
 	
 	const loadLanguage = ( language: Languages ) => {
-		const target = config.find( conf => conf.language === language );
+		const target = languages.find( conf => conf.language === language );
 		if( !target ) throw new Error( 'd4a5d45as4d5as' );
 		if( target.resourceMap ) {
 			languageMaps[language] = target.resourceMap;
@@ -98,7 +105,7 @@ export const Refaxel_I18n = function (
 		I18n_SetState : setState ,
 		I18n_Mutate : mutate ,
 		statics : {
-			config,
+			languages,
 			languageMaps,
 		},
 		setLanguage ,
@@ -112,11 +119,15 @@ export const Refaxel_I18n = function (
 	};
 };
 
+import { createReaxable } from 'reaxes';
 
 
-
-
-
+type Options = {
+	//修改語言时是否也设置document.documentElement.lang. default:true
+	setDocumentLang? : boolean;
+	//是否立即加载所有语言,而不是等用户切换时懒加载
+	eagerLoadResources : boolean;
+};
 type LanguageMap = {
 	[p in Languages]?: { [p: string]: string }
 };
@@ -138,7 +149,7 @@ type LanguageMap = {
 // 	] ,
 // );
 export type Languages = typeof enum_languages[keyof typeof enum_languages];
-export type Config = /*common keys*/{
+export type LangConf = /*common keys*/{
 	//此项配置的语言的名字
 	language: Languages,
 	//是否默认以这种语言显示

@@ -1,79 +1,39 @@
-import webpack from 'webpack';
-import portfinder from 'portfinder';
-import { fileURLToPath } from 'url';
-import { absProjectRootDir , absProjectRootFileURL } from '../../build/toolkit.mjs';
-import path from 'path';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-
 const {
 	DefinePlugin ,
-	ProvidePlugin,
+	ProvidePlugin ,
 } = webpack;
 
-const obsCurrentPkg = path.join(absProjectRootDir,'packages/reaxes-toolkit');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-
-export const webpackConfig = {/*will be dynamic imported*/	
-	entry : path.join(obsCurrentPkg) ,
+/*will be dynamic imported*/
+export default {
+	entry : path.join(__dirname , 'src/index') ,
 	output : {
-		libraryTarget : 'module' ,
-		module : true ,
-		path : path.join(obsCurrentPkg , "dist") ,
-		filename : 'index.js' ,
+		path : path.join(__dirname,'dist') ,
+		filename : 'esm/index.js' ,
 	} ,
-	devtool : 'source-map' ,
-	experiments : {
-		outputModule : true ,
-	} , 
-	// stats : 'errors-only' ,
 	externals : [
-		'react' ,
-		'react-dom' ,
-		'reaxes' ,
+		'reaxes',
 		'reaxes-utils' ,
-		"reaxes-toolkit" ,
-		'react-router' ,
-		'react-router-dom' ,
 		'lodash' ,
 		'mobx' ,
-		'shallowequal'
 	] ,
-	mode : 'production' ,
-	performance : {
-		maxEntrypointSize : 10000000 ,
-		maxAssetSize : 30000000 ,
-	} ,
 	plugins : [
-		new CleanWebpackPlugin(),
-		getProvidePlugin() ,
+		new CleanWebpackPlugin() ,
 		new CopyWebpackPlugin({
 			patterns : [
 				{
-					from : path.join(obsCurrentPkg,'public/') ,
-					to : path.join(obsCurrentPkg ,'dist/') ,
+					from : path.join(__dirname , 'publish/') ,
+					to : path.join(__dirname , 'dist/') ,
 				} ,
 			] ,
 		}) ,
 	] ,
-};
+} as Configuration;
 
-function getProvidePlugin () {
-	return new ProvidePlugin({
-		_ : ['lodash'] ,
-		React : ['react'] ,
-		useState : ['react' , 'useState'] ,
-		useEffect : ['react' , 'useEffect'] ,
-		useRef : ['react' , 'useRef'] ,
-		useLayoutEffect : ['react' , 'useLayoutEffect'] ,
-		useMemo : ['react' , 'useMemo'] ,
-		useCallback : ['react' , 'useCallback'] ,
-		
-		createReaxable : ['reaxes','createReaxable'],
-		obsReaction : ['reaxes','obsReaction'],
-		collectDeps : ['reaxes',''],
-		utils : ['reaxes-utils'] ,
-		orzPromise : ['reaxes-utils' , 'orzPromise'] ,
-		crayon : ['reaxes-utils' , 'crayon'] ,
-	});
-}
+import path from "node:path";
+import { fileURLToPath } from 'url';
+import webpack , { Configuration } from 'webpack';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';

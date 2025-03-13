@@ -1,7 +1,0 @@
-{
-	"name": "reaxes-utils",
-	"version" : "1.0.10" ,
-	"main" : "index.js",
-	"module" : "index.js",
-	"types" : "./types/index.d.ts"
-}

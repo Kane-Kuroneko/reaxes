@@ -1,21 +1,29 @@
 {
-	"name" : "refaxel-i18n" ,
-	"version" : "0.0.1" ,
-	"description" : "i18n powered by 'reaxes' lib, can be used with React,Vue2,Vue3 etc." ,
-	"main" : "index.js" ,
-	"scripts" : {
-		"test" : "echo \"Error: no test specified\" && exit 1"
-	} ,
-	"repository" : {
-		"type" : "git" ,
-		"url" : "https://github.com/CainKane/Reaxes.git"
-	} ,
-	"peerDependencies" : {
-		"react" : ">=16.9.0",
-		"react-dom" : ">=16.9.0"
-	} ,
-	"dependencies" : {
-		"lodash" : "^4.17.21"
-	} ,
-	"private" : true
+	"name": "refaxel-i18n",
+	"version": "0.0.1",
+	"description": "i18n powered by 'reaxes' lib, can be used with React,Vue2,Vue3 etc.",
+	"main": "index.tsx",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/CainKane/Reaxes.git"
+	},
+	"peerDependencies": {
+		"react": ">=16.9.0",
+		"react-dom": ">=16.9.0"
+	},
+	"dependencies": {
+		"lodash": "^4.17.21",
+		"reaxes" : "^1.0.0",
+		"reaxes-utils" : "^1.0.10",
+		"reaxes-toolkit" : "^0.0.12",
+		"reaxes" : "^1.0.1"
+	},
+	"private": true,
+	"devDependencies": {
+		"typescript": "^5.8.2",
+		"@types/react" : "^19.0.10"
+	}
 }

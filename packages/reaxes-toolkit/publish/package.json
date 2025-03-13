@@ -1,0 +1,14 @@
+{
+	"name": "reaxes-toolkit",
+	"version": "1.0.4",
+	"description": "Toolkit Based on `reaxes`",
+	"main": "esm/index.js",
+	"module": "esm/index.js",
+	"license": "WTFPL",
+	"repository" : "https://github.com/Kane-Kuroneko/reaxes/tree/main/packages/reaxes-toolkit/publish/readme.md" ,
+	"types": "types/index.d.ts",
+	"dependencies": {
+		"reaxes": "^1.1.0",
+		"reaxes-utils": "^2.0.0"
+	}
+}

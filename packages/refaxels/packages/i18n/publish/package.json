@@ -1,0 +1,17 @@
+{
+	"name" : "refaxel-i18n" ,
+	"version" : "1.0.0" ,
+	"description" : "为您的reaxes应用提供国际化支持" ,
+	"main" : "esm/index.js" ,
+	"exports" : {
+		"./react" : "./esm/views/react/index.js"
+	} ,
+	"repository" : {
+		"type" : "git" ,
+		"url" : "https://github.com/CainKane/reaxes.git"
+	} ,
+	"dependencies" : {
+		"reaxes" : "^1.0.0"
+	} ,
+	"private" : false
+}

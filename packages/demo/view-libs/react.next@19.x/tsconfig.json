@@ -23,7 +23,9 @@
 		 "reaxels/*" : ["./reaxels/*"],
 		 "reaxes": ["./libs/reaxes"],
 		 "reaxes-utils": ["./libs/reaxes-utils"],
-		 "reaxes-react": ["./libs/reaxes-react"]
+		 "reaxes-react": ["./libs/reaxes-react"],
+		 "refaxels/*" : ["../../../refaxels/packages/*"],
+		 "reaxels/*" : ["../../../reaxels/packages/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

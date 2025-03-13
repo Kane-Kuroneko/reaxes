@@ -1,4 +1,4 @@
-
+//@ts-nocheck
 /**
  * 优雅的条件渲染器
  * @example 

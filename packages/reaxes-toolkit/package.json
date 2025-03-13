@@ -1,9 +1,12 @@
 {
 	"name": "reaxes-toolkit",
-	"version" : "1.1.1" ,
-	"main" : "src/index.tsx",
-	"peerDependencies" : {
-	} ,
-	"dependencies" : {
+	"version": "1.1.1",
+	"main": "src/index.ts",
+	"devDependencies": {
+		"@types/mocha": "^10.0.10",
+		"mocha": "^11.1.0"
+	},
+	"dependencies": {
+		"reaxes": "^1.1.0"
 	}
 }

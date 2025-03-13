@@ -20,19 +20,19 @@ _reaxes的设计哲学是:应用的逻辑应该与其他模块解耦,特别是`�
 import { createReaxable , obsReaction } from 'reaxes';
 
 export const reaxel_Counter = reaxel(() => {
-	//create a reactive store , so you can subscribe changes when you need.
-	const { store , setState } = createReaxable({
-		count : 0
-	});
-	
-	return {
-		get count(){
-			return store.count;
-		} ,
-		setCount( count: number ){
-			setState({ count });
-		}
-	}
+   //create a reactive store , so you can subscribe changes when you need.
+   const { store , setState } = createReaxable({
+      count : 0
+   });
+   
+   return {
+      get count(){
+         return store.count;
+      } ,
+      setCount( count: number ){
+         setState({ count });
+      }
+   }
 })
 ```
 
@@ -44,24 +44,24 @@ import { reaxel_Counter } from './reaxels/counter';
 import { obsReaction } from 'reaxes';
 
 function render(){
-	const { count , setCount } = reaxel_Counter();
-	
-	const div = document.createElement('div');
-	div.onclick = () => setCount(count + 1);
-	div.innerText = count;
-	return div;
+   const { count , setCount } = reaxel_Counter();
+   
+   const div = document.createElement('div');
+   div.onclick = () => setCount(count + 1);
+   div.innerText = count;
+   return div;
 }
 
 //listen store.count , once it changes,render() will be re-runed automatically
 obsReaction(
-	( first , dispose ) => {
-		document.write(render());
-		if(first){
-			console.log('div element mounted');
-		}
-	} ,
-	//place all observable props here
-	() => [ reaxel_Counter().count ]
+   ( first , dispose ) => {
+      document.write(render());
+      if(first){
+         console.log('div element mounted');
+      }
+   } ,
+   //place all observable props here
+   () => [ reaxel_Counter().count ]
 );
 ```
 
@@ -76,11 +76,11 @@ import { reaxel_Counter } from './reaxels/counter';
 
 // functional component
 export const Count = reaxper(() => {
-	const {count,setCount} = reaxel_Counter();
-	
-	return <div onClick = { () => setCount(count+1) }>
-		count:{ count }
-	</div>;
+   const {count,setCount} = reaxel_Counter();
+   
+   return <div onClick = { () => setCount(count+1) }>
+      count:{ count }
+   </div>;
 });
 
 // or use class component
@@ -88,39 +88,39 @@ import { Component } from 'react';
 
 @reaxper
 class CountComponent extends Component {
-	
-	render(){
-		const {count,setCount} = reaxel_Counter();
-		
-		return <div onClick = { () => setCount(count+1) }>
-			count:{ count }
-		</div>;
-	}
+   
+   render(){
+      const {count,setCount} = reaxel_Counter();
+      
+      return <div onClick = { () => setCount(count+1) }>
+         count:{ count }
+      </div>;
+   }
 }
 
 ```
 ## using with Vue2
 ```vue
 <template>
-	<div @click="setCount()">
-		{{ count }}
-	</div>
+   <div @click="setCount()">
+      {{ count }}
+   </div>
 </template>
 <script>
-	import { reaxel_Counter } from './reaxels/counter';
-	
-	export default {
-		status(){
-			const {count} = reaxel_Counter();
-			return { count };
-		},
-		methods:{
-			setCount(){
-				const {count,setCount} = reaxel_Counter();
-				setCount(count+1);
-			}
-		}
-	}
+   import { reaxel_Counter } from './reaxels/counter';
+   
+   export default {
+      status(){
+         const {count} = reaxel_Counter();
+         return { count };
+      },
+      methods:{
+         setCount(){
+            const {count,setCount} = reaxel_Counter();
+            setCount(count+1);
+         }
+      }
+   }
 </script>
 ```
 
