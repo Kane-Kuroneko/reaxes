@@ -1,6 +1,5 @@
-import { Component } from 'react';
-import { observer as observerLite , parentObserver} from 'reaxes-react/libs/mobx-react-lite';
-import { observer } from 'reaxes-react/libs/mobx-react';
+import { observer as observerLite , parentObserver } from '../mobx-react-lite';
+import { observer } from '../mobx-react';
 
 type Props = {
 	instance: React.Component;
@@ -11,7 +10,6 @@ type Props = {
  * @param OriginalComponent
  */
 export function withHoC<T extends ( React.Component & React.FC )>( OriginalComponent: T ) {
-	
 	
 	/*this is a FC*/
 	if ( !OriginalComponent.prototype?.render ) {
@@ -28,7 +26,6 @@ export function withHoC<T extends ( React.Component & React.FC )>( OriginalCompo
 	
 	function HooksProvider( { instance } , ref ,  ): any {
 		
-	
 		return baseRender.call(instance);
 	}
 	
@@ -37,12 +34,10 @@ export function withHoC<T extends ( React.Component & React.FC )>( OriginalCompo
 	HooksProvider.displayName = componentName + 'Hooks';
 	const H = parentObserver( HooksProvider );
 	
-	
 	OriginalComponent.prototype.render = function (){
 		// return React.createElement()
 		return <H instance={this} /*random = {Math.random()}*//>
 	};
-	
 	
 	return observer(OriginalComponent);
 }

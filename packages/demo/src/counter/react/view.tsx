@@ -27,4 +27,4 @@ export const Counter = reaxper( () => {
 } );
 
 import { reaxel_counter } from '../reaxel';
-import { reaxper } from 'reaxes-react';
+import { reaxper } from '../../../../reaxes-react/src';

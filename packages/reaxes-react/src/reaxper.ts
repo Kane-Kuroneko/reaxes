@@ -2,7 +2,7 @@ import {
 	compose ,
 	withHoC ,
 } from './enhancer';
-import {observer} from 'reaxes-react/libs/mobx-react';
+import {observer} from './mobx-react';
 const componentHasWrapped = Symbol( '' );
 
 export const reaxper = <T extends {}>(component : T) : T => {

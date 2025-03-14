@@ -10,18 +10,18 @@ export const Refaxel_Lottie = <SchemeNames extends string>( initOptions: Options
 			toggling : null as SchemeNames,
 			sleeping : false,
 		} );
-		let lottiePromise = orzPromise<LottieRef['current']>();
+		let lottiePromise = xPromise<LottieRef['current']>();
 		
-		Reaxes.obsReaction( () => {
+		obsReaction( () => {
 			if( store.lottie ) {
 				lottiePromise.resolve( store.lottie );
 			}
 		} , () => [ store.lottie ] );
 		
-		let togglePromise : OrzPromise<null> & {playing? : SchemeNames};
+		let togglePromise : XPromise<null> & {playing? : SchemeNames};
 		
 		let sleepTimeoutID = null;
-		let sleepingPromise : OrzPromise;
+		let sleepingPromise : XPromise;
 		
 		return () => {
 			/**
@@ -54,7 +54,7 @@ export const Refaxel_Lottie = <SchemeNames extends string>( initOptions: Options
 					if(store.playing) return togglePromise;
 					if(store.sleeping) return sleepingPromise;
 					setState( { playing : true,toggling : name  } );
-					togglePromise = orzPromise();
+					togglePromise = xPromise();
 					togglePromise.playing = name;
 					lottiePromise.then( ( lottie ) => {
 						const scheme = initOptions.schemes.find( s => s.name === name );
@@ -73,7 +73,7 @@ export const Refaxel_Lottie = <SchemeNames extends string>( initOptions: Options
 						lottie.playSegments( scheme.segments , true );
 						console.log( '将要变化为:' , name , initOptions.schemes.find( s => s.name === name ).segments);
 					} );
-					return togglePromise as OrzPromise<SchemeNames>;
+					return togglePromise as XPromise<SchemeNames>;
 				} ,
 				onComplete() {
 					// console.log('completed' , {
@@ -93,7 +93,7 @@ export const Refaxel_Lottie = <SchemeNames extends string>( initOptions: Options
 					if(store.sleeping) throw new Error('当前lottie正在sleep,请在sleep的promise后再调用sleep');
 					setState({sleeping : true});
 					crayon.orange('睡眠中...')
-					sleepingPromise = orzPromise();
+					sleepingPromise = xPromise();
 					sleepTimeoutID = setTimeout( () => {
 						sleepingPromise.resolve( null );
 						crayon.green( '睡醒了' );
@@ -106,7 +106,7 @@ export const Refaxel_Lottie = <SchemeNames extends string>( initOptions: Options
 					lottiePromise.then( ( lottie ) => {
 						// lottie.destroy();
 					} );
-					lottiePromise = orzPromise();
+					lottiePromise = xPromise();
 				} ,
 			};
 			return ret;
@@ -131,5 +131,5 @@ export type Options<SchemeNames extends string> = {
 
 import type { LottieRef , LottieOptions } from 'lottie-react';
 import { AnimationDirection } from 'lottie-web';
-import { orzPromise , OrzPromise } from 'reaxes-utils';
-import { createReaxable , Reaxes } from 'reaxes';
+import { xPromise , XPromise , crayon } from 'reaxes-utils';
+import { createReaxable , reaxel , distinctCallback,obsReaction } from 'reaxes';

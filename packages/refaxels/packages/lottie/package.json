@@ -11,7 +11,8 @@
 		"url" : "https://github.com/CainKane/Reaxes.git"
 	} ,
 	"dependencies" : {
-		"lottie-react": "^2.4.1",
+		"reaxes" : "^1.2.1",
+		"reaxes-utils" : "^2.0.2",
 		"lottie-web": "^5.12.2"
 	} ,
 	"private" : true

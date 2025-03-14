@@ -1,9 +1,3 @@
-import { observable } from "mobx";
-import { Component } from "react";
-
-if ( !Component ) throw new Error( "mobx-react requires React to be available" );
-if ( !observable ) throw new Error( "mobx-react requires mobx to be available" );
-
 export {
 	Observer ,
 	useObserver ,
@@ -14,7 +8,7 @@ export {
 	enableStaticRendering ,
 	observerBatching ,
 	useLocalObservable,
-} from "reaxes-react/libs/mobx-react-lite";
+} from "../mobx-react-lite";
 
 export { observer } from "./observer";
 

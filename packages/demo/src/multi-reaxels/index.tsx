@@ -3,7 +3,7 @@ import {
 	reaxper ,
 	createReaxable ,
 	Reaxes ,
-} from 'reaxes-react';
+} from '../../../reaxes-react/src';
 
 import { reaxel__user } from './reaxel--user';
 
