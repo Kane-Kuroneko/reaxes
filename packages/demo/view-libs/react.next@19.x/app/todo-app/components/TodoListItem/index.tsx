@@ -95,6 +95,6 @@ export const TodoListItem = reaxper(( props: {
 
 import React , { useEffect , useRef , useState } from 'react';
 import { reaxper } from 'reaxes-react';
-import { TodoItem } from 'reaxels/todo-app/types/exports';
-import { reaxel_TodoList } from 'reaxels/todo-app/todo-list';
+import { TodoItem } from '@/reaxels/todo-app/types/exports';
+import { reaxel_TodoList } from '@/reaxels/todo-app/todo-list';
 import style from './style.module.css';

@@ -3,9 +3,8 @@
 export default reaxper(() => {
 	return <div className = { style['todo-app-root'] }>
 		<TodoAdder />
-		<TodoList />
-		
 		<ListFilter/>
+		<TodoList />
 	</div>;
 });
 

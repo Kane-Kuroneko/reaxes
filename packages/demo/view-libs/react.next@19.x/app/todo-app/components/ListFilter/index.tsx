@@ -1,6 +1,6 @@
 export const ListFilter = reaxper(() => {
-	const { setFilterCriteria , ListFilter_Store } = reaxel_ListFilter();
-	const { filterCriteria } = ListFilter_Store;
+	const { setFilterCriteria } = reaxel_ListFilter();
+	const { filterCriteria } = reaxel_ListFilter.store;
 	const onChange = ( event: React.ChangeEvent<HTMLInputElement> ) => {
 		switch( event.target.value ) {
 			case "all": {
@@ -68,6 +68,6 @@ export const ListFilter = reaxper(() => {
 
 import React from 'react';
 import { reaxper } from 'reaxes-react';
-import { reaxel_ListFilter } from 'reaxels/todo-app/filter-list';
-import { FilterType  } from 'reaxels/todo-app/types/exports';
+import { reaxel_ListFilter } from '@/reaxels/todo-app/filter-list';
+import { FilterType  } from '@/reaxels/todo-app/types/exports';
 import style from './style.module.css';

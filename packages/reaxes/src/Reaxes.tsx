@@ -1,17 +1,25 @@
-export function obsReaction<F extends (first? : boolean , disposer? : IReactionDisposer) => any>(callback : F , dependencies:() => Array<any>) : ReturnType<F>{
-	let depList = dependencies();
-	const disposer = reaction(dependencies , (data , reaction) => {
-		const dataChanged = !utils.shallowEqual(data , depList);
-		if( dataChanged ) {
-			callback(false , disposer);
-			depList = data;
-		} else {
-			// crayon.red( 'reaction called but data not changed' );
-		}
+export function obsReaction<F extends ( first?: boolean , disposer?: Disposer ) => any>( callback: F , dependencies: () => Array<any> ): Disposer {
+		
+	let promise = utils.xPromise<() => void>();
+	const disposer = () => promise.then(dis => dis());
+	asapAsyncRun(() => {
+		let depList = dependencies();
+		const mobxReactionDisposer = reaction(dependencies , ( data , reaction ) => {
+			const dataChanged = !utils.shallowEqual(data , depList);
+			if( dataChanged ) {
+				callback(false , disposer);
+				depList = data;
+			} else {
+				// crayon.red( 'reaction called but data not changed' );
+			}
+		});
+		callback(true , disposer);
+		promise.resolve(mobxReactionDisposer );
 	});
-	return callback(true , disposer);
+	
+	return disposer;
 };
-
+type Disposer = () => void
 /**
  * 注册时传入回调函数 和依赖组, 之后每一次调用都会比对依赖组,如果改变则会执行回调函数
  */
@@ -50,6 +58,17 @@ export function collectDeps (store , propKeys : ( string | number | symbol )[] =
 	}
 };
 
+function asapAsyncRun<F extends Function>(cb: F): void {
+	let asap;
+	if (typeof window !== 'undefined') {
+		asap = window.queueMicrotask ?? (window.Promise && window.Promise.resolve().then) ?? ((cb) => window.setTimeout(cb, 0));
+	} else if (typeof process !== 'undefined' && process.nextTick) {
+		asap = process.nextTick;
+	} else {
+		asap = (cb) => setTimeout(cb, 0);
+	}
+	asap(cb);
+}
 
 import {
 	reaction ,

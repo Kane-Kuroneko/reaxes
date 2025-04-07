@@ -1,3 +1,7 @@
+# 2.0.5
+* Fixed obsReaction disposer.
+# 2.0.4
+* Fixed the type of xPromise; it now matches the standard Promise
 # 2.0.3
 * Fixed package.json exports issue.
 # 2.0.2

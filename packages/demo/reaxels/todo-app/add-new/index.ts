@@ -1,36 +1,38 @@
 export const reaxel_AddNew = reaxel(() => {
-	const {store,setState,mutate} = createReaxable({
-		addInputValue : '',
+	const { store, setState, mutate } = createReaxable({
+		addInputValue: '',
 	});
 	
 	let todoItemId = 0;
 	
 	const addNew = () => {
-		const { TodoList_Mutate } = reaxel_TodoList();
-		TodoList_Mutate(s => {
+		reaxel_TodoList.mutate(s => {
 			s.todoList.push({
-				id : ++todoItemId ,
-				checked : false ,
-				content : store.addInputValue ,
-				important : false ,
+				id: ++todoItemId,
+				checked: false,
+				content: store.addInputValue,
+				important: false,
 			});
 			
-			console.log(JSON.stringify(s.todoList , null , 3));
+			console.log(JSON.stringify(s.todoList, null, 3));
 		});
 	};
-	const setAddInput = (value:string) => {
-		setState({ addInputValue : value });
-	}
 	
-	const rtn = {
-		AddNew_Store:store,
-		AddNew_SetState:setState,
-		AddNew_Mutate:mutate,
-		addNew,
-		setAddInput,
+	const setAddInput = (value: string) => {
+		setState({ addInputValue: value });
 	};
-	return () => rtn;
-})
+	
+	return Object.assign(() => {
+		return {
+			addNew,
+			setAddInput,
+		};
+	}, {
+		store,
+		setState,
+		mutate,
+	});
+});
 
 
 import { reaxel_TodoList } from '../todo-list';

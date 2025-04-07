@@ -1,34 +1,35 @@
 export const reaxel_ListFilter = reaxel(() => {
-	const { store , setState , mutate } = createReaxable({
-		filterCriteria : null as FilterType ,
-		get filteredTodoList(){
-			const { TodoList_Store } = reaxel_TodoList();
-			return TodoList_Store.todoList.filter(( item ) => {
-				switch( store.filterCriteria ) {
-					case null :
+	const { store, setState, mutate } = createReaxable({
+		filterCriteria: null as FilterType,
+		get filteredTodoList() {
+			return reaxel_TodoList.store.todoList.filter(item => {
+				switch (store.filterCriteria) {
+					case null:
 						return true;
-					case "active" :
+					case 'active':
 						return !item.checked;
-					case "completed" :
+					case 'completed':
 						return item.checked;
-					case "starred" :
+					case 'starred':
 						return item.important;
 				}
 			});
-		} ,
+		},
 	});
 	
-	const setFilterCriteria = ( criteria: FilterType ) => {
-		setState({ filterCriteria : criteria });
+	const setFilterCriteria = (criteria: FilterType) => {
+		setState({ filterCriteria: criteria });
 	};
 	
-	const rtn = {
-		ListFilter_Store : store ,
-		ListFilter_SetState : setState ,
-		ListFilter_Mutate : mutate ,
-		setFilterCriteria ,
-	};
-	return () => rtn;
+	return Object.assign(() => {
+		return {
+			setFilterCriteria,
+		};
+	}, {
+		store,
+		setState,
+		mutate,
+	});
 });
 
 
