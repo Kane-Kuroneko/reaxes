@@ -20,10 +20,6 @@
     ],
     "paths": {
       "@/*": ["./*"],
-		 "reaxes": ["./libs/reaxes/esm"],
-		 "reaxes-utils": ["./libs/reaxes-utils/esm"],
-		 "reaxes-react": ["./libs/reaxes-react/esm"],
-		 "reaxes-react/*": ["./libs/reaxes-react/*"],
 		 "refaxels/*" : ["../../../refaxels/packages/*"],
 		 "reaxels/*" : ["../../../reaxels/packages/*"],
     }

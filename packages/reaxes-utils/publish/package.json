@@ -1,14 +1,17 @@
 {
 	"name": "reaxes-utils",
-	"version": "2.0.5",
+	"version": "2.0.7",
 	"main": "esm/index.js",
 	"module": "esm/index.js",
 	"exports": {
 		".": {
-			"import": "./esm/index.js"
+			"import": "./esm/index.js",
+			"types" : "./types/index.d.ts"
+			
 		},
 		"./react-hooks": {
-			"import": "./esm/react-hooks/index.js"
+			"import": "./esm/react-hooks/index.js",
+			"types" : "./types/react-hooks/index.d.ts"
 		}
 	},
 	"typesVersions": {
@@ -17,6 +20,5 @@
 				"./types/react-hooks/index.d.ts"
 			]
 		}
-	},
-	"types": "./types/index.d.ts"
+	}
 }

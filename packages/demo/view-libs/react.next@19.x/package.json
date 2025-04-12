@@ -14,7 +14,11 @@
     "next": "15.1.7",
     "next-with-less": "^3.0.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+	  "reaxes" : "file:../../../reaxes/dist",
+	  "reaxes-utils" : "file:../../../reaxes-utils/dist",
+	  "reaxes-toolkit" : "file:../../../reaxes-toolkit/dist",
+	  "reaxes-react" : "file:../../../reaxes-react/dist"
   },
   "devDependencies": {
     "@types/node": "^20",

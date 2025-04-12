@@ -4,6 +4,7 @@ _reaxes的设计哲学是:应用的逻辑应该与其他模块解耦,特别是`�
 * 将复杂的业务逻辑从视图组件中抽离, 数据和逻辑将在应用的任何地方可用,而不再是组件和hooks中了.
 * 跨视图同构你的应用,一套逻辑,可以在react,vue中轻易通用而不用修改任何组件代码.甚至native app , web , 小程序中都可以通用,只需要根据宿主环境做些判断.
 
+### 注意:1.x.x大版本并不稳定,每个中间版本号增加都意味着api可能会修改或删除
 ## Installation
 `$ npm i -S reaxes`
 
@@ -20,20 +21,26 @@ _reaxes的设计哲学是:应用的逻辑应该与其他模块解耦,特别是`�
 import { createReaxable , obsReaction } from 'reaxes';
 
 export const reaxel_Counter = reaxel(() => {
-   //create a reactive store , so you can subscribe changes when you need.
-   const { store , setState } = createReaxable({
-      count : 0
-   });
-   
-   return {
-      get count(){
-         return store.count;
-      } ,
-      setCount( count: number ){
-         setState({ count });
-      }
-   }
-})
+	//create a reactive store , so you can subscribe changes when you need.
+	const { store , setState , mutate } = createReaxable({
+		count : 0,
+	});
+	
+	return Object.assign(() => {
+		return {
+			get count(){
+				return store.count;
+			} ,
+			setCount( count: number ){
+				setState({ count });
+			} ,
+		};
+	} , {
+		store ,
+		setState ,
+		mutate ,
+	});
+});
 ```
 
 ## Using with vallina JS

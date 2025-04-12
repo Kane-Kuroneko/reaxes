@@ -1,3 +1,5 @@
+# 2.0.6
+Fixed types
 # 2.0.5
 * Fixed obsReaction disposer.
 # 2.0.4
