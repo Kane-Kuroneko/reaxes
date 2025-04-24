@@ -2,12 +2,13 @@
 	"name": "reaxes",
 	"version": "1.1.1",
 	"description": "",
-	"main": "src/index.tsx",
+	"main": "src/index.ts" ,
 	"author": "Kane",
 	"license": "WTFPL",
 	"dependencies": {
 		"lodash": "4.17.21",
-		"mobx": "^6.13.6"
+		"mobx": "^6.13.6",
+		"reaxes-utils": "^2.0.7"
 	},
 	"devDependencies": {
 		"@types/lodash": "^4.17.16"

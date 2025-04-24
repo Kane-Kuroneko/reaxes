@@ -1,3 +1,5 @@
+type Disposer = () => void;
+
 export function obsReaction<F extends ( first?: boolean , disposer?: Disposer ) => any>( callback: F , dependencies: () => Array<any> ): Disposer {
 		
 	let promise = utils.xPromise<() => void>();
@@ -19,42 +21,48 @@ export function obsReaction<F extends ( first?: boolean , disposer?: Disposer ) 
 	
 	return disposer;
 };
-type Disposer = () => void
 /**
  * 注册时传入回调函数 和依赖组, 之后每一次调用都会比对依赖组,如果改变则会执行回调函数
+ * @example
+ * ```ts
+ * const [distinctInvoker,resetDeps] = distinctCallback((name,age) => {
+ * 	console.log(name,age);
+ * }, () => [varA , varB]);
+ * ```
  */
-export function distinctCallback<T extends (...args:any[]) => any>(callback:T , deps = () => []){
+export function distinctCallback<T extends (...args) => any>(callback:T , deps : () => any[]){
 	let depList = deps();
-	let currentReturn ;
-	return [
-		(depsSetter) => {
-			const tempDepsList = depsSetter(depList);
-			return (...args) => {
-				/*debug时打开*/
-				// console.log(!utils.default.shallowEqual(depList,tempDepsList),depList,tempDepsList);
-				if( !utils.shallowEqual(depList , tempDepsList) ) {
-					let ret = currentReturn = callback(...args);
-					depList = tempDepsList;
-					return { next:(cb) => cb(currentReturn) };
-				}
-			};
-		} , () => {
+	return Object.assign((depsSetter:() => any[]) => {
+		const tempDepsList = depsSetter();
+		
+		return (...args:Parameters<T>) => {
+			/*debug时打开*/
+			// console.log(!utils.default.shallowEqual(depList,tempDepsList),depList,tempDepsList);
+			if( !utils.shallowEqual(depList , tempDepsList) ) {
+				return callback(...args);
+				depList = tempDepsList;
+			}
+		};
+	},{
+		resetDeps (){
 			depList = deps();
-		},
-	];
+		}
+	});
 }
-/*手动收集依赖,使组件响应store的值变化. keys是要指定响应的属性
-	 *如果不传propKeys则整个store的变化都会引起重新渲染*/
-export function collectDeps (store , propKeys : ( string | number | symbol )[] = [])  {
-	if( ! _.isObject(store) ) throw 'the store argument must be a mobx observed object';
-	if( propKeys.length ) {
-		propKeys.forEach((key) => {
-			store[key];
-		});
+
+/** 手动收集依赖,使组件响应store的值变化. keys是要指定响应的属性
+ * 如果不传propKeys则整个store的变化都会引起重新渲染
+ */
+export function collectDeps <T>(store : T , propKeys? : (keyof T)[] )  {
+	if( ! _.isObject(store) ) throw 'the store argument must be a Mobx observed object';
+	if(!propKeys){
+		Object.getOwnPropertyNames(store).forEach((k) => store[k]);
+		return;
+	}
+	if(_.isArray(propKeys) && propKeys.length ) {
+		propKeys.forEach((k) => store[k]);
 	} else {
-		Object.getOwnPropertyNames(store).forEach((key) => {
-			store[key];
-		});
+		Object.getOwnPropertyNames(store).forEach((k) => store[k]);
 	}
 };
 

@@ -132,4 +132,4 @@ export type Options<SchemeNames extends string> = {
 import type { LottieRef , LottieOptions } from 'lottie-react';
 import { AnimationDirection } from 'lottie-web';
 import { xPromise , XPromise , crayon } from 'reaxes-utils';
-import { createReaxable , reaxel , distinctCallback,obsReaction } from 'reaxes';
+import { createReaxable , reaxel , distinctCallback,obsReaction } from 'reaxes/src';

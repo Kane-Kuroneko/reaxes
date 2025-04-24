@@ -1,6 +1,6 @@
 {
 	"name": "reaxes",
-	"version": "1.2.1",
+	"version": "1.3.1",
 	"description": "A distributed and reactive programming style, which allows you to write the core logic of the app, can run on every view framework.",
 	"main": "esm/index.js",
 	"module": "esm/index.js",

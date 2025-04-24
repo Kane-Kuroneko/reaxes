@@ -1,5 +1,5 @@
 <script lang="ts">
-import { createReaxable } from 'reaxes';
+import { createReaxable } from 'reaxes/src';
 import {reaxper} from 'reaxes-vue2'
 import { reaxel_counter } from '../../../src/counter/reaxel';
 export default reaxper({

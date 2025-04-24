@@ -1,7 +1,11 @@
 'use client';
-
+const distinct = distinctCallback((x) => {
+	
+} , () => [reaxel_Auth.store.input_username]);
 export default reaxper(() => {
 	const { statics , setInputName , token , login } = reaxel_Auth();
+	distinct(() => [])('1');
+	
 	if( token ) {
 		return <Profile />;
 	} else {
@@ -85,3 +89,4 @@ import { reaxel_Auth } from './reaxels/auth';
 import { reaxel_Profile } from './reaxels/user-bio';
 import React from 'react';
 import { reaxper } from 'reaxes-react';
+import { distinctCallback } from 'reaxes';

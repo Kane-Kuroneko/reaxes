@@ -1,5 +1,40 @@
+# 1.3.1
+* Type Fix: The second argument of collectDeps should be optional.
+
 # 1.3.0
 
+* distinctCallback修改了返回api , 去除了返回{next}对象 , 并且不再返回元祖 而是返回带resetDeps函数的distinct函数.   
+ 现在的用法:
+```tsx
+// 此函数在react组件中可直接运行,无需useeffect,会自动对比依赖数组,只有依赖变化时才会执行
+// 在这种场景下和obsReaction的区别是,obsReaction会在依赖变化时立即执行一次,而distinctCallback则是等到用户触及与此视图时才会执行.适用于懒加载等场景
+const distinct = distinctCallback((id:string) => {
+	fetch(`/api/user?id=${id}`).
+	then(res => res.json()).
+	then(( profile ) => {
+		setState(profile);
+	});
+}, () => [reaxel_User.store.id]);
+
+//using in react for example
+import {reaxel_Profile} from '#reaxels/profile';
+
+const Profile = reaxper(() => {
+	const { profile } = reaxel_Profile.store;
+	//No need useEffect anymore, data is nolonger related to UI.
+	//第一次调用时传入依赖数组, 会根据依赖数组的变化来决定第二次调用是否会被实际执行
+	distinct(() => [reaxel_User.store.id])(reaxel_User.store.id);
+	
+	if(!profile) {
+		return <div>loading...</div>;		
+	}
+	
+	return <div>
+		<p>name:{profile.name}</p>
+		<p>age:{profile.age}</p>
+	</div>
+})
+```
 * 重大更改:1.3.0版本后改变reaxel的范式且obsReaction的第一次调用为asapAsync即异步但尽快调用 , 用于解决循环引用问题:
    * 新范式:
 ```ts
