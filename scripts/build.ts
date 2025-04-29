@@ -45,9 +45,10 @@ const build = async () => {
 const tsc = async () => {
 	return new Promise((resolve, reject) => {
 		exec('tsc' , {
-			cwd : targetDir
+			cwd : targetDir,
 		} , (error, stdout, stderr) => {
 			if (error) {
+				console.error(chalk.red(stdout));
 				reject(error);
 				return;
 			}

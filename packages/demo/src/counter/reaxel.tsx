@@ -15,7 +15,7 @@ export const reaxel_counter = reaxel(() => {
 		setState( { count : store.count + count } );
 	}
 	
-	Reaxes.obsReaction( () => {
+	obsReaction( () => {
 		console.log(store.count);
 	} , () => [store.count] );
 	
@@ -33,4 +33,4 @@ export const reaxel_counter = reaxel(() => {
 	}
 });
 
-import {Reaxes,reaxel,createReaxable} from 'reaxes';
+import { reaxel , createReaxable , obsReaction } from 'reaxes';

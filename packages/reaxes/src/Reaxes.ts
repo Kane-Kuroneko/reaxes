@@ -78,6 +78,14 @@ function asapAsyncRun<F extends Function>(cb: F): void {
 	asap(cb);
 }
 
+const devtime = {
+	trace,
+	getDependencyTree,
+	getObserverTree,
+};
+import { trace , getDependencyTree , getObserverTree } from 'mobx';
+export { untracked , toJS } from 'mobx';
+
 import {
 	reaction ,
 	IReactionDisposer ,

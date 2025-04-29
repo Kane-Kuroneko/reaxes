@@ -5,11 +5,13 @@ const __dirname = path.dirname(__filename);
 export default {
 	entry : path.join(__dirname , 'src/index') ,
 	output : {
-		path : path.join(__dirname,'dist') ,
+		path : path.join(__dirname , 'dist') ,
 		filename : 'esm/index.js' ,
 	} ,
 	externals : [
+		'reaxes' ,
 		'reaxes-utils' ,
+		'reaxes-toolkit' ,
 		'lodash' ,
 		'mobx' ,
 	] ,

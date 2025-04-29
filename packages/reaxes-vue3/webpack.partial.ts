@@ -1,42 +1,30 @@
-import webpack from 'webpack';
-import portfinder from 'portfinder';
-import { fileURLToPath } from 'url';
-import { absProjectRootDir , absProjectRootFileURL } from '../../build/toolkit.mjs';
-import path from 'path';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-
 const {
 	DefinePlugin ,
-	ProvidePlugin,
+	ProvidePlugin ,
 } = webpack;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const obsCurrentPkg = path.join(absProjectRootDir , 'packages/reaxes-vue3');
 
-const obsCurrentPkg = path.join(absProjectRootDir,'packages/reaxes-vue3');
 
-
-export const webpackConfig = {/*will be dynamic imported*/	
-	entry : path.join(obsCurrentPkg,'src') ,
+export default {/*will be dynamic imported*/
+	entry : path.join(__dirname , 'src/index') ,
 	output : {
-		libraryTarget : 'module' ,
-		module : true ,
-		path : path.join(obsCurrentPkg , "dist") ,
-		filename : 'index.js' ,
+		path : path.join(__dirname , 'dist') ,
+		filename : 'esm/index.js' ,
 	} ,
 	devtool : 'source-map' ,
-	experiments : {
-		outputModule : true ,
-	} , 
-	resolve:{
+	resolve : {
 		alias : {
-			"mobx-vue" : path.join(absProjectRootDir,"libs/mobx-vue-lite"),
-		}
-	},
+			"mobx-vue" : path.join(absProjectRootDir , "libs/mobx-vue-lite") ,
+		},
+	} ,
 	// stats : 'errors-only' ,
 	externals : [
-		"reaxes",
+		"reaxes" ,
 		'reaxes-utils' ,
 		"reaxes-toolkit" ,
-		"vue",
+		"vue" ,
 		'lodash' ,
 		'mobx' ,
 	] ,
@@ -46,31 +34,22 @@ export const webpackConfig = {/*will be dynamic imported*/
 		maxAssetSize : 30000000 ,
 	} ,
 	plugins : [
-		new CleanWebpackPlugin(),
-		getProvidePlugin() ,
+		new CleanWebpackPlugin() ,
 		new CopyWebpackPlugin({
 			patterns : [
 				{
-					from : path.join(obsCurrentPkg,'public/') ,
-					to : path.join(obsCurrentPkg ,'dist/') ,
+					from : path.join(obsCurrentPkg , 'publish/') ,
+					to : path.join(obsCurrentPkg , 'dist/') ,
 				} ,
 			] ,
 		}) ,
 	] ,
-};
+} as Configuration;
 
-function getProvidePlugin () {
-	return new ProvidePlugin({
-		_ : ['lodash'] ,
-		React : ['react'] ,
-		useState : ['react' , 'useState'] ,
-		useEffect : ['react' , 'useEffect'] ,
-		useRef : ['react' , 'useRef'] ,
-		useLayoutEffect : ['react' , 'useLayoutEffect'] ,
-		useMemo : ['react' , 'useMemo'] ,
-		useCallback : ['react' , 'useCallback'] ,
-		orzPromise : ['reaxes-utils' , 'orzPromise'] ,
-		utils : ['reaxes-utils'] ,
-		crayon : ['reaxes-utils' , 'crayon'] ,
-	});
-}
+
+import webpack , { Configuration } from 'webpack';
+import { absProjectRootDir } from '../../build-tools/toolkit';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import path from "node:path";
+import { fileURLToPath } from 'url';

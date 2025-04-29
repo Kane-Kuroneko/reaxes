@@ -2,25 +2,16 @@
 	"name" : "reaxes-vue3" ,
 	"version" : "1.1.1" ,
 	"description" : "" ,
-	"main" : "src/index.tsx" ,
-	"module" : "src/index.tsx" ,
-	"types" : "./src/index.tsx" ,
-	"scripts" : {
-		"build" : "",
-		"test" : "jest"
-	} ,
-	"exports" : {
-		"import" : "src/index.tsx"
-	} ,
 	"author" : "Kane" ,
 	"license" : "WTFPL" ,
 	"dependencies" : {
 		"lodash" : "4.17.21"
 	} ,
 	"peerDependencies" : {
-		"vue" : "^3.3.2",
+		"vue" : "^3.3.2" ,
 		"@vueuse/core" : "^12.7.0"
 	} ,
 	"devDependencies" : {
+		"mobx" : "^6.13.7"
 	}
 }

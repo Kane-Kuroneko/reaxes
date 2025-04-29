@@ -7,8 +7,8 @@
 		"noEmit" : true ,
 		"paths" : {
 			"@/*" : [ "./src/*" ] ,
-			"reaxes-vue" : [ "../../../reaxes-vue2" ] ,
-			"reaxes" : [ "../../../reaxes" ]
+			"reaxes-vue2" : [ "../../../reaxes-vue2/dist" ] ,
+			"reaxes" : [ "../../../reaxes/dist" ]
 		}
 	} ,
 	

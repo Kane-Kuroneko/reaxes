@@ -1,7 +1,8 @@
 <script lang="ts">
-import { createReaxable } from 'reaxes/src';
+import { createReaxable } from 'reaxes';
 import {reaxper} from 'reaxes-vue2'
 import { reaxel_counter } from '../../../src/counter/reaxel';
+import {defineComponent} from 'vue'
 export default reaxper({
 	status(){
 		const { count , plus } = reaxel_counter();

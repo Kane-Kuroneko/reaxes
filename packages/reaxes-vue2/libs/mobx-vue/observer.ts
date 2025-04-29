@@ -1,8 +1,7 @@
 import { Reaction } from 'mobx';
 import collectDataForVue from './collectData';
 import Vue, { ComponentOptions } from 'vue';
-import {Reaxes} from 'reaxes';
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 export type VueClass<V> = (new(...args: any[]) => V & Vue) & typeof Vue;
 
@@ -30,7 +29,7 @@ function observer<VC extends VueClass<Vue>>(Component: VC | ComponentOptions<Vue
 	delete options.status;
 	// we couldn't use the Component as super class when Component was a VueClass, that will invoke the lifecycle twice after we called Component.extend
 	const superProto = typeof Component === 'function' && Object.getPrototypeOf(Component.prototype);
-	/*@ts-expect-error*/
+
 	const Super = superProto instanceof Vue ? superProto.constructor : Vue;
 	const ExtendedComponent = Super.extend(options);
 

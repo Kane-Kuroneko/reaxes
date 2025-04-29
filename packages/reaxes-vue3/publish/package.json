@@ -1,0 +1,29 @@
+{
+	"name" : "reaxes-vue3" ,
+	"version" : "0.1.0" ,
+	"description" : "Vue 3 binding for Reaxes reactive store, with automatic component updates." ,
+	"module" : "esm/index.js" ,
+	"types" : "types/src/index.d.ts" ,
+	"author" : "Kane" ,
+	"license" : "WTFPL" ,
+	
+	"dependencies" : {
+		"lodash" : "4.17.21"
+	} ,
+	"peerDependencies" : {
+		"vue" : "^3.3.2" ,
+		"mobx" : "^6.13.7" ,
+		"@vueuse/core" : "^12.7.0"
+	} ,
+	"devDependencies" : {
+		
+	} ,
+	"keywords" : [
+		"vue3" ,
+		"reaxes" ,
+		"mobx" ,
+		"reactive" ,
+		"store" ,
+		"composition-api"
+	]
+}

@@ -21,8 +21,8 @@ export default defineConfig({
 	resolve : {
 		alias : {
 			'@' : fileURLToPath(new URL('./src' , import.meta.url)) ,
-			'reaxes' : fileURLToPath(new URL('../../../reaxes' , import.meta.url)),
-			'reaxes-vue2' : fileURLToPath(new URL('../../../reaxes-vue2' , import.meta.url)),
+			// 'reaxes' : fileURLToPath(new URL('../../../reaxes' , import.meta.url)),
+			// 'reaxes-vue2' : fileURLToPath(new URL('../../../reaxes-vue2' , import.meta.url)),
 		} ,
 	} ,
 	server:{
