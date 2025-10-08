@@ -1,3 +1,26 @@
+# 0.1.2
+- fixed types of useReaxable , for reaxes@1.4.0 compatibility
+```ts
+const {
+	store ,
+	setState ,
+	mutate ,
+} = useReaxable( {
+	user : {
+		name : 'jack' ,
+		age  : 18 ,
+	} ,
+} );
+//easy to set nested state
+setState.user({
+	age : 20 ,
+});
+//or
+mutate.user( user => {
+	user.age = 21 ;
+});
+```
+
 # 0.1.1
 * 修复types和hooks type
 

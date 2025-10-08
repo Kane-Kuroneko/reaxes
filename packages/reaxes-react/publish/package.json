@@ -1,44 +1,44 @@
 {
-	"name" : "reaxes-react" ,
-	"version" : "0.1.1" ,
-	"description" : "Combine React with Reaxes, automatically re-render React components when the data in the store changes." ,
-	"author" : "Kane" ,
-	"license" : "WTFPL" ,
-	"types" : "./types/index.d.ts" ,
-	"typesVersions" : {
-		"*" : {
-			"index.d.ts" : [
+	"name": "reaxes-react",
+	"version": "0.1.2",
+	"description": "Combine React with Reaxes, automatically re-render React components when the data in the store changes.",
+	"author": "Kane",
+	"license": "WTFPL",
+	"types": "./types/index.d.ts",
+	"typesVersions": {
+		"*": {
+			"index.d.ts": [
 				"types/index.d.ts"
-			] ,
-			"hooks" : [
+			],
+			"hooks": [
 				"types/hooks/index.d.ts"
 			]
 		}
-	} ,
-	"exports" : {
-		"." : {
-			"import" : "./esm/index.js" ,
-			"require" : "./esm/index.js" ,
-			"types" : {
-				"default" : "./types/index.d.ts"
+	},
+	"exports": {
+		".": {
+			"import": "./esm/index.js",
+			"require": "./esm/index.js",
+			"types": {
+				"default": "./types/index.d.ts"
 			}
-		} ,
-		"./hooks" : {
-			"import" : "./esm/hooks.js" ,
-			"require" : "./esm/hooks.js" ,
-			"types" : {
-				"default" : "./types/hooks/index.d.ts"
+		},
+		"./hooks": {
+			"import": "./esm/hooks.js",
+			"require": "./esm/hooks.js",
+			"types": {
+				"default": "./types/hooks/index.d.ts"
 			}
 		}
-	} ,
-	"dependencies" : {
-		"lodash" : "4.17.21" ,
-		"reaxes-utils" : "^2.0.2"
-	} ,
-	"repository" : "" ,
-	"peerDependencies" : {
-		"react" : ">=16.8.0" ,
-		"react-dom" : ">=16.8.0" ,
-		"reaxes" : "^1.2.1"
+	},
+	"dependencies": {
+		"lodash": "4.17.21",
+		"reaxes-utils": "^2.0.2"
+	},
+	"repository": "",
+	"peerDependencies": {
+		"react": ">=16.8.0",
+		"react-dom": ">=16.8.0",
+		"reaxes": "^1.2.1"
 	}
 }
