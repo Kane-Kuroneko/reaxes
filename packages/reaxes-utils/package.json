@@ -4,6 +4,10 @@
 	"main": "src",
 	"license": "WTFPL",
 	"types" : "dist/types" ,
+	"scripts" : {
+		"build": "cd ../../ && npm run build reaxes-utils",
+		"publish": "cd ../../ && npm run publish reaxes-utils"
+	} ,
 	"dependencies": {
 		"lodash": "4.17.21"
 	},

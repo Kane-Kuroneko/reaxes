@@ -1,23 +1,25 @@
 /**
  * @description
- * 动态import模块,一般用于在reaxel中于不同的运行时环境加载不同的模块使用
- * @example Basic using:
- * orxImport({
- *    react : import('react'),
- *    reactDOM : import('react-dom')
- * }).then(({react,reactDOM}) => {
- *    react.createElement();
- *    reactDOM.createRoot();
+ * Dynamically imports modules, typically used in reaxel to load different modules in different runtime environments.
+ * 
+ * @example Basic usage:
+ * xImport({
+ *   react: import('react'),
+ *   reactDOM: import('react-dom')
+ * }).then(({ react, reactDOM }) => {
+ *   react.createElement();
+ *   reactDOM.createRoot();
  * });
- * @example Use in reaxel:
- * if(Runtime === 'wap'){
- *    orxImport({antdMobile : import('antd-mobile')}).then(({antdMobile}}) => {
- *       antdMobile.message.success();
- *    })
- * }else if(Runtime === 'pc'){
- *    orxImport({antd:import('antd')}).then(({antd}}) => {
- *       antd.message.success();
- *    })
+ * 
+ * @example Usage in reaxel:
+ * if (Runtime === 'wap') {
+ *   xImport({ antdMobile: import('antd-mobile') }).then(({ antdMobile }) => {
+ *     antdMobile.message.success();
+ *   });
+ * } else if (Runtime === 'pc') {
+ *   xImport({ antd: import('antd') }).then(({ antd }) => {
+ *     antd.message.success();
+ *   });
  * }
  */
 export const xImport = <T extends { [p in keyof T]: T[p] }>

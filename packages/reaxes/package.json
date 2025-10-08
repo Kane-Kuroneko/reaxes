@@ -5,6 +5,10 @@
 	"main": "src/index.ts" ,
 	"author": "Kane",
 	"license": "WTFPL",
+	"scripts" : {
+		"build": "del /Q dist & cd ../../ && npm run build reaxes",
+		"publish": "cd ../../ && npm run publish reaxes"
+	} ,
 	"dependencies": {
 		"lodash": "4.17.21",
 		"mobx": "^6.13.6",

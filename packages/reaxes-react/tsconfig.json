@@ -16,7 +16,7 @@
 		"strictBindCallApply" : false ,
 		"strictNullChecks" : false ,
 		"allowUnreachableCode" : true ,
-		"module" : "CommonJS" ,
+		"module" : "ESNext" ,
 		"moduleResolution" : "node" ,
 		"emitDeclarationOnly" : true ,
 		"noImplicitAny" : false ,

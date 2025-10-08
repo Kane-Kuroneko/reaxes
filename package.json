@@ -78,6 +78,7 @@
 		"webpack-merge": "5.9.0"
 	},
 	"dependencies": {
+		"reaxes-react": "file:packages/reaxes-react/dist",
 		"reaxes-utils": "^2.0.1"
 	}
 }

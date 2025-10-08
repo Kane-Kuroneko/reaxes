@@ -22,20 +22,24 @@ const build = async () => {
 	console.log(outputRelativeDir);
 	const files = fs.readdirSync(targetDir);
 	
-	if(files.includes('webpack.partial.ts')){
-		var partialConf: Configuration = ( await import(path.join('file://',targetDir , 'webpack.partial.ts')) ).default;
-		var finalWebpackConf = merge(
-			webpackBaseConfig ,
-			webpackBuildConfig ,
-			webpackLibsConf,
-			partialConf,
-		);
+	let finalWebpackConf: Configuration = merge(
+		webpackBaseConfig,
+		webpackBuildConfig,
+		webpackLibsConf
+	);
+	
+	if (files.includes('webpack.partial.ts')) {
+		const partialFilePath = path.join(targetDir, 'webpack.partial.ts');
+		const partialUrl = pathToFileURL(partialFilePath).href;
+		const partialConf: Configuration = (await import(partialUrl)).default;
+		finalWebpackConf = merge(finalWebpackConf, partialConf);
 	}
+	
 	// console.log(finalWebpackConf);
-	await webpack_promise(finalWebpackConf).then(( { stats } ) => {
+	await webpack_promise(finalWebpackConf).then(({ stats }) => {
 		// console.clear();
 		
-		console.log(chalk.green(`\n\n${ packige }打包成功,在${outputRelativeDir}`));
+		console.log(chalk.green(`\n\n${packige}打包成功,在${outputRelativeDir}`));
 	}).catch(e => {
 		console.error(chalk.white.bgRed(`打包失败:\n`));
 		console.error(e);

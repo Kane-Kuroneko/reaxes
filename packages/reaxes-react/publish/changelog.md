@@ -1,5 +1,9 @@
-# 1.0.0
-* 
+# 0.1.1
+* 修复types和hooks type
+
+# 0.1.0
+* 新增`useReaxable` hook
+
 # 0.0.8&0.0.9
 * 修复了reaxper的类型声明
 * 更新了reaxper::compose相关的代码

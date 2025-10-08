@@ -28,7 +28,6 @@
 			
 		} ,
 		"preserveConstEnums" : true ,
-		"removeComments" : true ,
 		"target" : "ES2020" ,
 		"allowSyntheticDefaultImports" : true 
 	} ,

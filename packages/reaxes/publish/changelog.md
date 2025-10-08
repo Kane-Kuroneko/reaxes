@@ -1,3 +1,24 @@
+# 1.4.0
+- createReaxable的返回值{setState,mutate}增加了针对内部对象修改的功能:
+```ts
+const {setState,mutate} = createReaxable({
+   user : {
+      name : 'John',
+      age : 30,
+   },
+   loggedIn : false,
+});
+// 修改user对象的name属性
+mutate.user( s => {
+   s.name = 'Doe';
+});
+//或
+setState.user({
+    name : 'Doe',
+})
+```
+
+
 # 1.3.1
 * Type Fix: The second argument of collectDeps should be optional.
 

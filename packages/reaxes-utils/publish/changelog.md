@@ -1,3 +1,8 @@
+# 2.0.9
+Fixed types were removed incorrectly
+
+# 2.0.8
+Fixed d.ts declaration in package.json
 # 2.0.6
 Fixed types
 # 2.0.5

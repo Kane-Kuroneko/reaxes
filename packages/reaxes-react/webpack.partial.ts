@@ -3,15 +3,20 @@ const __dirname = path.dirname(__filename);
 
 /*will be dynamic imported*/
 export default {
-	entry : path.join(__dirname , 'src/index') ,
+	entry : {
+		index : path.join(__dirname , 'src/index') ,
+		hooks : path.join(__dirname , 'src/hooks/index') ,
+	},
 	output : {
 		path : path.join(__dirname , 'dist') ,
-		filename : 'esm/index.js' ,
+		filename : 'esm/[name].js' ,
 	} ,
 	externals : [
 		'reaxes' ,
 		'reaxes-utils' ,
 		'reaxes-toolkit' ,
+		'react' ,
+		'react-dom' ,
 		'lodash' ,
 		'mobx' ,
 	] ,
