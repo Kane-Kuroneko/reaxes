@@ -4,7 +4,7 @@ const __dirname = dirname(__filename);
 const entries = {
 	'index' : path.join(__dirname , 'src/index') ,
 	'react-hooks' : path.join(__dirname , 'src/react-hooks/index') ,
-	'typescript-helper' : path.join(__dirname , 'src/typescript-helper/index') ,
+	'type-helpers' : path.join(__dirname , 'src/type-helpers/index') ,
 };
 
 export default {
@@ -21,7 +21,7 @@ export default {
 				return {
 					'index' : 'esm/index.js' ,
 					'react-hooks' : 'esm/react-hooks/index.js' ,
-					'typescript-helper' : 'esm/typescript-helper/index.js' ,
+					'type-helpers' : 'esm/type-helpers/index.js' ,
 				}[name];
 			} else {
 				return `[name].js`;

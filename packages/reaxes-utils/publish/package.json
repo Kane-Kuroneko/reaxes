@@ -11,19 +11,32 @@
 			"react-hooks": [
 				"types/react-hooks/index.d.ts"
 			],
-			"typescript-helper": [
-				"types/typescript-helper/index.d.ts"
+			"type-helpers": [
+				"types/type-helpers/index.d.ts"
 			]
 		}
 	},
 	"exports": {
 		".": {
 			"import": "./esm/index.js",
-			"types": "./types/index.d.ts"
+			"require": "./esm/index.js",
+			"types": {
+				"default": "./types/index.d.ts"
+			}
 		},
 		"./react-hooks": {
 			"import": "./esm/react-hooks/index.js",
-			"types": "./types/react-hooks/index.d.ts"
+			"require": "./esm/react-hooks/index.js",
+			"types": {
+				"default": "./types/react-hooks/index.d.ts"
+			}
+		},
+		"./type-helpers": {
+			"import": "./esm/type-helpers/index.js",
+			"require": "./esm/type-helpers/index.js",
+			"types": {
+				"default": "./types/type-helpers/index.d.ts"
+			}
 		}
 	}
 }
