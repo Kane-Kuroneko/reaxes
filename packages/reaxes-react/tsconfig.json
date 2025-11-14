@@ -32,8 +32,12 @@
 		"allowSyntheticDefaultImports" : true ,
 		"preserveConstEnums" : true ,
 		"removeComments" : true ,
-		"target" : "ESNext" 
+		"target" : "ESNext" ,
+		"paths" : {
+			"reaxes" : ["../reaxes"],
+			"reaxes-utils" : ["../reaxes-utils"]
+		}
 	} ,
-	"include" : [ "src", "libs" , "f.d.ts" ] ,
+	"include" : [ "src/*" , "f.d.ts"] ,
 	"exclude" : [ "node_modules" , "dist" , ".git" , ".idea" , ".svn" ]
 }

@@ -20,6 +20,9 @@
 	"version": "0.1.0",
 	"type": "module",
 	"private": true,
+	"workspaces" : [
+		"packages/*"
+	] ,
 	"prettier": {
 		"printWidth": 300,
 		"tabWidth": 3,
@@ -57,7 +60,6 @@
 		"@types/react": "^18.3.12",
 		"@types/react-dom": "^18.3.1",
 		"@types/semver": "^7.5.8",
-		"@types/webpack": "^5.28.5",
 		"babel-loader": "^10.0.0",
 		"clean-webpack-plugin": "4.0.0",
 		"compression-webpack-plugin": "10.0.0",
@@ -78,7 +80,5 @@
 		"webpack-merge": "5.9.0"
 	},
 	"dependencies": {
-		"reaxes-react": "file:packages/reaxes-react/dist",
-		"reaxes-utils": "^2.0.1"
 	}
 }

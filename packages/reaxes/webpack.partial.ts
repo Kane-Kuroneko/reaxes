@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 /*will be dynamic imported*/
-export default {
+export default ({
 	entry : path.join(__dirname , 'src/index') ,
 	output : {
 		path : path.join(__dirname,'dist') ,
@@ -29,10 +29,10 @@ export default {
 			] ,
 		}) ,
 	] ,
-} as Configuration;
+} satisfies Configuration as Configuration);
 
 import path from "node:path";
 import { fileURLToPath } from 'url';
-import webpack , { Configuration } from 'webpack';
+import webpack , { type Configuration } from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';

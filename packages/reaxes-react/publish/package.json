@@ -32,13 +32,13 @@
 		}
 	},
 	"dependencies": {
-		"lodash": "4.17.21",
-		"reaxes-utils": "^2.0.2"
+		"lodash": "4.17.21"
 	},
 	"repository": "",
 	"peerDependencies": {
 		"react": ">=16.8.0",
 		"react-dom": ">=16.8.0",
-		"reaxes": "^1.2.1"
+		"reaxes": "^1.2.1",
+		"reaxes-utils": "^2.0.2"
 	}
 }

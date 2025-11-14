@@ -10,5 +10,6 @@
 		"type" : "git" ,
 		"url" : "https://github.com/CainKane/Reaxes.git"
 	} ,
-	"private" : true
+	"private" : true,
+	"workspaces" : ["packages/*"]
 }
