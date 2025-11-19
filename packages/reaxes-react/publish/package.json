@@ -4,14 +4,14 @@
 	"description": "Combine React with Reaxes, automatically re-render React components when the data in the store changes.",
 	"author": "Kane",
 	"license": "WTFPL",
-	"types": "./types/index.d.ts",
+	"types": "./types/src/index.d.ts",
 	"typesVersions": {
 		"*": {
 			"index.d.ts": [
-				"types/index.d.ts"
+				"types/src/index.d.ts"
 			],
 			"hooks": [
-				"types/hooks/index.d.ts"
+				"types/src/hooks/index.d.ts"
 			]
 		}
 	},
@@ -20,14 +20,14 @@
 			"import": "./esm/index.js",
 			"require": "./esm/index.js",
 			"types": {
-				"default": "./types/index.d.ts"
+				"default": "./types/src/index.d.ts"
 			}
 		},
 		"./hooks": {
 			"import": "./esm/hooks.js",
 			"require": "./esm/hooks.js",
 			"types": {
-				"default": "./types/hooks/index.d.ts"
+				"default": "./types/src/hooks/index.d.ts"
 			}
 		}
 	},

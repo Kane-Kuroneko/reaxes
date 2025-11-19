@@ -6,6 +6,7 @@
 		"baseUrl" : "." ,
 		"declaration" : true ,
 		"declarationMap" : false ,
+		"rootDir" : "." ,
 		"esModuleInterop" : true ,
 		"experimentalDecorators" : true ,
 		"jsx" : "react" ,
@@ -34,10 +35,12 @@
 		"removeComments" : true ,
 		"target" : "ESNext" ,
 		"paths" : {
-			"reaxes" : ["../reaxes"],
 			"reaxes-utils" : ["../reaxes-utils"]
 		}
 	} ,
-	"include" : [ "src/*" , "f.d.ts"] ,
+	"references": [
+		{ "path": "../reaxes" }
+	],
+	"include" : [ "src/**/*" , "f.d.ts"] ,
 	"exclude" : [ "node_modules" , "dist" , ".git" , ".idea" , ".svn" ]
 }
