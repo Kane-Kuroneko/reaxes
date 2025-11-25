@@ -4,7 +4,7 @@
  * @format
  */
 
-export const Timer = class {
+export class Timer {
   /*订阅函数列表*/
   #subscribeList = [];
   /*当前剩余毫秒数*/

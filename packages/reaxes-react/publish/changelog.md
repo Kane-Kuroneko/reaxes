@@ -1,3 +1,6 @@
+# 0.1.3
+- fixed package.json type paths
+
 # 0.1.2
 - fixed types of useReaxable , for reaxes@1.4.0 compatibility
 ```ts

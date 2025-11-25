@@ -1,6 +1,6 @@
-# 2.0.10~2.0.11
+# 2.1.0
 - fixed types declaration in package.json
-- added checkAs function for ts type checking
+- added `checkAs,notNull,notFalse` utilities for ts type checking
 
 # 2.0.9
 Fixed types were removed incorrectly

@@ -1,6 +1,6 @@
 {
 	"name": "reaxes-utils",
-	"version": "2.0.10",
+	"version": "2.1.0",
 	"main": "esm/index.js",
 	"module": "esm/index.js",
 	"typesVersions": {
