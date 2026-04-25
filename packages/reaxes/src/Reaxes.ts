@@ -39,8 +39,8 @@ export function distinctCallback<T extends (...args) => any>(callback:T , deps :
 			/*debug时打开*/
 			// console.log(!utils.default.shallowEqual(depList,tempDepsList),depList,tempDepsList);
 			if( !utils.shallowEqual(depList , tempDepsList) ) {
-				return callback(...args);
 				depList = tempDepsList;
+				return callback(...args);
 			}
 		};
 	},{
