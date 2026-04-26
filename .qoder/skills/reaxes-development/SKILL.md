@@ -221,45 +221,45 @@ import { reaxel_HotkeyEnhancer } from '#renderer/reaxels/hotkey-enhancer';
 
 ### React 类组件（支持 Hooks）
 
-**重要**：`Reaxlass` 继承自 React `Component`，通过 `reaxper` 包装后，**可以在类组件的 render 方法中使用 React Hooks**！
+**重要**：`Reaxlass` 仅为 class 组件提供基础类，它的作用是扩展生命周期及在 render 函数内使用 Hooks 的能力。而根据响应式数据自动更新组件则是由 `reaxper` 提供的能力。
 
 ```tsx
 export const Test_Reaxel_i18n = reaxper(class extends Reaxlass {
-    // 类属性 - 调用 reaxel 获取方法（不是 Hooks）
-    reaxel_i18n_instance = reaxel_i18n();
-    
-    render() {
-        // 在 render 中调用 reaxel 获取响应式数据
-        const { changeLang, I18n, language, languageList } = reaxel_i18n();
-        
-        // 可以使用 React Hooks！（reaxper 内部处理）
-        const [localState, setLocalState] = useState('initial');
-        const prevRef = useRef<string>();
-        
-        useEffect(() => {
-            console.log('Component mounted');
-            return () => console.log('Component unmounted');
-        }, []);
-        
-        useEffect(() => {
-            // 监听 language 变化
-            console.log('Language changed to:', language);
-        }, [language]);
-        
-        return (
-            <div>
-                <select
-                    value={language}
-                    onChange={(e) => changeLang(e.target.value)}
-                >
-                    {languageList.map(({ lang, name }) => (
-                        <option value={lang} key={lang}>{name}</option>
-                    ))}
-                </select>
-                <p><I18n>By stakeholders, for stakeholders.</I18n></p>
-            </div>
-        );
-    }
+   // 类属性 - 调用 reaxel 获取方法（不是 Hooks）
+   reaxel_i18n_instance = reaxel_i18n();
+   
+   render() {
+      // 在 render 中调用 reaxel 获取响应式数据
+      const { changeLang, I18n, language, languageList } = reaxel_i18n();
+      
+      // 可以使用 React Hooks！（reaxper 内部处理）
+      const [localState, setLocalState] = useState('initial');
+      const prevRef = useRef<string>();
+      
+      useEffect(() => {
+         console.log('Component mounted');
+         return () => console.log('Component unmounted');
+      }, []);
+      
+      useEffect(() => {
+         // 监听 language 变化
+         console.log('Language changed to:', language);
+      }, [language]);
+      
+      return (
+         <div>
+            <select
+               value={language}
+               onChange={(e) => changeLang(e.target.value)}
+            >
+               {languageList.map(({ lang, name }) => (
+                  <option value={lang} key={lang}>{name}</option>
+               ))}
+            </select>
+            <p><I18n>By stakeholders, for stakeholders.</I18n></p>
+         </div>
+      );
+   }
 });
 
 import { reaxper, Reaxlass } from 'reaxes-react';
@@ -272,36 +272,28 @@ import { useState, useEffect, useRef } from 'react';
 
 ```typescript
 export const AdvancedComponent = reaxper(class extends Reaxlass {
-    // 调用 reaxel
-    myReaxel = reaxel_MyModule();
-    
-    // 生命周期栈（高级功能）
-    mountedStack = [
-        { callback: () => console.log('mounted'), id: 'init' },
-    ];
-    unmountStack = [
-        { callback: () => cleanup(), id: 'cleanup' },
-    ];
-    
-    // 自定义 render 方法
-    render() {
-        const { data } = reaxel_MyModule();
-        
-        // 可以使用所有 React Hooks
-        const [count, setCount] = useState(0);
-        const memoizedValue = useMemo(() => computeExpensive(data), [data]);
-        
-        return <div>{memoizedValue}</div>;
-    }
-    
-    // didMount 和 didUpdate 都要执行的逻辑
-    componentDidRender(stage: 'mount' | 'update', prevProps, prevState, snapshot) {
-        if (stage === 'mount') {
-            console.log('First render');
-        } else {
-            console.log('Re-rendered');
-        }
-    }
+   // 调用 reaxel
+   myReaxel = reaxel_MyModule();
+
+   // 自定义 render 方法
+   render() {
+      const { data } = reaxel_MyModule();
+      
+      // 可以使用所有 React Hooks
+      const [count, setCount] = useState(0);
+      const memoizedValue = useMemo(() => computeExpensive(data), [data]);
+      
+      return <div>{memoizedValue}</div>;
+   }
+   
+   // didMount 和 didUpdate 都要执行的逻辑
+   componentDidRender(stage: 'mount' | 'update', prevProps, prevState, snapshot) {
+      if (stage === 'mount') {
+         console.log('First render');
+      } else {
+         console.log('Re-rendered');
+      }
+   }
 });
 ```
 
@@ -309,16 +301,14 @@ export const AdvancedComponent = reaxper(class extends Reaxlass {
 
 | 特性        | 函数组件       | 类组件（Reaxlass）                            |
 |-----------|------------|------------------------------------------|
-| Hooks 支持  | ✅ 原生支持     | ✅ reaxper 包装后支持                          |
+| Hooks 支持  | ✅ 原生支持     | ✅ Reaxlass 提供（可在 render 中使用）             |
+| 响应式更新     | reaxper 提供 | reaxper 提供                               |
 | reaxel 调用 | render 内调用 | 类属性或 render 内调用                          |
-| 状态管理      | useState   | this.state 或 useState                    |
 | 生命周期      | useEffect  | componentDidMount 等 + componentDidRender |
-| 推荐度       | ⭐⭐⭐⭐⭐ 推荐   | ⭐⭐⭐ 可选                                   |
-| 使用场景      | 大多数场景      | 需要类特性或迁移旧代码                              |
 
 ## 去重回调（distinctCallback）
 
-`distinctCallback` 是一个**在组件外部创建、在组件内部调用**的智能回调包装器。它通过浅比较依赖数组来避免不必要的执行，**无需使用 React Hooks**。
+`distinctCallback` 是一个**在组件外部创建、(主要是)在组件内部调用**的智能回调包装器。它的核心设计意图是可被调用多次，但仅在依赖发生变化时才真正执行。若依赖无变化则返回上次的执行结果.
 
 ### 核心特性
 
