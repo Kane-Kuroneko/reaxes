@@ -125,7 +125,7 @@ merge({
 });
 ```
 
-### 3. 构建 Reaxel 模块（最新范式）
+### 3. 构建 Reaxel 模块
 
 ```typescript
 // reaxels/hotkey-enhancer/index.ts
@@ -174,7 +174,7 @@ export const reaxel_HotkeyEnhancer = reaxel(() => {
 });
 ```
 
-**关键约定（最新范式）**：
+**关键约定**：
 - 导出命名为 `reaxel_模块名`（大驼峰）
 - `rtn` 对象只包含业务方法，不包含 store/setState/mutate
 - 使用 `Object.assign(() => rtn, { store, setState, mutate })` 模式
@@ -187,7 +187,7 @@ export const reaxel_HotkeyEnhancer = reaxel(() => {
 
 ```tsx
 // components/Main-Switch/index.tsx
-export const MainSwitch = reaxper(() => {
+export const MainSwitch = reaxper(() => { //必须用reaxper包裹才会根据响应式数据变化而自动更新
     // 调用 reaxel 获取业务方法
     const { toggleMainSwitch, toggleAutoSwitch } = reaxel_HotkeyEnhancer();
     
