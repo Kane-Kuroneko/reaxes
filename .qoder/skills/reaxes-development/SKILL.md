@@ -116,19 +116,22 @@ const {
 - `mutate`: 深层可变更新（通过回调函数）
 - `merge`: 深度合并更新
 
+> **Proxy 模式说明**：`setState` 和 `mutate` 都是基于 Proxy 实现的，因此它们**既是函数又有属性访问**。直接调用 `setState({...})` 更新根层，链式 `setState.profile({...})` 更新嵌套路径。`mutate` 同理。
+
 ### 2. 更新状态的三种方式
 
 ```typescript
-// 方式1: setState - 浅层赋值更新
-setState( { count : store.count + 1 } );
-setState.profile( { name : 'Jane' } );  // 链式路径
+// 方式1: setState - 浅层赋值更新（Proxy 实现，既是函数又可链式访问属性）
+setState( { count : store.count + 1 } );     // 直接调用：更新根层属性
+setState.profile( { name : 'Jane' } );       // 链式路径：更新嵌套对象
 
-// 方式2: mutate - 深层可变更新
-mutate.profile( p => {
+// 方式2: mutate - 深层可变更新（同样是 Proxy，支持直接调用和链式访问）
+mutate( s => s.count = s.count + 1 );        // 直接调用：修改根层
+mutate.profile( p => {                       // 链式路径：修改嵌套对象
    p.name = 'Jane';
    p.age = 25;
 } );
-mutate.profile.address( addr => {
+mutate.profile.address( addr => {            // 更深层链式
    addr.city = 'Los Angeles';
 } );
 
@@ -208,6 +211,70 @@ export const reaxel_HotkeyEnhancer = reaxel( () => {
 - 使用 `Object.assign(() => rtn, { store, setState, mutate })` 模式
 - 组件可直接访问 `reaxel_模块名.store.xxx` 读取状态
 - 组件调用 `reaxel_模块名().方法名()` 执行业务逻辑
+
+## Rehance：reaxel 增强器/插件
+
+`rehance_XXX` 是作用于 reaxel 内部的插件/增强器，用于为 store 添加额外能力（如持久化、加密存储等）。命名约定为 `rehance_功能名`。
+
+### rehance_BrowserPersist
+
+为浏览器环境的 store 提供 localStorage 持久化功能：页面刷新后自动恢复之前的业务状态，store 变化时自动写入 localStorage。
+
+```typescript
+// 柯里化调用：第一个括号传唯一 key，第二个括号传配置
+rehance_BrowserPersist( persistKey: string )( {
+   store ,             // createReaxable 创建的 store
+   setState ,          // createReaxable 创建的 setState
+   filter? ,           // 可选：过滤器函数，指定哪些字段需要持久化
+} )
+```
+
+**参数说明**：
+- `persistKey`：唯一标识（重复会抛错），作为 localStorage 的 key
+- `filter(store)`：可选过滤器，返回 store 的子集，只持久化返回的字段
+
+**实际用法示例**：
+
+```typescript
+export const reaxel_CheatCodes = reaxel( () => {
+   const { store , setState , mutate } = createReaxable( {
+      cheatCodesData : [ ...originalCheatCodesData ] as DataType[] ,
+   } );
+   
+   // 最简用法：持久化整个 store
+   rehance_BrowserPersist( '|cheat-codes|' )( { store , setState } );
+   
+   // ...
+} );
+
+export const reaxel_HotkeyEnhancer = reaxel( () => {
+   const { store , setState , mutate } = createReaxable( { /* ... */ } );
+   
+   // 带 filter：排除 switch_main 字段，其余都持久化
+   rehance_BrowserPersist( 'GUI' )( {
+      store , setState , filter( s ) {
+         return _.omit( s , 'switch_main' );
+      } ,
+   } );
+   
+   // ...
+} );
+
+export const reaxel_Theme = reaxel( () => {
+   const { store , setState , mutate } = createReaxable( {} );
+   
+   // 带 filter：只持久化 currentScheme 字段
+   rehance_BrowserPersist( '|theme|' )( {
+      store , setState , filter( s ) {
+         return _.pick( s , [ 'currentScheme' ] );
+      } ,
+   } );
+   
+   // ...
+} );
+
+import { rehance_BrowserPersist } from '#generics/rehancers/browser-persist';
+```
 
 ## 组件开发
 
@@ -304,15 +371,8 @@ export const Test_Reaxel_i18n = reaxper( class extends Reaxlass {
    }
 } );
 
-import {
-   reaxper ,
-   Reaxlass
-} from 'reaxes-react';
-import {
-   useState ,
-   useEffect ,
-   useRef
-} from 'react';
+import { reaxper , Reaxlass } from 'reaxes-react';
+import { useState , useEffect , useRef } from 'react';
 ```
 
 ### 类组件特性
@@ -359,12 +419,40 @@ export const AdvancedComponent = reaxper( class extends Reaxlass {
 
 `distinctCallback` 是一个**在组件外部创建、(主要是)在MVVM框架的视图组件内部调用**的智能回调包装器。它的核心设计意图是可被调用多次，但仅在依赖发生变化时才真正执行。若依赖无变化则直接返回上次的执行结果.
 
+### 函数签名
+
+```typescript
+function distinctCallback<T extends (...args: any[]) => any>(
+   callback: T,                    // 要执行的回调函数
+   deps: () => any[],              // 初始依赖（用于首次比对基准 & resetDeps 恢复目标）
+   initialValue?: ReturnType<T>,   // 可选的初始缓存值（有值时首次依赖未变化不执行回调，直接返回此值）
+): DistinctCallbackInvoker<T>;
+
+// 返回的 invoker 类型：既是函数又挂载了 resetDeps 方法
+type DistinctCallbackInvoker<T> = {
+   (depsSetter: () => any[]): (...args: Parameters<T>) => ReturnType<T>;
+   resetDeps(): void;  // 重置依赖缓存为创建时的初始 deps，强制下次调用时执行
+};
+```
+
+### 双 deps 设计说明
+
+| | 创建时的 `deps` | 调用时传入的 `depsSetter` |
+|---|---|---|
+| **作用** | 初始化/预设的依赖基准值 | 本次调用时获取的最新依赖值 |
+| **何时求值** | 创建时立即执行一次，得到初始 depList | 每次 invoker 被调用时执行 |
+| **比对逻辑** | 作为「上一次」的基准 | 与缓存的 depList 做浅比较 |
+| **resetDeps 关联** | `resetDeps()` 会重新执行此函数，将 depList 重置回初始值 | 无关 |
+
+**工作流程**：创建时 → `depList = deps()` 作为初始缓存 → 每次调用 `invoker(depsSetter)` → `tempDeps = depsSetter()` → 与 `depList` 浅比较 → 有变化则执行 callback 并更新 `depList = tempDeps`，无变化则返回上次结果。
+
 ### 核心特性
 
 - **创建位置**：在 reaxel 模块内部或组件外部（模块级别）
 - **调用位置**：搭配React组件使用时直接在组件内顶层调用. 但仍然可在任何可能重复执行的场景中使用,react组件只是这种场景的一个子集.
-- **执行条件**：仅在依赖发生变化时才执行回调
+- **执行条件**：仅在依赖发生变化时才执行回调；若提供了 `initialValue` 且依赖未变化，首次调用也不执行，直接返回 `initialValue`
 - **无需 Hooks**：不需要 `useEffect`、`useMemo` 等 React Hooks
+- **柯里化调用**：`invoker(depsSetter)(…args)` — 第一个括号传最新依赖获取函数，第二个括号传回调参数
 
 ### 基本用法
 
@@ -380,21 +468,19 @@ export const reaxel_Auth = reaxel( () => {
       token : null as string | null ,
    } );
    
-   // 创建 distinctCallback - 监听 input_username 变化
+   // 创建 distinctCallback
+   // deps: () => [store.input_username] 作为初始依赖基准
    const distinctUsernameHandler = distinctCallback(
       ( actionType: string ) => {
          console.log( 'Username changed to:' , store.input_username , 'Action:' , actionType );
-         // 只有当 input_username 真正改变时才执行
-         // 可以执行副作用：发送请求、更新其他状态等
       } ,
-      () => [ store.input_username ] ,  // 依赖数组
+      () => [ store.input_username ] ,  // 初始依赖基准 & resetDeps 恢复目标
    );
    
    const rtn = {
       setInputName( name: string ) {
          setState( { input_username : name } );
       } ,
-      // 暴露 invoker 给组件使用
       distinctUsernameHandler ,
    };
    
@@ -409,14 +495,14 @@ export const reaxel_Auth = reaxel( () => {
 ### 在组件中使用
 
 ```tsx
-// 函数组件中使用
 export default reaxper( () => {
    const {
       setInputName ,
       distinctUsernameHandler
    } = reaxel_Auth();
    
-   // 直接调用 - 只有 input_username 改变时才执行回调
+   // 柯里化调用：第一个括号传入当前最新依赖，第二个括号传入回调参数
+   // 每次渲染都会调用，但只有 input_username 相比上次有变化时才真正执行回调
    distinctUsernameHandler( () => [ reaxel_Auth.store.input_username ] )( 'login' );
    
    return (
@@ -425,8 +511,6 @@ export default reaxper( () => {
             value={ reaxel_Auth.store.input_username }
             onChange={ ( e ) => {
                setInputName( e.target.value );
-               // 每次 input 变化都调用，但回调只在值真正改变时执行
-               distinctUsernameHandler( () => [ reaxel_Auth.store.input_username ] )( 'input' );
             } }
          />
       </div>
@@ -434,54 +518,57 @@ export default reaxper( () => {
 } );
 ```
 
-### 高级模式：配合 resetDeps
+### resetDeps 用法
 
-```tsx
-// 创建时返回 [invoker, resetDeps]
-const [ distinctInvoker , resetDeps ] = distinctCallback(
+`resetDeps` 是挂载在 invoker 函数上的方法（非元组解构），用于将内部依赖缓存重置为创建时的初始 deps 值，强制下次调用时必然执行回调：
+
+```typescript
+// 创建 - 返回的是一个带 resetDeps 方法的函数，不是元组
+const distinctInvoker = distinctCallback(
    ( name: string , age: number ) => {
       console.log( 'User info changed:' , name , age );
    } ,
-   () => [
-      store.name ,
-      store.age
-   ]
+   () => [ store.name , store.age ]
 );
 
 // 在 reaxel 中暴露
 const rtn = {
    distinctInvoker ,
-   resetDeps ,  // 重置依赖缓存，强制下次执行
+   // resetDeps 是 distinctInvoker 上的方法
+   resetUserDeps() { distinctInvoker.resetDeps(); } ,
    updateUserInfo( name: string , age: number ) {
-      setState( {
-         name ,
-         age
-      } );
+      setState( { name , age } );
    } ,
 };
 
 // 组件中使用
 export const UserProfile = reaxper( () => {
-   const {
-      distinctInvoker ,
-      resetDeps ,
-      updateUserInfo
-   } = reaxel_User();
+   const { distinctInvoker , resetUserDeps } = reaxel_User();
    
-   // 调用时传入最新的依赖获取函数和参数
+   // 柯里化调用
    distinctInvoker( () => [
       reaxel_User.store.name ,
       reaxel_User.store.age
-   ] )
-   ( reaxel_User.store.name , reaxel_User.store.age );
+   ] )( reaxel_User.store.name , reaxel_User.store.age );
    
-   // 需要时重置依赖缓存
-   const handleReset = () => {
-      resetDeps();
-   };
-   
-   return <button onClick={ handleReset }>Reset Deps</button>;
+   return <button onClick={ resetUserDeps }>Reset Deps</button>;
 } );
+```
+
+### initialValue 用法
+
+当已有缓存数据时，可通过第三参数避免首次不必要的计算：
+
+```typescript
+// 有缓存时不执行回调，直接返回 cachedProfile
+const distinctFetchProfile = distinctCallback(
+   ( userId: string ) => fetchUserProfile( userId ) ,
+   () => [ store.userId ] ,
+   cachedProfile ,  // 初始缓存值
+);
+
+// 组件中：如果 userId 未变化，直接返回 cachedProfile 而不发请求
+const profile = distinctFetchProfile( () => [ store.userId ] )( store.userId );
 ```
 
 ### 与 obsReaction 的对比
@@ -490,7 +577,7 @@ export const UserProfile = reaxper( () => {
 |------------|--------------------|------------------|
 | 调用方式       | 手动调用 invoker       | 自动监听依赖变化         |
 | 执行时机       | 调用时检查依赖            | 依赖变化时自动执行        |
-| 使用场景       | actions            | 副作用、状态同步         |
+| 使用场景       | 懒加载、组件渲染时去重执行   | 副作用、状态同步         |
 | 是否需要 Hooks | ❌ 不需要              | ❌ 不需要            |
 | 首次执行       | 不调用不执行             | 立即执行（first=true） |
 
@@ -572,10 +659,17 @@ export const distinctProfileUpdate = distinctCallback(
 ### obsReaction - 依赖追踪反应
 
 ```typescript
+function obsReaction<F extends (first?: boolean, disposer?: Disposer) => any>(
+   callback: F,
+   dependencies: () => Array<any>
+): Disposer;  // 返回 disposer 函数
+```
+
+```typescript
 obsReaction(
    ( first , disposer ) => {
       if( first ) {
-         // 首次执行
+         // 首次执行（异步 microtask 中触发）
          console.log( 'Initial:' , store.count );
          return;
       }
@@ -591,26 +685,63 @@ obsReaction(
 
 **特点**：
 
-- 自动浅比较依赖数组
-- `first` 参数标识首次调用
-- `disposer` 用于清理副作用
-- 类似 MobX reaction 但优化了重复触发
+- 自动浅比较依赖数组，仅在实际变化时触发回调
+- `first` 参数标识首次调用，常用 `if(first) return` 跳过初始化
+- `disposer` 调用后停止监听，永久销毁此 reaction（类似 `mobx::reaction` 返回的 dispose）
+- obsReaction 本身也返回 disposer，可从外部销毁
 
-### collectDeps - 在响应式手动收集依赖
+### disposer 用法示例
 
 ```typescript
-// 在组件中手动指定监听的属性
-collectDeps( store , [
-   'count' ,
-   'profile'
-] );
-//收集深层依赖
-collectDeps( store.profile , [
-	'age' ,
-	'name'
-] )
-// 不传第二个参数则监听整个 store
-collectDeps( store );
+// 方式1：从外部获取 disposer 并在需要时销毁
+const disposer = obsReaction( ( first ) => {
+   if( first ) return;
+   syncToServer( store.data );
+} , () => [ store.data ] );
+
+// 某个时机不再需要监听时：
+disposer();  // 停止 reaction，后续 store.data 变化不再触发
+
+// 方式2：在回调内部根据条件自我销毁
+obsReaction( ( first , disposer ) => {
+   if( first ) return;
+   if( store.count >= 10 ) {
+      console.log( '目标达成，停止监听' );
+      disposer();  // 在回调内部销毁自己
+      return;
+   }
+   console.log( 'count:' , store.count );
+} , () => [ store.count ] );
+```
+
+### collectDeps - 在响应式环境手动收集依赖
+
+`reaxper` 会自动追踪组件首次渲染中直接读取的 `store.xxx` 作为依赖。但以下场景需要 `collectDeps` 手动补充依赖：
+
+1. **条件分支内的属性**：某些属性在 `if` 分支中，首次渲染未走到该分支则不会被追踪
+2. **不读取但需响应变化**：某属性不在 JSX 中使用，但变化时仍需重渲染组件
+
+**重要**：`collectDeps` 必须在 observer 依赖收集环境下调用才有作用（即在 `reaxper` 包装的组件 render 中，或 MobX `autorun`/`reaction` 内部）。在普通函数中调用无效。
+
+```typescript
+// 原理：collectDeps 本质是读取属性值以触发 MobX 的依赖收集
+export const MyComponent = reaxper( () => {
+   // 手动收集：即使下方 JSX 中未直接使用 count，它变化时也会触发重渲染
+   collectDeps( store , [ 'count' , 'profile' ] );
+   
+   // 收集深层依赖
+   collectDeps( store.profile , [ 'age' , 'name' ] );
+   
+   // 不传第二个参数则监听整个 store 所有属性
+   collectDeps( store );
+   
+   // 条件分支示例：即使 store.isExpanded 为 false，details 变化时也能触发重渲染
+   collectDeps( store , [ 'details' ] );
+   if( store.isExpanded ) {
+      return <div>{ store.details }</div>;
+   }
+   return <div>收起状态</div>;
+} );
 ```
 
 ## 业务逻辑执行范式：命令式 vs 响应式
@@ -1065,7 +1196,9 @@ export const reaxel_CheatCodes = reaxel( () => {
 } );
 ```
 
-### 模式 6: IPC 通信与状态同步
+### 模式 6: IPC 通信与状态同步（Electron 环境）
+
+> 此模式仅适用于 Electron 应用，`IpcRendererSend`/`IpcRendererOn` 是对 Electron ipcRenderer 的封装。
 
 ```typescript
 export const reaxel_HotkeyEnhancer = reaxel( () => {
@@ -1176,7 +1309,7 @@ export const reaxel_GUI_Core = reaxel( () => {
 
 ### 模式 8: 嵌套 Refaxel 组合
 
-参见上方「**Refaxel：可配置工厂模板**」章节的完整示例（`reaxel_Theme` + `Refaxel_Lottie`）。
+参见下方「Refaxel：reaxel 的多例工厂」章节的「主从组合用法」完整示例（`reaxel_Theme` + `Refaxel_Lottie`）。
 
 ### 模式 9: 统一导出（Exports）
 
@@ -1184,10 +1317,17 @@ export const reaxel_GUI_Core = reaxel( () => {
 // reaxels/exports.ts
 // 从 reaxel_I18n 提取常用导出，方便其他模块使用
 export const { i18n } = reaxel_I18n();
+// createI18nReactComponent: 将 reaxel_I18n 传入，构造一个依赖 store.language 变化而自动重新渲染翻译文本的 React 组件
+// 本质就是一个 reaxper 包装的组件，内部读取 I18n_Store.language 触发响应式更新
 export const I18n = createI18nReactComponent( reaxel_I18n );
 
 // 使用方：
 // import { i18n, I18n } from '#renderer/reaxels/exports';
+// i18n('文本')     → 返回翻译后的字符串
+// <I18n>文本</I18n> → 渲染翻译后的 React 元素，language 变化时自动重渲染
+
+import { reaxel_I18n } from '../reaxels/i18n';
+import { createI18nReactComponent } from '#generics/refaxels/i18n/views/react';
 ```
 
 ## 注意事项（重要）
@@ -1213,9 +1353,10 @@ Reaxes 底层使用 MobX，但提供了更简洁的 API：
 |--------------|---------------------|--------------|
 | `observable` | `createReaxable`    | 创建响应式状态      |
 | `action`     | 内置于 setState/mutate | 自动包装         |
-| `reaction`   | `obsReaction`       | 优化版 reaction |
+| `reaction`   | `obsReaction`       | 优化版 reaction，自带浅比较 |
 | `observer`   | `reaxper`           | 组件包装器        |
-| `toJS`       | 从 reaxes 导出         | 相同功能         |
+| `toJS`       | `import { toJS } from 'reaxes'` | 将 observable 转为普通 JS 对象 |
+| `untracked`  | `import { untracked } from 'reaxes'` | 在不触发依赖收集的情况下读取 observable |
 
 ## Refaxel：reaxel 的多例工厂
 
@@ -1305,11 +1446,10 @@ counterA.store.count;  // 0
 counterB.store.count;  // 100——完全独立
 ```
 
-### 官方 Refaxel 扩展包
+### 官方扩展包
 
-| 包名 | 用途 |
-|------|------|
-| `refaxel-i18n` | 国际化支持 |
-| `refaxel-persist` | 状态持久化 |
-| `refaxel-themes` | 主题管理 |
-| `reaxel-time-machine` | 时间旅行调试 |
+| 包名 | 用途 | 说明 |
+|------|------|------|
+| `refaxel-i18n` | 国际化支持 | Refaxel 多例工厂，支持多实例独立语言管理，提供 `i18n()` 函数和 `createI18nReactComponent` 视图组件 |
+| `reaxel-persist` | 状态持久化 | 基于 class 的持久化方案（支持 localStorage/sessionStorage），与 `rehance_BrowserPersist` 是不同实现 |
+| `reaxel-time-machine` | 时间旅行调试 | 提供撤销/重做、时间线导航等状态历史管理能力 |
