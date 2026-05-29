@@ -417,7 +417,9 @@ export const AdvancedComponent = reaxper( class extends Reaxlass {
 
 ## 去重回调（distinctCallback）
 
-`distinctCallback` 是一个**在组件外部创建、(主要是)在MVVM框架的视图组件内部调用**的智能回调包装器。它的核心设计意图是可被调用多次，但仅在依赖发生变化时才真正执行。若依赖无变化则直接返回上次的执行结果.
+`distinctCallback` 是一个**在组件外部创建、(主要是)在MVVM框架的视图组件内部调用**的智能回调包装器。它的核心设计意图是可在每次渲染时被重复调用，但内部通过依赖浅比较做去重：依赖未变化时跳过回调执行并返回缓存结果。
+
+> **首次调用行为**：无 `initialValue` 时首次调用**必定执行**（因为内部 lastResult 未初始化）；有 `initialValue` 时首次调用若依赖未变化则**不执行回调**，直接返回 `initialValue`。
 
 ### 函数签名
 
@@ -444,13 +446,13 @@ type DistinctCallbackInvoker<T> = {
 | **比对逻辑** | 作为「上一次」的基准 | 与缓存的 depList 做浅比较 |
 | **resetDeps 关联** | `resetDeps()` 会重新执行此函数，将 depList 重置回初始值 | 无关 |
 
-**工作流程**：创建时 → `depList = deps()` 作为初始缓存 → 每次调用 `invoker(depsSetter)` → `tempDeps = depsSetter()` → 与 `depList` 浅比较 → 有变化则执行 callback 并更新 `depList = tempDeps`，无变化则返回上次结果。
+**工作流程**：创建时 → `depList = deps()` 作为初始基准，`lastResult = initialValue ?? UNINITIALIZED` → 每次调用 `invoker(depsSetter)` → `tempDeps = depsSetter()` → 返回 handler → 调用 handler(...args) 时与 `depList` 浅比较 → **依赖变化 OR lastResult === UNINITIALIZED** 则执行 callback 并更新 `depList = tempDeps` 和 `lastResult`，否则直接返回缓存的 `lastResult`。
 
 ### 核心特性
 
 - **创建位置**：在 reaxel 模块内部或组件外部（模块级别）
 - **调用位置**：搭配React组件使用时直接在组件内顶层调用. 但仍然可在任何可能重复执行的场景中使用,react组件只是这种场景的一个子集.
-- **执行条件**：仅在依赖发生变化时才执行回调；若提供了 `initialValue` 且依赖未变化，首次调用也不执行，直接返回 `initialValue`
+- **执行条件**：`depsChanged || lastResult === UNINITIALIZED` 为真时执行回调。即：① 依赖变化时执行；② 无 `initialValue` 时首次必定执行（因为 `lastResult` 初始为 UNINITIALIZED）；③ 有 `initialValue` 时首次依赖未变化则不执行，直接返回 `initialValue`
 - **无需 Hooks**：不需要 `useEffect`、`useMemo` 等 React Hooks
 - **柯里化调用**：`invoker(depsSetter)(…args)` — 第一个括号传最新依赖获取函数，第二个括号传回调参数
 
@@ -579,7 +581,7 @@ const profile = distinctFetchProfile( () => [ store.userId ] )( store.userId );
 | 执行时机       | 调用时检查依赖            | 依赖变化时自动执行        |
 | 使用场景       | 懒加载、组件渲染时去重执行   | 副作用、状态同步         |
 | 是否需要 Hooks | ❌ 不需要              | ❌ 不需要            |
-| 首次执行       | 不调用不执行             | 立即执行（first=true） |
+| 首次执行       | 无 initialValue 时首次必定执行；有 initialValue 则按依赖判断 | 立即执行（first=true） |
 
 ### 实际应用场景
 
