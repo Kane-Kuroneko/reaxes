@@ -222,10 +222,10 @@ export const reaxel_HotkeyEnhancer = reaxel( () => {
 
 ```typescript
 // 柯里化调用：第一个括号传唯一 key，第二个括号传配置
-rehance_BrowserPersist( persistKey: string )( {
+rehance_BrowserPersist( persistKey )( {
    store ,             // createReaxable 创建的 store
    setState ,          // createReaxable 创建的 setState
-   filter? ,           // 可选：过滤器函数，指定哪些字段需要持久化
+   filter ,           // 可选：过滤器函数，指定哪些字段需要持久化
 } )
 ```
 
@@ -439,12 +439,12 @@ type DistinctCallbackInvoker<T> = {
 
 ### 双 deps 设计说明
 
-| | 创建时的 `deps` | 调用时传入的 `depsSetter` |
-|---|---|---|
-| **作用** | 初始化/预设的依赖基准值 | 本次调用时获取的最新依赖值 |
-| **何时求值** | 创建时立即执行一次，得到初始 depList | 每次 invoker 被调用时执行 |
-| **比对逻辑** | 作为「上一次」的基准 | 与缓存的 depList 做浅比较 |
-| **resetDeps 关联** | `resetDeps()` 会重新执行此函数，将 depList 重置回初始值 | 无关 |
+|                  | 创建时的 `deps`                             | 调用时传入的 `depsSetter` |
+|------------------|-----------------------------------------|---------------------|
+| **作用**           | 初始化/预设的依赖基准值                            | 本次调用时获取的最新依赖值       |
+| **何时求值**         | 创建时立即执行一次，得到初始 depList                  | 每次 invoker 被调用时执行   |
+| **比对逻辑**         | 作为「上一次」的基准                              | 与缓存的 depList 做浅比较   |
+| **resetDeps 关联** | `resetDeps()` 会重新执行此函数，将 depList 重置回初始值 | 无关                  |
 
 **工作流程**：创建时 → `depList = deps()` 作为初始基准，`lastResult = initialValue ?? UNINITIALIZED` → 每次调用 `invoker(depsSetter)` → `tempDeps = depsSetter()` → 返回 handler → 调用 handler(...args) 时与 `depList` 浅比较 → **依赖变化 OR lastResult === UNINITIALIZED** 则执行 callback 并更新 `depList = tempDeps` 和 `lastResult`，否则直接返回缓存的 `lastResult`。
 
@@ -524,7 +524,7 @@ export default reaxper( () => {
 
 `resetDeps` 是挂载在 invoker 函数上的方法（非元组解构），用于将内部依赖缓存重置为创建时的初始 deps 值，强制下次调用时必然执行回调：
 
-```typescript
+```tsx
 // 创建 - 返回的是一个带 resetDeps 方法的函数，不是元组
 const distinctInvoker = distinctCallback(
    ( name: string , age: number ) => {
@@ -575,12 +575,12 @@ const profile = distinctFetchProfile( () => [ store.userId ] )( store.userId );
 
 ### 与 obsReaction 的对比
 
-| 特性         | `distinctCallback` | `obsReaction`    |
-|------------|--------------------|------------------|
-| 调用方式       | 手动调用 invoker       | 自动监听依赖变化         |
-| 执行时机       | 调用时检查依赖            | 依赖变化时自动执行        |
-| 使用场景       | 懒加载、组件渲染时去重执行   | 副作用、状态同步         |
-| 是否需要 Hooks | ❌ 不需要              | ❌ 不需要            |
+| 特性         | `distinctCallback`                           | `obsReaction`    |
+|------------|----------------------------------------------|------------------|
+| 调用方式       | 手动调用 invoker                                 | 自动监听依赖变化         |
+| 执行时机       | 调用时检查依赖                                      | 依赖变化时自动执行        |
+| 使用场景       | 懒加载、组件渲染时去重执行                                | 副作用、状态同步         |
+| 是否需要 Hooks | ❌ 不需要                                        | ❌ 不需要            |
 | 首次执行       | 无 initialValue 时首次必定执行；有 initialValue 则按依赖判断 | 立即执行（first=true） |
 
 ### 实际应用场景
@@ -725,7 +725,7 @@ obsReaction( ( first , disposer ) => {
 
 **重要**：`collectDeps` 必须在 observer 依赖收集环境下调用才有作用（即在 `reaxper` 包装的组件 render 中，或 MobX `autorun`/`reaction` 内部）。在普通函数中调用无效。
 
-```typescript
+```tsx
 // 原理：collectDeps 本质是读取属性值以触发 MobX 的依赖收集
 export const MyComponent = reaxper( () => {
    // 手动收集：即使下方 JSX 中未直接使用 count，它变化时也会触发重渲染
@@ -910,15 +910,15 @@ obsReaction((first) => {
 
 ### 决策规则
 
-| 判断条件 | 选择 |
-|---------|------|
-| 需要知道「谁触发了这个逻辑」 | Way A |
-| 包含 async/await 顺序依赖 | Way A |
-| 需要错误处理/回滚 | Way A |
-| 多步骤有序编排 | Way A |
-| 纯粹的状态 → 外部系统同步 | Way B |
-| 不关心触发源的观察性副作用 | Way B |
-| 不确定选哪个 | **默认 Way A** |
+| 判断条件                | 选择           |
+|---------------------|--------------|
+| 需要知道「谁触发了这个逻辑」      | Way A        |
+| 包含 async/await 顺序依赖 | Way A        |
+| 需要错误处理/回滚           | Way A        |
+| 多步骤有序编排             | Way A        |
+| 纯粹的状态 → 外部系统同步      | Way B        |
+| 不关心触发源的观察性副作用       | Way B        |
+| 不确定选哪个              | **默认 Way A** |
 
 ### 反模式警告
 
@@ -1351,13 +1351,13 @@ import { createI18nReactComponent } from '#generics/refaxels/i18n/views/react';
 
 Reaxes 底层使用 MobX，但提供了更简洁的 API：
 
-| MobX         | Reaxes              | 说明           |
-|--------------|---------------------|--------------|
-| `observable` | `createReaxable`    | 创建响应式状态      |
-| `action`     | 内置于 setState/mutate | 自动包装         |
-| `reaction`   | `obsReaction`       | 优化版 reaction，自带浅比较 |
-| `observer`   | `reaxper`           | 组件包装器        |
-| `toJS`       | `import { toJS } from 'reaxes'` | 将 observable 转为普通 JS 对象 |
+| MobX         | Reaxes                               | 说明                        |
+|--------------|--------------------------------------|---------------------------|
+| `observable` | `createReaxable`                     | 创建响应式状态                   |
+| `action`     | 内置于 setState/mutate                  | 自动包装                      |
+| `reaction`   | `obsReaction`                        | 优化版 reaction，自带浅比较        |
+| `observer`   | `reaxper`                            | 组件包装器                     |
+| `toJS`       | `import { toJS } from 'reaxes'`      | 将 observable 转为普通 JS 对象   |
 | `untracked`  | `import { untracked } from 'reaxes'` | 在不触发依赖收集的情况下读取 observable |
 
 ## Refaxel：reaxel 的多例工厂
@@ -1366,12 +1366,12 @@ Reaxes 底层使用 MobX，但提供了更简洁的 API：
 
 **Refaxel** 本质是 reaxel 的工厂函数。它实例化后产生的是**完整功能的 reaxel**，与普通 reaxel 唯一的区别是：
 
-| | reaxel | Refaxel |
-|---|--------|----------|
-| **实例数量** | 全局单例 | 多例并存（每次调用产生独立实例） |
-| **命名** | `reaxel_Xxx` | `Refaxel_Xxx` |
-| **配置** | 内部固定逻辑 | 通过参数注入不同配置 |
-| **调用结果** | 永远返回同一实例 | 每次返回新的独立 reaxel |
+|          | reaxel       | Refaxel          |
+|----------|--------------|------------------|
+| **实例数量** | 全局单例         | 多例并存（每次调用产生独立实例） |
+| **命名**   | `reaxel_Xxx` | `Refaxel_Xxx`    |
+| **配置**   | 内部固定逻辑       | 通过参数注入不同配置       |
+| **调用结果** | 永远返回同一实例     | 每次返回新的独立 reaxel  |
 
 **一句话区分**：`reaxel` 是单例工厂（全局唯一），`Refaxel` 是多例工厂（可并存多个独立实例）。实例化后得到的东西完全相同——都是完整的 reaxel。
 
@@ -1450,8 +1450,40 @@ counterB.store.count;  // 100——完全独立
 
 ### 官方扩展包
 
-| 包名 | 用途 | 说明 |
-|------|------|------|
-| `refaxel-i18n` | 国际化支持 | Refaxel 多例工厂，支持多实例独立语言管理，提供 `i18n()` 函数和 `createI18nReactComponent` 视图组件 |
-| `reaxel-persist` | 状态持久化 | 基于 class 的持久化方案（支持 localStorage/sessionStorage），与 `rehance_BrowserPersist` 是不同实现 |
-| `reaxel-time-machine` | 时间旅行调试 | 提供撤销/重做、时间线导航等状态历史管理能力 |
+| 包名                    | 用途     | 说明                                                                               |
+|-----------------------|--------|----------------------------------------------------------------------------------|
+| `refaxel-i18n`        | 国际化支持  | Refaxel 多例工厂，支持多实例独立语言管理，提供 `i18n()` 函数和 `createI18nReactComponent` 视图组件         |
+| `reaxel-persist`      | 状态持久化  | 基于 class 的持久化方案（支持 localStorage/sessionStorage），与 `rehance_BrowserPersist` 是不同实现 |
+| `reaxel-time-machine` | 时间旅行调试 | 提供撤销/重做、时间线导航等状态历史管理能力                                                           |
+
+## Q&A
+
+### Q: `mutate` 中 `push` 等数组原地方法不触发组件更新？
+
+**这不是 mutate 的 bug**，而是 MobX 依赖追踪的粒度问题。`mutate` 回调收到的是真实的 MobX observable（非 Immer draft），`push/splice/pop` 等方法**确实会通知 MobX**。
+
+问题在于**消费端如何观察数组**：
+
+```tsx
+const { store, mutate } = createReaxable({ Data: { AIs: [] } });
+
+// ❌ 组件只读取数组引用（不遍历）→ push 不触发重渲染
+const Component = reaxper(() => {
+   const ais = store.Data.AIs;  // MobX 只追踪「AIs 属性」，不追踪数组内容
+   return <Child list={ais} />;
+});
+
+// ✅ 组件遍历数组内容 → push 正常触发
+const Component = reaxper(() => {
+   return <>{store.Data.AIs.map(ai => <Item key={ai.id} data={ai} />)}</>;
+});
+```
+
+**原理**：MobX 区分「属性读取」和「数组内容访问」两种依赖：
+- 只读 `store.Data.AIs`（属性引用）→ 仅在属性被**重新赋值**时通知（`state.AIs = [...]`）
+- 读 `.length`、`.map()`、`.forEach()` → 追踪数组**内容**，`push` 会触发
+
+**解决方案**（任选其一）：
+1. 确保 observer 组件内遍历数组（`.map()`、`.length` 等）
+2. 使用 `collectDeps(store.Data, ['AIs'])` 不够——需要访问数组内容
+3. 如果确实只传递引用，改用 `state.AIs = [...state.AIs, item]` 替换引用
