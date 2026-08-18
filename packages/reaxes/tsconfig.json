@@ -29,11 +29,12 @@
 		"removeComments" : true ,
 		"sourceMap" : true ,
 		"target" : "ESNext" ,
+		"rootDir" : "src" ,
 		"outDir" : "dist/types" ,
 		"paths" : {
 			"reaxes-utils" : [ "../reaxes-utils" ]
 		}
 	} ,
-	"include" : ["src/*", "tests/*"] ,
+	"include" : ["src/*"] ,
 	"exclude" : [ "node_modules" , "dist" , ".git" , ".idea" , ".svn" ,"webpack.partial.ts","src/revent-flow.tsx" ]
 }
